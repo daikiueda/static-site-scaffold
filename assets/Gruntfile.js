@@ -10,6 +10,16 @@
 module.exports = function( grunt ){
 
     grunt.initConfig( {
+
+        compass: {
+            main: {
+                options: {
+                    basePath: 'css',
+                    config: 'css/config.rb'
+                }
+            }
+        },
+
         meta_excel: {
             options: {
                 dataStartingRow: 7,
@@ -23,21 +33,21 @@ module.exports = function( grunt ){
                     thumbnail: "N"
                 }
             },
-            test_site: {
+            main: {
                 xlsx: "metadata/sitemap.xlsm",
                 htmlDir: "../htdocs/",
                 options: {
-                    boilerplate: "../htdocs/__boilerplate.html"
+                    boilerplate: "../htdocs/__modules/__boilerplate.html"
                 }
             }
         }
     } );
 
-    grunt.loadNpmTasks( "grunt-meta-excel" );
-//    grunt.loadNpmTasks( "grunt-contrib-jshint" );
-//    grunt.loadNpmTasks( "grunt-mocha-test" );
 
-    grunt.loadTasks( "tasks" );
+    // load all grunt tasks
+    require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
+    grunt.loadTasks('tasks');
+
 
 //    grunt.registerTask( "test", [ "mochaTest" ] );
 //    grunt.registerTask( "default", [ "jshint", "test" ] );
