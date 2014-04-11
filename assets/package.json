@@ -1,0 +1,14 @@
+{
+  "name": "static-site-tools",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-meta-excel": "0.0.3"
+  }
+}
