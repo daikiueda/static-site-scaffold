@@ -7,9 +7,48 @@
 
 "use strict";
 
+var LIVERELOAD_PORT = 35729,
+    lrSnippet = require( "connect-livereload" )( { port: LIVERELOAD_PORT } ),
+    mountFolder = function( connect, dir ){
+        return connect.static( require( "path" ).resolve( dir ) );
+    };
+
 module.exports = function( grunt ){
 
     grunt.initConfig( {
+
+        connect: {
+            options: {
+                port: 8000,
+                hostname: "localhost"
+            },
+            livereload: {
+                options: {
+                    middleware: function( connect ) {
+                        return [
+                            lrSnippet,
+                            mountFolder( connect, '../htdocs' )
+                        ];
+                    }
+                }
+            }
+        },
+        open: {
+            main: {
+                path: "http://<%= connect.options.hostname %>:<%= connect.options.port %>"
+            }
+        },
+
+        watch: {
+            options: {
+                nospawn: true,
+                livereload: LIVERELOAD_PORT
+            },
+            scss: {
+                files: [ "css/**/*.scss" ],
+                tasks: [ "compass" ]
+            }
+        },
 
         compass: {
             main: {
@@ -47,6 +86,9 @@ module.exports = function( grunt ){
     // load all grunt tasks
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
     grunt.loadTasks('tasks');
+
+
+    grunt.registerTask( "server", [ "connect", "open", "watch" ] );
 
 
 //    grunt.registerTask( "test", [ "mochaTest" ] );
