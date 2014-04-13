@@ -152,7 +152,7 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
-    grunt.registerTask( "setup", [ "exec:bower_install", "meta_excel" ] );
+    grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
     //grunt.registerTask( "test", [ "mochaTest" ] );
 
