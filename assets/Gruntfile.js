@@ -42,6 +42,15 @@ module.exports = function( grunt ){
             }
         },
 
+        htmllint: {
+            main: {
+                src: [
+                    "../htdocs/**/*.html",
+                    "!../htdocs/__modules/**/*.html",
+                ]
+            }
+        },
+
         compass: {
             main: {
                 options: {
