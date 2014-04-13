@@ -59,7 +59,8 @@ module.exports = function( grunt ){
                         DEBUG: MODE_DEBUG
                     },
                     dead_code: true
-                }
+                },
+                preserveComments: "some"
             },
             libs: {
                 src: [
@@ -73,7 +74,18 @@ module.exports = function( grunt ){
                 ],
                 dest: "../htdocs/common/js/common.js"
             }
-        },        
+        },
+
+        replace: {
+            license_comment_format: {
+                src: [ "../htdocs/common/js/libs.js" ],
+                overwrite: true,
+                replacements: [
+                    { from: /\/\*\!/g, to: "\n/*!" },
+                    { from: /^\n+\/\*\!/g, to: "/*!" }
+                ]
+            }
+        },
 
         meta_excel: {
             options: {
@@ -129,8 +141,7 @@ module.exports = function( grunt ){
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
     grunt.loadTasks('tasks');
 
-
-    grunt.registerTask( "build", [ "compass", "uglify" ] );
+    grunt.registerTask( "build", [ "compass", "js" ] );
 
     grunt.registerTask( "server", function(){
         if( !this.flags.skip_build ){
@@ -138,6 +149,8 @@ module.exports = function( grunt ){
         }
         grunt.task.run( [ "connect", "open", "watch" ] );
     } );
+
+    grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
     grunt.registerTask( "setup", [ "exec:bower_install", "meta_excel" ] );
 
