@@ -95,6 +95,32 @@ module.exports = function( grunt ){
                     boilerplate: "../htdocs/__modules/__boilerplate.html"
                 }
             }
+        },
+
+        exec: {
+            bower_install: {
+                cmd: "bower install",
+                stdout: false,
+                stderr: false,
+                callback: function( error, stdout, stderr ){
+                    if( stdout === "" && stderr === "" ){
+                        grunt.log.ok( "All Components have been installed." );
+                    }
+
+                    if( error && error.code === 127 ){
+                        grunt.log.error( "bowerがみつかりません。インストール状況を確認してください。" );
+                        return;
+                    }
+
+                    stdout.split( /\n/ ).forEach( function( log ){
+                        if( /\s{2,}/.test( log ) ) grunt.log.writeln( log.replace( /^.+\s{2,}/, " * " ) );
+                        if( /^\S+\s\S+$/.test( log ) ) grunt.log.ok( log.replace( /\s\S+$/, "" ) );
+                    } );
+                    stderr.split( /\n/ ).forEach( function( err ){
+                        if( /\s{2,}/.test( err ) ) grunt.log.error( err.replace( /\s{2,}/, "\n" ) );
+                    } );
+                }
+            }
         }
     } );
 
@@ -106,12 +132,14 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "build", [ "compass", "uglify" ] );
 
-    grunt.registerTask( "server", function( foo ){
+    grunt.registerTask( "server", function(){
         if( !this.flags.skip_build ){
             grunt.task.run( [ "build" ] );
         }
         grunt.task.run( [ "connect", "open", "watch" ] );
     } );
+
+    grunt.registerTask( "setup", [ "exec:bower_install", "meta_excel" ] );
 
     //grunt.registerTask( "test", [ "mochaTest" ] );
 
