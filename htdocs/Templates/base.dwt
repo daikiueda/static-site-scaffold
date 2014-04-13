@@ -18,11 +18,14 @@
 		<link rel="canonical" href="">
 		<!-- InstanceEndEditable -->
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+		<!-- InstanceBeginEditable name="head" -->
+		<link rel="stylesheet" href="../common/css/common.css">
+		<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+		<!-- InstanceEndEditable -->
 		<style>#analytics_code { position: absolute; width: 1px; height: 1px; overflow: hidden; }</style>
 	</head>
 	<body>
-		<!-- InstanceEndEditable name="body" -->
+		<!-- InstanceBeginEditable name="body" -->
 		<div id="container">
 			<header></header>
 
@@ -32,8 +35,10 @@
 
 			<footer>
 				<div class="copyright">Copyright&copy;2014</div>
-			</footer>>
+			</footer>
 		</div>
+		
+		<!-- TemplateBeginEditable name="scripts" --><!-- TemplateEndEditable -->
 		<!-- InstanceEndEditable -->
 		<div id="analytics_code">
 		</div>
