@@ -7,12 +7,6 @@
 
 "use strict";
 
-var LIVERELOAD_PORT = 35729,
-    lrSnippet = require( "connect-livereload" )( { port: LIVERELOAD_PORT } ),
-    mountFolder = function( connect, dir ){
-        return connect.static( require( "path" ).resolve( dir ) );
-    };
-
 module.exports = function( grunt ){
 
     grunt.initConfig( {
@@ -24,12 +18,8 @@ module.exports = function( grunt ){
             },
             livereload: {
                 options: {
-                    middleware: function( connect ) {
-                        return [
-                            lrSnippet,
-                            mountFolder( connect, '../htdocs' )
-                        ];
-                    }
+                    base: "../htdocs",
+                    livereload: true
                 }
             }
         },
@@ -42,7 +32,7 @@ module.exports = function( grunt ){
         watch: {
             options: {
                 nospawn: true,
-                livereload: LIVERELOAD_PORT
+                livereload: true
             },
             scss: {
                 files: [ "css/**/*.scss" ],
