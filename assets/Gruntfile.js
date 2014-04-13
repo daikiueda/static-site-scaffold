@@ -7,6 +7,8 @@
 
 "use strict";
 
+var MODE_DEBUG = false;
+
 module.exports = function( grunt ){
 
     grunt.initConfig( {
@@ -49,6 +51,30 @@ module.exports = function( grunt ){
             }
         },
 
+        uglify: {
+            options: {
+                beautify: MODE_DEBUG,
+                compress: {
+                    global_defs: {
+                        DEBUG: MODE_DEBUG
+                    },
+                    dead_code: true
+                }
+            },
+            libs: {
+                src: [
+                    "bower_components/jquery/dist/jquery.js"
+                ],
+                dest: "../htdocs/common/js/libs.js"
+            },
+            common: {
+                src: [
+                    "js/common/*.js"
+                ],
+                dest: "../htdocs/common/js/common.js"
+            }
+        },        
+
         meta_excel: {
             options: {
                 dataStartingRow: 7,
@@ -77,6 +103,8 @@ module.exports = function( grunt ){
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
     grunt.loadTasks('tasks');
 
+
+    grunt.registerTask( "build", [ "compass", "uglify" ] );
 
     grunt.registerTask( "server", [ "connect", "open", "watch" ] );
 
