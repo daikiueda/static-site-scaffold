@@ -36,7 +36,7 @@ module.exports = function( grunt ){
                 nospawn: true,
                 livereload: true
             },
-            scss: {
+            compass: {
                 files: [ "css/**/*.scss" ],
                 tasks: [ "compass" ]
             }
@@ -106,9 +106,14 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "build", [ "compass", "uglify" ] );
 
-    grunt.registerTask( "server", [ "connect", "open", "watch" ] );
+    grunt.registerTask( "server", function( foo ){
+        if( !this.flags.skip_build ){
+            grunt.task.run( [ "build" ] );
+        }
+        grunt.task.run( [ "connect", "open", "watch" ] );
+    } );
 
+    //grunt.registerTask( "test", [ "mochaTest" ] );
 
-//    grunt.registerTask( "test", [ "mochaTest" ] );
-//    grunt.registerTask( "default", [ "jshint", "test" ] );
+    grunt.registerTask( "default", [ "build" ] );
 };
