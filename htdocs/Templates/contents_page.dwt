@@ -41,6 +41,8 @@
 			</footer>
 		</div>
 		
+		<script src="../common/js/libs.js"></script>
+		<script src="../common/js/common.js"></script>
 		<!-- InstanceBeginEditable name="scripts" --><!-- InstanceEndEditable -->
 		
 		<div id="analytics_code">

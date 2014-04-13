@@ -38,6 +38,8 @@
 			</footer>
 		</div>
 		
+		<script src="../common/js/libs.js"></script>
+		<script src="../common/js/common.js"></script>
 		<!-- TemplateBeginEditable name="scripts" --><!-- TemplateEndEditable -->
 		<!-- InstanceEndEditable -->
 		<div id="analytics_code">
