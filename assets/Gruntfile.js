@@ -36,9 +36,13 @@ module.exports = function( grunt ){
                 nospawn: true,
                 livereload: true
             },
-            compass: {
+            css: {
                 files: [ "css/**/*.scss" ],
-                tasks: [ "compass" ]
+                tasks: [ "css" ]
+            },
+            js: {
+                files: [ "js/**/*.js" ],
+                tasks: [ "js" ]
             }
         },
 
@@ -151,7 +155,9 @@ module.exports = function( grunt ){
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
     grunt.loadTasks('tasks');
 
-    grunt.registerTask( "build", [ "compass", "js" ] );
+
+    // register tasks
+    grunt.registerTask( "build", [ "css", "js" ] );
 
     grunt.registerTask( "server", function(){
         if( !this.flags.skip_build ){
@@ -159,6 +165,8 @@ module.exports = function( grunt ){
         }
         grunt.task.run( [ "connect", "open", "watch" ] );
     } );
+
+    grunt.registerTask( "css", [ "compass" ] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
