@@ -79,7 +79,8 @@ module.exports = function( grunt ){
             },
             common: {
                 src: [
-                    "js/common/*.js"
+                    "js/common/$.namespace.js",
+                    "js/common/**/*.js"
                 ],
                 dest: "../htdocs/common/js/common.js"
             }
