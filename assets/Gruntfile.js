@@ -90,6 +90,16 @@ module.exports = function( grunt ){
             }
         },
 
+        jsdoc : {
+            main : {
+                src: [ "js/**/*.js", "js/**/*.jsdoc" ], 
+                options: {
+                    configure: "settings/jsdoc3.conf.json",
+                    destination: 'doc/js'
+                }
+            }
+        },
+
         replace: {
             license_comment_format: {
                 src: [ "../htdocs/common/js/libs.js" ],

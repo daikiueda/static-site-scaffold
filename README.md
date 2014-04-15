@@ -73,8 +73,9 @@ $ grunt compass
 > https://www.npmjs.org/package/grunt-contrib-uglify
 
 ```Bash
-$ grunt uglify
+$ grunt js
 ```
+
 ### 名前空間の定義
 
 `assets/js/common/siteScript/$.namespace.js`は名前空間の定義を標準化します。
@@ -104,6 +105,14 @@ $.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script
 
 ```HTML
 <script src="common/js/common.js" data-namespace="sampleSite"></script>
+```
+
+### JSDocの生成
+
+> https://github.com/krampstudio/grunt-jsdoc ( http://usejsdoc.org )
+
+```Bash
+$ grunt jsdoc
 ```
 
 

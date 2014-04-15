@@ -13,6 +13,7 @@
         // namespaceメソッドを保持させる$オブジェクトの決定。
         // jQueryの使用を想定している。
         // jQueryが存在しない場合は、グローバルスコープに変数$を定義する。
+        /** @namespace $ */
         $ = global.$ = ( global.$ ) ? global.$: {},
 
         // 名前空間の実体となるハッシュ。
@@ -33,8 +34,9 @@
 
     /**
      * 名前空間の階層を定義する。
-     * @function $.namespace
-     * @param {String} namesHierarchy ex. "siteScript.utils.validator"
+     * @name $.namespace
+     * @function
+     * @param {String} namesHierarchy ex. "siteScript.utils.validator" or "siteScript/utils/validator"
      */
     $.namespace = function( namesHierarchy ){
         var spaceNames,
@@ -62,7 +64,8 @@
 
     /**
      * 名前空間のルート階層を返却する。
-     * @function $.namespace.getSiteScriptRoot
+     * @name $.namespace.getRoot
+     * @function
      * @returns {Object}
      */
     $.namespace.getRoot = function(){
