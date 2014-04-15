@@ -132,13 +132,7 @@ $ grunt server
 
 ## セットアップ
 
-```Bash
-$ git clone https://github.com/daikiueda/static-site-scaffold.git
-$ cd static-site-scaffold/assets
-$ npm install
-```
-
-### ※前提条件
+### 前提条件
 
 * gitプロトコルでの通信に対応していること。  
   通信ポートがふさがれている場合は、以下のようなgitの設定ファイル「```.gitconfig```」を  
@@ -150,9 +144,10 @@ $ npm install
 
 * __[node.js](http://nodejs.org/)__  
   ※Macユーザーの方には[nodebrew](https://github.com/hokaccha/nodebrew)オススメです。
-  * __grunt-cli__ ```$ npm install grunt-cli -g``` （Macの場合は```$ sudo npm install grunt-cli -g```）
-  * __bower__ ```$ npm install bower -g``` （Macの場合は```$ sudo npm install bower -g```）
+  * __grunt-cli__ ```$ (sudo) npm install grunt-cli -g```
+  * __bower__ ```$ (sudo) npm install bower -g```
 
+* __Compass__ ```$ (sudo) gem install compass```
 
 #### Windowsの場合、さらに以下が必要です。
 
@@ -162,3 +157,10 @@ $ npm install
 * [Python v2.7.x](http://www.python.jp/download/)
 * [Microsoft Visual Studio Express 2013](http://www.microsoft.com/ja-jp/download/details.aspx?id=40787) （または同等のコンパイル環境）
 
+### 環境構築
+
+```Bash
+$ git clone https://github.com/daikiueda/static-site-scaffold.git
+$ cd static-site-scaffold/assets/
+$ npm install
+```
