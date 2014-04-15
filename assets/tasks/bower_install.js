@@ -25,7 +25,7 @@ module.exports = function( grunt ){
                 grunt.log.writeln( " * 環境変数「NODE_PATH」が設定されていない。" );
             }
             else {
-                grunt.log.writeln( " * 環境変数「NODE_PATH」の設定が不正である。（" + process.env[ "NODE_PATH" ]  + "）" );
+                grunt.log.writeln( " * 環境変数「NODE_PATH」の設定が不正である。（" + process.env[ "NODE_PATH" ] + "）" );
             }
             grunt.log.writeln( " * 「bower」がインストールされていない。" );
 

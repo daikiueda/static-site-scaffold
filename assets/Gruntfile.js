@@ -9,6 +9,8 @@
 
 var MODE_DEBUG = false;
 
+var chalk = require( "chalk" );
+
 module.exports = function( grunt ){
 
     grunt.initConfig( {
@@ -46,6 +48,7 @@ module.exports = function( grunt ){
             }
         },
 
+
         htmllint: {
             main: {
                 src: [
@@ -55,14 +58,16 @@ module.exports = function( grunt ){
             }
         },
 
+
         compass: {
             main: {
                 options: {
-                    basePath: 'css',
-                    config: 'css/config.rb'
+                    basePath: "css",
+                    config: "css/config.rb"
                 }
             }
         },
+
 
         uglify: {
             options: {
@@ -94,22 +99,12 @@ module.exports = function( grunt ){
             main : {
                 src: [ "js/**/*.js", "js/**/*.jsdoc" ], 
                 options: {
-                    configure: "settings/jsdoc3.conf.json",
-                    destination: 'doc/js'
+                    configure: "configurations/jsdoc3.conf.json",
+                    destination: "doc/js"
                 }
             }
         },
 
-        replace: {
-            license_comment_format: {
-                src: [ "../htdocs/common/js/libs.js" ],
-                overwrite: true,
-                replacements: [
-                    { from: /\/\*\!/g, to: "\n/*!" },
-                    { from: /^\n+\/\*\!/g, to: "/*!" }
-                ]
-            }
-        },
 
         meta_excel: {
             options: {
@@ -132,6 +127,35 @@ module.exports = function( grunt ){
                 }
             }
         },
+
+
+        attention: {
+            server: {
+                options: {
+                    message: [
+                        "Server started at ",
+                        chalk.underline.cyan(
+                            "http://<%= connect.options.hostname %>:<%= connect.options.port %>/"
+                        ),
+                        "\n and File Watching ... " + chalk.inverse( " Ctrl + C " ) + " to exit."
+                    ].join( "" ),
+                    border: "thin",
+                    borderColor: 'blue'
+                }
+            }
+        },
+        
+        replace: {
+            license_comment_format: {
+                src: [ "../htdocs/common/js/libs.js" ],
+                overwrite: true,
+                replacements: [
+                    { from: /\/\*\!/g, to: "\n/*!" },
+                    { from: /^\n+\/\*\!/g, to: "/*!" }
+                ]
+            }
+        },
+
 
         exec: {
             bower_install: {
@@ -157,13 +181,56 @@ module.exports = function( grunt ){
                     } );
                 }
             }
+        },
+
+
+        prompt: {
+            select_task: {
+                options: {
+                    questions: [
+                        {
+                            config: "selectedTask",
+                            type: "list",
+                            message: "What would you like to do?", 
+                            default: "server",
+                            choices: [
+                                { name: "ファイル更新の監視とオートリロードの開始", value: "server" },
+                                "---",
+                                { name: "Sass/Compassのコンパイル", value: "css" },
+                                { name: "JavaScriptのビルド", value: "js" },
+                                { name: "HTMLの構文チェック", value: "htmllint" },
+                                "---",
+                                { name: "その他", value: null },
+                                { name: "なんでもない", value: "" },
+                            ]
+                        },
+                        {
+                            config: "selectedTask",
+                            type: "list",
+                            message: "What would you like to do?", 
+                            choices: [
+                                { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
+                                { name: "HTMLの生成", value: "meta_excel::generate" },
+                                "---",
+                                { name: "JSDocの生成", value: "jsdoc" },
+                                "---",
+                                { name: "なんでもない", value: "" }
+                            ],
+                            when: function( answer ){
+                                return ( answer.selectedTask === null );
+                            }
+                        }
+                    ]
+                }
+            }
         }
     } );
 
 
     // load all grunt tasks
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
-    grunt.loadTasks('tasks');
+    grunt.loadNpmTasks( "grunt-attention" ); // なぜかmatchdepで捕捉されない。
+    grunt.loadTasks( "tasks" );
 
 
     // register tasks
@@ -173,7 +240,7 @@ module.exports = function( grunt ){
         if( !this.flags.skip_build ){
             grunt.task.run( [ "build" ] );
         }
-        grunt.task.run( [ "connect", "open", "watch" ] );
+        grunt.task.run( [ "connect", "open", "attention:server", "watch" ] );
     } );
 
     grunt.registerTask( "css", [ "compass" ] );
@@ -184,5 +251,5 @@ module.exports = function( grunt ){
 
     //grunt.registerTask( "test", [ "mochaTest" ] );
 
-    grunt.registerTask( "default", [ "build" ] );
+    grunt.registerTask( "default", [ "prompt:select_task", "respond_to_task_select" ] );
 };

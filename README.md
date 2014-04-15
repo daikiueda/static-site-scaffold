@@ -31,18 +31,15 @@ static-site-scaffold
 
 ### 構文チェック
 
-> https://www.npmjs.org/package/grunt-html ( https://validator.github.io/ )
-
 HTML5対応の構文チェックサービス「[validator.nu](http://validator.nu/)」と同等のチェックを  
 htdocs以下のすべてのhtmlファイルを対象に実行します。
 
 ```Bash
 $ grunt htmllint
 ```
+> https://www.npmjs.org/package/grunt-html ( https://validator.github.io/ )
 
 ### &lt;title&gt;, description, keyword, OGPの一括更新
-
-> https://www.npmjs.org/package/grunt-meta-excel
 
 サイトマップ（Excelファイル）の内容にあわせて、htmlファイル中の情報を更新します。
 
@@ -50,31 +47,30 @@ $ grunt htmllint
 $ grunt meta_excel
 
 # special function!
-# htmlファイルがない場合、サイトマップに示されたパスにファイルを生成します。
+# サイトマップに示されたパスにhtmlファイルが存在しない場合、ファイルを生成します。
 $ grunt meta_excel::generate
 ```
+> https://www.npmjs.org/package/grunt-meta-excel
 
 
 ## CSS
 
 ### Sass/Compass（*.scss）のコンパイル
 
-> https://www.npmjs.org/package/grunt-contrib-compass
-
 ```Bash
-$ grunt compass
+$ grunt css
 ```
+> https://www.npmjs.org/package/grunt-contrib-compass
 
 
 ## JavsScript
 
 ### ソースコードの結合・圧縮
 
-> https://www.npmjs.org/package/grunt-contrib-uglify
-
 ```Bash
 $ grunt js
 ```
+> https://www.npmjs.org/package/grunt-contrib-uglify
 
 ### 名前空間の定義
 
@@ -109,11 +105,10 @@ $.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script
 
 ### JSDocの生成
 
-> https://github.com/krampstudio/grunt-jsdoc ( http://usejsdoc.org )
-
 ```Bash
 $ grunt jsdoc
 ```
+> https://github.com/krampstudio/grunt-jsdoc ( http://usejsdoc.org )
 
 
 ## Totally easy coding!
@@ -126,15 +121,23 @@ $ grunt build
 
 ### scssやjsが更新されるつど、自動的にコンパイルして、ブラウザをリロード！
 
-> https://github.com/gruntjs/grunt-contrib-watch  
-https://github.com/gruntjs/grunt-contrib-connect
-
 ```Bash
 $ grunt server
 ```
 
 終了は、```Ctrl + c```。
 
+> https://github.com/gruntjs/grunt-contrib-watch  
+https://github.com/gruntjs/grunt-contrib-connect
+
+### なんだかんだで、これのコマンド↓だけ覚えておけば大丈夫 : )
+
+タスクをメニューから選べます。
+
+```Bash
+$ grunt
+```
+> https://github.com/dylang/grunt-prompt
 
 --------
 
