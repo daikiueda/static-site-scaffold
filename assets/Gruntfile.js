@@ -124,12 +124,6 @@ module.exports = function( grunt ){
         },
 
         exec: {
-            gem_install_compass: {
-                cmd: [
-                    ( require( "os" ).type().indexOf( "Windows" ) === 0 )? "": "sudo ",
-                    "gem install compass --version \"0.12.2\""
-                ].join( "" )
-            },
             bower_install: {
                 cmd: "bower install",
                 stdout: false,
@@ -176,10 +170,7 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
-    grunt.registerTask( "setup", [
-        "exec:gem_install_compass",
-        "exec:bower_install"
-    ] );
+    grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
     //grunt.registerTask( "test", [ "mochaTest" ] );
 
