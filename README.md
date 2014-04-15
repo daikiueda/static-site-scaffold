@@ -124,6 +124,8 @@ https://github.com/gruntjs/grunt-contrib-connect
 $ grunt server
 ```
 
+終了は、```Ctrl + c```。
+
 
 --------
 
