@@ -109,7 +109,7 @@ $.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script
 ```Bash
 $ grunt jsdoc
 ```
-> https://github.com/krampstudio/grunt-jsdoc ( http://usejsdoc.org )
+> https://www.npmjs.org/package/grunt-jsdoc ( http://usejsdoc.org )
 
 
 ## Totally easy coding!
@@ -128,8 +128,8 @@ $ grunt server
 
 終了は、```Ctrl + c```。
 
-> https://github.com/gruntjs/grunt-contrib-watch  
-https://github.com/gruntjs/grunt-contrib-connect
+> https://www.npmjs.org/package/grunt-contrib-watch  
+https://www.npmjs.org/package/grunt-contrib-connect
 
 ### なんだかんだで、このコマンド↓だけ覚えておけば大丈夫 : )
 
@@ -138,7 +138,7 @@ https://github.com/gruntjs/grunt-contrib-connect
 ```Bash
 $ grunt
 ```
-> https://github.com/dylang/grunt-prompt
+> https://www.npmjs.org/package/grunt-prompt
 
 __Enjoy!!__
 
@@ -150,7 +150,7 @@ __Enjoy!!__
 ### 前提条件
 
 * gitプロトコルでの通信に対応していること。  
-  通信ポートがふさがれている場合は、以下のようなgitの設定ファイル「```.gitconfig```」を  
+  ポートがふさがれている場合は、以下のようなgitの設定ファイル「```.gitconfig```」を  
   ユーザーホームディレクトリに設置することで、対応可能です。
   ```
   [url "https://"]
