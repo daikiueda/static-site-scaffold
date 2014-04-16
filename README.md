@@ -131,7 +131,7 @@ $ grunt server
 > https://github.com/gruntjs/grunt-contrib-watch  
 https://github.com/gruntjs/grunt-contrib-connect
 
-### なんだかんだで、これのコマンド↓だけ覚えておけば大丈夫 : )
+### なんだかんだで、このコマンド↓だけ覚えておけば大丈夫 : )
 
 タスクをメニューから選べます。
 
