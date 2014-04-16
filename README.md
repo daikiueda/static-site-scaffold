@@ -5,6 +5,7 @@ static-site-scaffold
 
 ```
 ├── assets
+│   ├── configurations
 │   ├── css
 │   ├── js
 │   ├── metadata
