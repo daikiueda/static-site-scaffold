@@ -32,7 +32,7 @@ static-site-scaffold
 
 ### 構文チェック
 
-HTML5対応の構文チェックサービス「[validator.nu](http://validator.nu/)」と同等のチェックを  
+HTML5対応の構文チェックサービス「[validator.nu](http://validator.nu/)」と同等のチェックを、
 htdocs以下のすべてのhtmlファイルを対象に実行します。
 
 ```Bash
@@ -96,9 +96,9 @@ $.namespace( "siteScript.utils" );
 } )( $.namespace.getRoot() );
 ```
 
-名前空間の内容をグローバルスコープに展開する必要がある場合は、  
-$.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script&gt;要素に  
-`data-namespace`属性として、任意の変数名を記述してください。
+名前空間の内容をグローバルスコープに展開する必要がある場合は、
+$.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script&gt;要素に、
+`data-namespace`属性として任意の変数名を記述してください。
 
 ```HTML
 <script src="common/js/common.js" data-namespace="sampleSite"></script>
@@ -140,6 +140,8 @@ $ grunt
 ```
 > https://github.com/dylang/grunt-prompt
 
+__Enjoy!!__
+
 --------
 
 
@@ -176,4 +178,8 @@ $ grunt
 $ git clone https://github.com/daikiueda/static-site-scaffold.git
 $ cd static-site-scaffold/assets/
 $ npm install
+```
+からのー
+```Bash
+$ grunt
 ```
