@@ -201,20 +201,21 @@ module.exports = function( grunt ){
                                 { name: "HTMLの構文チェック", value: "htmllint" },
                                 "---",
                                 { name: "その他", value: null },
-                                { name: "なんでもない", value: "" },
+                                { name: "メニューの終了", value: "" },
                             ]
                         },
                         {
                             config: "selectedTask",
                             type: "list",
-                            message: "What would you like to do?", 
+                            message: "Other menu.", 
                             choices: [
                                 { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
                                 { name: "HTMLの生成", value: "meta_excel::generate" },
                                 "---",
                                 { name: "JSDocの生成", value: "jsdoc" },
                                 "---",
-                                { name: "なんでもない", value: "" }
+                                { name: "戻る", value: "task_menu" },
+                                { name: "メニューの終了", value: "" }
                             ],
                             when: function( answer ){
                                 return ( answer.selectedTask === null );
@@ -251,5 +252,7 @@ module.exports = function( grunt ){
 
     //grunt.registerTask( "test", [ "mochaTest" ] );
 
-    grunt.registerTask( "default", [ "prompt:select_task", "respond_to_task_select" ] );
+    grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
+
+    grunt.registerTask( "default", [ "task_menu" ] );
 };
