@@ -95,6 +95,16 @@ module.exports = function( grunt ){
             }
         },
 
+        browserify: {
+            test_scripts_from_scaffold: {
+                files: {
+                    "tmp/test/common/siteScript/common.browserify.js": [
+                        "test/common/siteScript/*browserify*.js"
+                    ]
+                }
+            }
+        },
+
         jsdoc : {
             main : {
                 src: [ "js/**/*.js", "js/**/*.jsdoc" ], 

@@ -84,4 +84,4 @@
             global[ globalNamespaceStr ] = namespace[ NAMESPACE_ROOT_STRING ];
         }
     }
-})( window );
+})( this );

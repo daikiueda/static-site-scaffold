@@ -1,0 +1,20 @@
+{
+    "framework" : "mocha+chai",
+    
+    "src_files" : [
+        "bower_components/jquery/dist/jquery.js",
+
+        "js/common/siteScript/$.namespace.js",
+        "js/common/siteScript/common.js",
+
+        "test/**/*.spec.js",
+        "tmp/test/**/*.js"
+    ],
+    "src_files_ignore": [
+        "test/**/*browserify*js"
+    ],
+
+    "launch_in_dev": [
+        "Chrome"
+    ]
+}
