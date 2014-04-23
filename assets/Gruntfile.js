@@ -22,12 +22,10 @@ module.exports = function( grunt ){
     grunt.initConfig( {
 
         connect: {
-            options: {
-                port: 8000,
-                hostname: "localhost"
-            },
             livereload: {
                 options: {
+                    port: 8000,
+                    hostname: "localhost",
                     base: "../htdocs",
                     livereload: true
                 }
@@ -35,7 +33,7 @@ module.exports = function( grunt ){
         },
         open: {
             main: {
-                path: "http://<%= connect.options.hostname %>:<%= connect.options.port %>"
+                path: "http://<%= connect.livereload.options.hostname %>:<%= connect.livereload.options.port %>"
             }
         },
 
@@ -101,18 +99,41 @@ module.exports = function( grunt ){
             }
         },
 
-        browserify: {
-            test_scripts_from_scaffold: {
+        template: {
+            test_runner: {
+                options: {
+                    data: {
+                        libsFiles: grunt.file.expand( [
+                            "bower_components/jquery/dist/jquery.js"
+                        ] ),
+                        jsSrcFiles: grunt.file.expand( [
+                            "js/common/$.namespace.js",
+                            "js/common/**/*.js"
+                        ] ),
+                        testFiles: grunt.file.expand( [
+                            "test/**/*.js",
+                            "!test/**/*.browserify.js"
+                        ] )
+                    }
+                },
                 files: {
-                    "tmp/test/common/siteScript/common.browserify.js": [
-                        "test/common/siteScript/*browserify*.js"
-                    ]
+                    "test/tmp.runner.html": "test/runner.tmpl.html"
                 }
             }
         },
 
         mocha_phantomjs: {
-            test_scripts_from_scaffold: "test/testem.runner.html"
+            test_scripts_from_scaffold: "test/tmp.runner.html"
+        },
+
+        browserify: {
+            test_scripts_from_scaffold: {
+                files: {
+                    "test/tmp/common/siteScript/common.browserified.js": [
+                        "test/common/siteScript/*browserify*.js"
+                    ]
+                }
+            }
         },
 
         jsdoc : {
@@ -155,7 +176,7 @@ module.exports = function( grunt ){
                     message: [
                         "Server started at ",
                         chalk.underline.cyan(
-                            "http://<%= connect.options.hostname %>:<%= connect.options.port %>/"
+                            "http://<%= connect.livereload.options.hostname %>:<%= connect.livereload.options.port %>/"
                         ),
                         "\n and File Watching ... " + chalk.inverse( " Ctrl + C " ) + " to exit."
                     ].join( "" ),
@@ -264,6 +285,7 @@ module.exports = function( grunt ){
     grunt.loadNpmTasks( "grunt-attention" ); // なぜかmatchdepで捕捉されない。
     grunt.loadTasks( "tasks" );
 
+
     // register tasks
     grunt.registerTask( "build", [ "css", "js" ] );
 
@@ -280,7 +302,12 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
-    grunt.registerTask( "test", [ "attention:cross_browsers_test" ] );
+    grunt.registerTask( "test", [
+        "browserify:test_scripts_from_scaffold",
+        "template:test_runner",
+        "mocha_phantomjs:test_scripts_from_scaffold",
+        "attention:cross_browsers_test"
+    ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
 

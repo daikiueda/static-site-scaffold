@@ -12,7 +12,19 @@
             mocha.reporter( "html" );
             expect = chai.expect;
         </script>
-        <script src="../tmp/test/common/siteScript/common.browserify.js"></script>
+
+<% libsFiles.forEach( function( filePath ){ %>
+        <script src="../<%= filePath %>"></script>
+<% } ); %>
+
+<% jsSrcFiles.forEach( function( filePath ){ %>
+        <script src="../<%= filePath %>"></script>
+<% } ); %>
+
+<% testFiles.forEach( function( filePath ){ %>
+        <script src="../<%= filePath %>"></script>
+<% } ); %>
+
         <script>
             if ( window.mochaPhantomJS ){ mochaPhantomJS.run(); }
             else { mocha.run(); }

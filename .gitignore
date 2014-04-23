@@ -3,3 +3,5 @@ assets/bower_components
 
 assets/css/.sass-cache
 assets/tmp
+assets/test/tmp
+tmp.runner.html

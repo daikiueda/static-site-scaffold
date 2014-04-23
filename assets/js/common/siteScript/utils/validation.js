@@ -9,7 +9,7 @@ $.namespace( "siteScript.utils.validation" );
 
     /** @function */
     siteScript.utils.validation.testFunction = function(){
-        console.warn( "scaffoldのサンプルコードが残っています。common/siteScript/utils/validation.jsを始末してください。" );
+        console.warn( "* scaffoldのサンプルコードが残っています。common/siteScript/utils/validation.jsを始末してください。" );
     };
 
     $( function(){
