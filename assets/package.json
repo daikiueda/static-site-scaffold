@@ -24,7 +24,7 @@
     "grunt-html": "^1.2.0",
     "grunt-jsdoc": "^0.5.4",
     "grunt-meta-excel": "0.0.3",
-    "grunt-mocha-phantomjs": "^0.4.3",
+    "grunt-mocha": "^0.4.10",
     "grunt-open": "^0.2.3",
     "grunt-prompt": "^1.1.0",
     "grunt-template": "^0.2.3",

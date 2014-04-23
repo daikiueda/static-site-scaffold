@@ -9,8 +9,10 @@
         "js/common/siteScript/$.namespace.js",
         "js/common/siteScript/**/*.js",
 
-        "test/**/*.spec.js",
-        "tmp/test/**/*.js"
+        "test/**/*.js"
+    ],
+    "src_files_ignore": [
+        "test/**/*.browserify.js"
     ],
 
     "launch_in_dev": [

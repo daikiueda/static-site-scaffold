@@ -29,11 +29,22 @@ module.exports = function( grunt ){
                     base: "../htdocs",
                     livereload: true
                 }
+            },
+
+            for_test_runner: {
+                options: {
+                    port: 8001,
+                    hostname: "localhost",
+                    base: "."
+                }
             }
         },
         open: {
             main: {
-                path: "http://<%= connect.livereload.options.hostname %>:<%= connect.livereload.options.port %>"
+                path: [
+                    "http://<%= connect.livereload.options.hostname %>",
+                    ":<%= connect.livereload.options.port %>"
+                ].join( "" )
             }
         },
 
@@ -122,8 +133,22 @@ module.exports = function( grunt ){
             }
         },
 
-        mocha_phantomjs: {
-            test_scripts_from_scaffold: "test/tmp.runner.html"
+        mocha: {
+            options: {
+                reporter: "Spec"
+            },
+            test_scripts_from_scaffold: {
+                options: {
+                    run: true,
+                    urls: [
+                        [
+                            "http://<%= connect.for_test_runner.options.hostname %>",
+                            ":<%= connect.for_test_runner.options.port %>",
+                            "/test/tmp.runner.html"
+                        ].join( "" )
+                    ]
+                }
+            }
         },
 
         browserify: {
@@ -293,7 +318,12 @@ module.exports = function( grunt ){
         if( !this.flags.skip_build ){
             grunt.task.run( [ "build" ] );
         }
-        grunt.task.run( [ "connect", "open", "attention:server", "watch" ] );
+        grunt.task.run( [
+            "connect:livereload",
+            "open",
+            "attention:server",
+            "watch"
+        ] );
     } );
 
     grunt.registerTask( "css", [ "compass" ] );
@@ -305,8 +335,9 @@ module.exports = function( grunt ){
     grunt.registerTask( "test", [
         "browserify:test_scripts_from_scaffold",
         "template:test_runner",
-        "mocha_phantomjs:test_scripts_from_scaffold",
-        "attention:cross_browsers_test"
+        "connect:for_test_runner",
+        "attention:cross_browsers_test",
+        "mocha:test_scripts_from_scaffold"
     ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
