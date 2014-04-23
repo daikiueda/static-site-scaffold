@@ -11,6 +11,12 @@ var MODE_DEBUG = false;
 
 var chalk = require( "chalk" );
 
+function hasModele( moduleName ){
+    var module;
+    try { module = require.resolve( moduleName ); } catch( e ){}
+    return ( module )? true: false;
+}
+
 module.exports = function( grunt ){
 
     grunt.initConfig( {
@@ -105,6 +111,10 @@ module.exports = function( grunt ){
             }
         },
 
+        mocha_phantomjs: {
+            test_scripts_from_scaffold: "test/testem.runner.html"
+        },
+
         jsdoc : {
             main : {
                 src: [ "js/**/*.js", "js/**/*.jsdoc" ], 
@@ -130,7 +140,7 @@ module.exports = function( grunt ){
                 }
             },
             main: {
-                xlsx: "metadata/sitemap.xlsm",
+                xlsx: "doc/sitemap.xlsm",
                 htmlDir: "../htdocs/",
                 options: {
                     boilerplate: "../htdocs/__modules/__boilerplate.html"
@@ -151,6 +161,17 @@ module.exports = function( grunt ){
                     ].join( "" ),
                     border: "thin",
                     borderColor: 'blue'
+                }
+            },
+
+            cross_browsers_test: {
+                options: {
+                    message: [
+                        "For Cross-Browser testing, ",
+                        hasModele( "testem" ) ?
+                            "run \"testem\"!\n" + chalk.inverse( " npm run testem " ):
+                            "install \"testem\"!\n" + chalk.inverse( " npm install testem -g " )
+                    ].join( "" )
                 }
             }
         },
@@ -243,7 +264,6 @@ module.exports = function( grunt ){
     grunt.loadNpmTasks( "grunt-attention" ); // なぜかmatchdepで捕捉されない。
     grunt.loadTasks( "tasks" );
 
-
     // register tasks
     grunt.registerTask( "build", [ "css", "js" ] );
 
@@ -260,7 +280,7 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
-    //grunt.registerTask( "test", [ "mochaTest" ] );
+    grunt.registerTask( "test", [ "attention:cross_browsers_test" ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
 

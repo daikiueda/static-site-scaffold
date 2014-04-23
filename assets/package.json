@@ -6,7 +6,8 @@
   },
   "scripts": {
     "postinstall": "grunt setup",
-    "test": "grunt test"
+    "test": "grunt test",
+    "testem": "testem -f test/testem.json"
   },
   "devDependencies": {
     "browserify": "^3.44.1",
@@ -23,6 +24,7 @@
     "grunt-html": "^1.2.0",
     "grunt-jsdoc": "^0.5.4",
     "grunt-meta-excel": "0.0.3",
+    "grunt-mocha-phantomjs": "^0.4.3",
     "grunt-open": "^0.2.3",
     "grunt-prompt": "^1.1.0",
     "grunt-text-replace": "^0.3.11",
