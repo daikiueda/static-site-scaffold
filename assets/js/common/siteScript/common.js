@@ -10,7 +10,7 @@ $.namespace( "siteScript" );
 
     /** @function */
     siteScript.testFunction = function(){
-        console.log( "this is test." );
+        console.warn( "scaffoldのサンプルコードが残っています。common/siteScript/common.jsの内容を始末してください。" );
     };
 
     $( function(){

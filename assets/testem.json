@@ -1,20 +1,20 @@
 {
     "framework" : "mocha+chai",
     
-    "src_files" : [
+    "before_tests": "grunt browserify",
+
+    "serve_files" : [
         "bower_components/jquery/dist/jquery.js",
 
         "js/common/siteScript/$.namespace.js",
-        "js/common/siteScript/common.js",
+        "js/common/siteScript/**/*.js",
 
         "test/**/*.spec.js",
         "tmp/test/**/*.js"
     ],
-    "src_files_ignore": [
-        "test/**/*browserify*js"
-    ],
 
     "launch_in_dev": [
-        "Chrome"
+        "Chrome",
+        "PhantomJS"
     ]
 }

@@ -2,28 +2,41 @@
 
 var chai = chai || require( "chai" ),
     expect = chai.expect,
-    fixtures = require( "js-fixtures" )
+    fixtures = require( "js-fixtures" ),
+
+    ERRORS_STOCK_SCRIPT_TAG = [
+        '<script>',
+            'window.errorsStock = [];',
+            'function globalErrorHandler( e ){ window.errorsStock.push( e ); return true; };',
+            'window.onerror = globalErrorHandler;',
+        '</script>'
+    ].join( "" );
 
 describe( "siteScript", function(){
 
-    describe( "$namespace", function(){
-        describe( "ファイルの読み込み順", function(){
+    describe( "$.namespace", function(){
+        describe( "ファイルの読み込み順に関して", function(){
             if( typeof window === "undefined" ){
                 it( "ブラウザでないとテストできません。" );
             } else {
 
                 afterEach( function(){
                     fixtures.cleanUp();
+                    fixtures.clearCache();
                 } );
 
-                it( "aaaaaa", function(){
-                    fixtures.set( "<p>aaaa</p>" );
-                    expect( 1 ).to.equal( 1 );
-                } );
+                it( "$.namespaceが読み込まれた時に、すでに同名のプロパティが存在する場合は、エラーを投げる。", function( done ){
+                    fixtures.set( [
+                        ERRORS_STOCK_SCRIPT_TAG,
+                        '<script>var $ = { namespace: function(){} };</script>',
+                        '<script src="/js/common/siteScript/$.namespace.js"></script>'
+                    ].join( "" ) );
 
-                it( "bbbb", function(){
-                    fixtures.set( "<p>bbbb</p>" );
-                    expect( 1 ).to.equal( 1 );
+                    fixtures.window().onload = function(){
+                        expect( fixtures.window().errorsStock[ 0 ] ).to
+                            .contain( "$.namespaceの定義に失敗しました。scriptファイルの構成が想定外です。" );
+                        done();
+                    };
                 } );
             }
         } );
