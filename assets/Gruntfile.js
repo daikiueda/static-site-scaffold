@@ -119,11 +119,13 @@ module.exports = function( grunt ){
                         ] ),
                         jsSrcFiles: grunt.file.expand( [
                             "js/common/$.namespace.js",
-                            "js/common/**/*.js"
+                            "js/common/**/*.js",
+                            "js/**/*.js"
                         ] ),
                         testFiles: grunt.file.expand( [
                             "test/**/*.js",
-                            "!test/**/*.browserify.js"
+                            "!test/**/*.browserify.js",
+                            "!test/**/karma*.browserify.js"
                         ] )
                     }
                 },
@@ -133,29 +135,20 @@ module.exports = function( grunt ){
             }
         },
 
-        blanket_mocha: {
-            options: {
-                reporter: "Spec"
-            },
-            test_scripts_from_scaffold: {
-                options: {
-                    threshold : 70,
-                    urls: [
-                        [
-                            "http://<%= connect.for_test_runner.options.hostname %>",
-                            ":<%= connect.for_test_runner.options.port %>",
-                            "/test/tmp.runner.html"
-                        ].join( "" )
-                    ]
-                }
+        karma: {
+            common: {
+                configFile: "test/karma.conf.js"
             }
         },
 
         browserify: {
-            test_scripts_from_scaffold: {
+            common: {
                 files: {
-                    "test/tmp/common/siteScript/common.browserified.js": [
-                        "test/common/siteScript/*browserify*.js"
+                    "test/tmp/common/siteScript/testem.common.browserified.js": [
+                        "test/common/siteScript/**/*browserify*.js"
+                    ],
+                    "test/tmp/common/siteScript/karma.common.browserified.js": [
+                        "test/common/siteScript/**/*browserify*.js"
                     ]
                 }
             }
@@ -221,7 +214,16 @@ module.exports = function( grunt ){
                 }
             }
         },
+
+        cat: {
+            coverage: { src: "test/tmp/__coverage/*/coverage.txt" }
+        },
         
+
+        clean: {
+            test: [ "test/tmp" ]
+        },
+
         replace: {
             license_comment_format: {
                 src: [ "../htdocs/common/js/libs.js" ],
@@ -229,6 +231,14 @@ module.exports = function( grunt ){
                 replacements: [
                     { from: /\/\*\!/g, to: "\n/*!" },
                     { from: /^\n+\/\*\!/g, to: "/*!" }
+                ]
+            },
+
+            path_in_browserified_for_karma: {
+                src: [ "test/tmp/**/karma*browserified*.js" ],
+                overwrite: true,
+                replacements: [
+                    { from: /<script src="\//g, to: "<script src=\"/base/" }
                 ]
             }
         },
@@ -333,11 +343,15 @@ module.exports = function( grunt ){
     grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
     grunt.registerTask( "test", [
-        "browserify:test_scripts_from_scaffold",
-        "template:test_runner",
-        "connect:for_test_runner",
-        "attention:cross_browsers_test",
-        "blanket_mocha:test_scripts_from_scaffold"
+        "clean:test",
+        "browserify:common",
+        "replace:path_in_browserified_for_karma",
+//        "template:test_runner",
+
+//        "connect:for_test_runner",
+//        "attention:cross_browsers_test",
+        "karma:common",
+        "cat:coverage"
     ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );

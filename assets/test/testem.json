@@ -8,11 +8,13 @@
 
         "js/common/siteScript/$.namespace.js",
         "js/common/siteScript/**/*.js",
+        "js/**/*.js"
 
         "test/**/*.js"
     ],
     "src_files_ignore": [
         "test/**/*.browserify.js"
+        "test/**/karma.*.js"
     ],
 
     "launch_in_dev": [
