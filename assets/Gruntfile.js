@@ -133,13 +133,13 @@ module.exports = function( grunt ){
             }
         },
 
-        mocha: {
+        blanket_mocha: {
             options: {
                 reporter: "Spec"
             },
             test_scripts_from_scaffold: {
                 options: {
-                    run: true,
+                    threshold : 70,
                     urls: [
                         [
                             "http://<%= connect.for_test_runner.options.hostname %>",
@@ -337,7 +337,7 @@ module.exports = function( grunt ){
         "template:test_runner",
         "connect:for_test_runner",
         "attention:cross_browsers_test",
-        "mocha:test_scripts_from_scaffold"
+        "blanket_mocha:test_scripts_from_scaffold"
     ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );

@@ -5,8 +5,5 @@
     "jquery": "~1.11.0",
     "modularized-normalize-scss": "~3.0.1"
   },
-  "devDependencies": {
-    "mocha": "~1.18.2",
-    "chai": "~1.9.1"
-  }
+  "devDependencies": {}
 }
