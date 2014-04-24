@@ -26,10 +26,6 @@
         throw new Error( "$.namespaceの定義に失敗しました。scriptファイルの構成が想定外です。" );
     }
 
-    if( namespace[ NAMESPACE_ROOT_STRING ] ){
-        throw new Error( "名前空間の初期化が複数回実行されようとしています。" );
-    }
-
     namespace[ NAMESPACE_ROOT_STRING ] = {};
 
     /**
