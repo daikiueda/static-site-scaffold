@@ -29,7 +29,6 @@
     "grunt-meta-excel": "0.0.3",
     "grunt-open": "^0.2.3",
     "grunt-prompt": "^1.1.0",
-    "grunt-template": "^0.2.3",
     "grunt-text-replace": "^0.3.11",
     "js-fixtures": "^1.5.1",
     "karma": "^0.12.10",

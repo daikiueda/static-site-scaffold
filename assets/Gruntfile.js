@@ -110,31 +110,6 @@ module.exports = function( grunt ){
             }
         },
 
-        template: {
-            test_runner: {
-                options: {
-                    data: {
-                        libsFiles: grunt.file.expand( [
-                            "bower_components/jquery/dist/jquery.js"
-                        ] ),
-                        jsSrcFiles: grunt.file.expand( [
-                            "js/common/$.namespace.js",
-                            "js/common/**/*.js",
-                            "js/**/*.js"
-                        ] ),
-                        testFiles: grunt.file.expand( [
-                            "test/**/*.js",
-                            "!test/**/*.browserify.js",
-                            "!test/**/karma*.browserify.js"
-                        ] )
-                    }
-                },
-                files: {
-                    "test/tmp.runner.html": "test/runner.tmpl.html"
-                }
-            }
-        },
-
         karma: {
             common: {
                 configFile: "test/karma.conf.js"
@@ -158,7 +133,7 @@ module.exports = function( grunt ){
             main : {
                 src: [ "js/**/*.js", "js/**/*.jsdoc" ], 
                 options: {
-                    configure: "configurations/jsdoc3.conf.json",
+                    configure: "js/jsdoc.conf.json",
                     destination: "doc/js"
                 }
             }
@@ -352,6 +327,11 @@ module.exports = function( grunt ){
 //        "attention:cross_browsers_test",
         "karma:common",
         "cat:coverage"
+    ] );
+
+    grunt.registerTask( "before_testem", [
+        "clean:test",
+        "browserify:common",
     ] );
 
     grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
