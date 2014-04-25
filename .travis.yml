@@ -5,4 +5,8 @@ node_js:
 
 before_install:
   - "cd assets"
+  - "npm install grunt-cli -g"
+
+script:
+ - "npm test"
 
