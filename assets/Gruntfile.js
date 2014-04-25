@@ -104,7 +104,14 @@ module.exports = function( grunt ){
 
         karma: {
             common: {
-                configFile: "test/karma.conf.js"
+                configFile: "test/karma.conf.js",
+                singleRun: true,
+                browsers: [ "PhantomJS" ]
+            },
+            common_browsers: {
+                configFile: "test/karma.conf.js",
+                singleRun: false,
+                browsers: [ "PhantomJS", "Chrome", "Firefox", "Safari", "IE" ]
             }
         },
 
@@ -311,13 +318,19 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "setup", [ "exec:bower_install" ] );
 
-    grunt.registerTask( "test", [
-        "clean:test",
-        "browserify:common",
-        "replace:path_in_browserified_for_karma",
-        "karma:common",
-        "cat:coverage"
-    ] );
+    grunt.registerTask( "test", function(){
+        grunt.task.run( [
+            "clean:test",
+            "browserify:common",
+            "replace:path_in_browserified_for_karma"
+        ] );
+
+        grunt.task.run(
+            this.flags.browsers ?
+                [ "karma:common_browsers" ]:
+                [ "karma:common", "cat:coverage" ]
+        );
+    } );
 
     grunt.registerTask( "before_testem", [
         "clean:test",
