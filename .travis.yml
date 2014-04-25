@@ -5,7 +5,7 @@ node_js:
 
 before_install:
   - "cd assets"
-  - "npm install grunt-cli -g"
+  - "npm install grunt-cli bower -g"
 
 script:
  - "npm test"
