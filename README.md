@@ -1,4 +1,4 @@
-static-site-scaffold
+static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-site-scaffold.svg?branch=master)](https://travis-ci.org/daikiueda/static-site-scaffold)
 ====================
 
 静的サイト製作の土台。
