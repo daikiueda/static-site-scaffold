@@ -5,10 +5,10 @@ static-site-scaffold
 
 ```
 ├── assets
-│   ├── configurations
+│   ├── conf
 │   ├── css
+│   ├── doc
 │   ├── js
-│   ├── metadata
 │   ├── tasks
 │   └── test
 └── htdocs

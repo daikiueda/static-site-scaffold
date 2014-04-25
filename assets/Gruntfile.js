@@ -29,14 +29,6 @@ module.exports = function( grunt ){
                     base: "../htdocs",
                     livereload: true
                 }
-            },
-
-            for_test_runner: {
-                options: {
-                    port: 8001,
-                    hostname: "localhost",
-                    base: "."
-                }
             }
         },
         open: {
@@ -125,6 +117,7 @@ module.exports = function( grunt ){
                     "test/tmp/common/siteScript/karma.common.browserified.js": [
                         "test/common/siteScript/**/*browserify*.js"
                     ]
+
                 }
             }
         },
@@ -162,33 +155,6 @@ module.exports = function( grunt ){
             }
         },
 
-
-        attention: {
-            server: {
-                options: {
-                    message: [
-                        "Server started at ",
-                        chalk.underline.cyan(
-                            "http://<%= connect.livereload.options.hostname %>:<%= connect.livereload.options.port %>/"
-                        ),
-                        "\n and File Watching ... " + chalk.inverse( " Ctrl + C " ) + " to exit."
-                    ].join( "" ),
-                    border: "thin",
-                    borderColor: 'blue'
-                }
-            },
-
-            cross_browsers_test: {
-                options: {
-                    message: [
-                        "For Cross-Browser testing, ",
-                        hasModele( "testem" ) ?
-                            "run \"testem\"!\n" + chalk.inverse( " npm run testem " ):
-                            "install \"testem\"!\n" + chalk.inverse( " npm install testem -g " )
-                    ].join( "" )
-                }
-            }
-        },
 
         cat: {
             coverage: { src: "test/tmp/__coverage/*/coverage.txt" }
@@ -246,8 +212,35 @@ module.exports = function( grunt ){
         },
 
 
+        attention: {
+            server: {
+                options: {
+                    message: [
+                        "Server started at ",
+                        chalk.underline.cyan(
+                            "http://<%= connect.livereload.options.hostname %>:<%= connect.livereload.options.port %>/"
+                        ),
+                        "\n and File Watching ... " + chalk.inverse( " Ctrl + C " ) + " to exit."
+                    ].join( "" ),
+                    border: "thin",
+                    borderColor: 'blue'
+                }
+            },
+
+            cross_browsers_test: {
+                options: {
+                    message: [
+                        "For Cross-Browser testing, ",
+                        hasModele( "testem" ) ?
+                            "run \"testem\"!\n" + chalk.inverse( " npm run testem " ):
+                            "install \"testem\"!\n" + chalk.inverse( " npm install testem -g " )
+                    ].join( "" )
+                }
+            }
+        },
+
         prompt: {
-            select_task: {
+            task_menu: {
                 options: {
                     questions: [
                         {
@@ -274,6 +267,7 @@ module.exports = function( grunt ){
                                 { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
                                 { name: "HTMLの生成", value: "meta_excel::generate" },
                                 "---",
+                                { name: "JavaScriptのテスト", value: "test" },
                                 { name: "JSDocの生成", value: "jsdoc" },
                                 "---",
                                 { name: "戻る", value: "task_menu" },
@@ -321,10 +315,6 @@ module.exports = function( grunt ){
         "clean:test",
         "browserify:common",
         "replace:path_in_browserified_for_karma",
-//        "template:test_runner",
-
-//        "connect:for_test_runner",
-//        "attention:cross_browsers_test",
         "karma:common",
         "cat:coverage"
     ] );
@@ -334,7 +324,7 @@ module.exports = function( grunt ){
         "browserify:common",
     ] );
 
-    grunt.registerTask( "task_menu", [ "prompt:select_task", "respond_to_task_select" ] );
+    grunt.registerTask( "task_menu", [ "prompt:task_menu", "respond_to_task_select" ] );
 
     grunt.registerTask( "default", [ "task_menu" ] );
 };

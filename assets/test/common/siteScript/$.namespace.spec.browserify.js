@@ -67,20 +67,6 @@ describe( "siteScript", function(){
                         done();
                     };
                 } );
-
-                it( "$.namespaceが複数回定義された場合、エラーを投げる。", function( done ){
-                    fixtures.set( [
-                        ERRORS_STOCK_SCRIPT_TAG,
-                        '<script src="/js/common/siteScript/$.namespace.js"></script>',
-                        '<script src="/js/common/siteScript/$.namespace.js"></script>'
-                    ].join( "" ) );
-
-                    fixtures.window().onload = function(){
-                        expect( fixtures.window().errorsStock[ 0 ] ).to
-                            .contain( "$.namespaceの定義に失敗しました。scriptファイルの構成が想定外です。" );
-                        done();
-                    };
-                } );
             }
         } );
     } );
