@@ -32,7 +32,18 @@
 
 			<div class="local_container">
 				<!-- InstanceBeginEditable name="local_container" -->
-				<h1>Sample page.</h1>
+				<!-- TemplateBeginEditable name="topicPath" -->
+				<nav id="topicPath"></nav>
+				<!-- TemplateEndEditable -->
+
+				<main>
+					<!-- TemplateBeginEditable name="main" -->
+					<h1>Sample page.</h1>
+					<!-- TemplateEndEditable -->
+				</main>
+
+				<nav id"localNav">
+				</nav>
 				<!-- InstanceEndEditable -->
 			</div>
 
