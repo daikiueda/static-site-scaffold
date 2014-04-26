@@ -7,6 +7,9 @@ before_install:
   - "cd assets"
   - "npm install grunt-cli bower -g"
 
+before_script:
+ - "npm install grunt-meta-excel"
+
 script:
  - "npm test"
 

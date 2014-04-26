@@ -40,7 +40,7 @@ $ grunt htmllint
 ```
 > https://www.npmjs.org/package/grunt-html ( https://validator.github.io/ )
 
-### &lt;title&gt;, description, keyword, OGPの一括更新
+### &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
 
 サイトマップ（Excelファイル）の内容にあわせて、htmlファイル中の情報を更新します。
 
@@ -179,7 +179,16 @@ $ git clone https://github.com/daikiueda/static-site-scaffold.git
 $ cd static-site-scaffold/assets/
 $ npm install
 ```
-からのー
+からの
 ```Bash
 $ grunt
 ```
+
+#### オプション
+
+* サイトマップ（Excelファイル）連携の機能を利用する場合は、  
+  grunt-meta-excelモジュールをインストールする。
+  
+  ```Bash
+  $ npm install grunt-meta-excel
+  ```

@@ -26,7 +26,6 @@
     "grunt-html": "^1.2.0",
     "grunt-jsdoc": "^0.5.4",
     "grunt-karma": "^0.8.2",
-    "grunt-meta-excel": "0.0.3",
     "grunt-open": "^0.2.3",
     "grunt-prompt": "^1.1.0",
     "grunt-text-replace": "^0.3.11",

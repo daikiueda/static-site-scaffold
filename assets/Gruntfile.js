@@ -9,7 +9,8 @@
 
 var MODE_DEBUG = false;
 
-var chalk = require( "chalk" );
+var _ = require( "lodash" ),
+    chalk = require( "chalk" );
 
 function hasModele( moduleName ){
     var module;
@@ -232,17 +233,6 @@ module.exports = function( grunt ){
                     border: "thin",
                     borderColor: 'blue'
                 }
-            },
-
-            cross_browsers_test: {
-                options: {
-                    message: [
-                        "For Cross-Browser testing, ",
-                        hasModele( "testem" ) ?
-                            "run \"testem\"!\n" + chalk.inverse( " npm run testem " ):
-                            "install \"testem\"!\n" + chalk.inverse( " npm install testem -g " )
-                    ].join( "" )
-                }
             }
         },
 
@@ -270,16 +260,19 @@ module.exports = function( grunt ){
                             config: "selectedTask",
                             type: "list",
                             message: "Other menu.", 
-                            choices: [
-                                { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
-                                { name: "HTMLの生成", value: "meta_excel::generate" },
-                                "---",
+                            choices: _.flatten( [
+                                hasModele( "grunt-meta-excel" )?
+                                    [
+                                        { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
+                                        { name: "HTMLの生成", value: "meta_excel::generate" },
+                                        "---"
+                                    ]: [],
                                 { name: "JavaScriptのテスト", value: "test" },
                                 { name: "JSDocの生成", value: "jsdoc" },
                                 "---",
                                 { name: "戻る", value: "task_menu" },
                                 { name: "メニューの終了", value: "" }
-                            ],
+                            ] ),
                             when: function( answer ){
                                 return ( answer.selectedTask === null );
                             }
