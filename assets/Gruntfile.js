@@ -145,6 +145,7 @@ module.exports = function( grunt ){
             options: {
                 dataStartingRow: 7,
                 mapping: {
+                    filename: "D",
                     path: "E",
                     title: "F",
                     title_all: "G",
@@ -167,6 +168,7 @@ module.exports = function( grunt ){
             options: {
                 dataStartingRow: 7,
                 mapping: {
+                    filename: "D",
                     path: "E",
                     title: "F",
                     title_all: "G",
@@ -178,8 +180,8 @@ module.exports = function( grunt ){
             },
             main: {
                 xlsx: "doc/sitemap.xlsm",
-                localNavDWT: "../htdocs/Templates/contents_page.dwt",
-                localNavElm: "div.localNav"
+                localNavHTML: "../htdocs/Templates/contents_page.dwt",
+                localNavElm: "nav#localNav"
             }
         },
 
