@@ -163,6 +163,25 @@ module.exports = function( grunt ){
             }
         },
 
+        update_local_nav: {
+            options: {
+                dataStartingRow: 7,
+                mapping: {
+                    path: "E",
+                    title: "F",
+                    title_all: "G",
+                    description: "I",
+                    keywords: "K",
+                    url: "M",
+                    thumbnail: "N"
+                }
+            },
+            main: {
+                xlsx: "doc/sitemap.xlsm",
+                localNavDWT: "../htdocs/Templates/contents_page.dwt",
+                localNavElm: "div.localNav"
+            }
+        },
 
         cat: {
             coverage: { src: "test/tmp/__coverage/*/coverage.txt" }

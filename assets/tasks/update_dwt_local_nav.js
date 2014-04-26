@@ -4,46 +4,70 @@
 
 "use strict";
 
-var LOCAL_NAV_DWT_PATH = "../htdocs/Templates/contents_page.dwt",
+var XLSX2JSON_PATH = "../node_modules/grunt-meta-excel/node_modules/xlsx2json/lib/xlsx2json.js",
 
     UNLIKE_STRINGS = {
-        "©": "&copy;"
+        "©": "&copy;",
+        "™": "&trade;",
+        "®": "&reg;"
     };
 
+function updateLocalNav( dwtFilePath, metadata, options, callback ){
+    var fs = require( "fs" ),
+        _ = require( "lodash" ),
+        jsdom = require( "jsdom" ),
+
+        content = fs.readFileSync( dwtFilePath, options.charset ),
+        document = jsdom.jsdom( content ),
+        window = document.createWindow();
+
+    jsdom.jQueryify(
+        window,
+        function( window, $ ){
+
+            metadata.forEach( function( pageInfo ){
+                console.log( pageInfo );
+            } );
+
+            $( "script.jsdom" ).remove();
+
+            var htmlCode = $( "html" ).html();
+            _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
+                htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
+            } );
+
+            fs.writeFileSync(
+                dwtFilePath,
+                content.replace(
+                    /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
+                        "$1" + htmlCode + "$2"
+                ),
+                options.charset
+            );
+
+            callback( true );
+        }
+    );
+}
+
 module.exports = function( grunt ){
-    grunt.registerTask( "update_dwt_local_nav", function(){
+    grunt.registerMultiTask( "update_local_nav", "Update local navigation in .dwt file.", function(){
 
-        var fs = require( "fs" ),
-            _ = require( "lodash" ),
-            jsdom = require( "jsdom" ),
+        var xlsx2json = require( XLSX2JSON_PATH ),
 
-            content = fs.readFileSync( LOCAL_NAV_DWT_PATH, "utf-8" ),
-            document = jsdom.jsdom( content ),
-            window = document.createWindow(),
+            options = this.options( {
+                charset: "utf-8"
+            } ),
+            dwtFilePath = this.data.localNavDWT,
 
             done = this.async();
 
-        jsdom.jQueryify(
-            window,
-            function( window, $ ){
-
-                $( "script.jsdom" ).remove();
-
-                var htmlCode = $( "html" ).html();
-                _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
-                    htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
-                } );
-
-                fs.writeFileSync(
-                    LOCAL_NAV_DWT_PATH,
-                    content.replace(
-                        /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
-                        "$1" + htmlCode + "$2"
-                    ),
-                    "utf-8"
-                );
-                done();
-            }
-        );
+        xlsx2json( this.data.xlsx, options )
+            .then(
+                function( metadata ){
+                    updateLocalNav( dwtFilePath, metadata, options, done );
+                },
+                function(){ done( false ); }
+            );
     } );
 };

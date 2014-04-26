@@ -30,6 +30,7 @@
     "grunt-prompt": "^1.1.0",
     "grunt-text-replace": "^0.3.11",
     "js-fixtures": "^1.5.1",
+    "jsdom": "^0.10.5",
     "karma": "^0.12.12",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.3",
