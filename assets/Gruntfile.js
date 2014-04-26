@@ -110,7 +110,7 @@ module.exports = function( grunt ){
             },
             common_browsers: {
                 configFile: "test/karma.conf.js",
-                singleRun: false,
+                singleRun: true,
                 browsers: [ "PhantomJS", "Chrome", "Firefox", "Safari", "IE" ]
             }
         },
@@ -186,7 +186,7 @@ module.exports = function( grunt ){
                 src: [ "test/tmp/**/karma*browserified*.js" ],
                 overwrite: true,
                 replacements: [
-                    { from: /<script src="\//g, to: "<script src=\"/base/" }
+                    { from: / src="\//g, to: " src=\"/base/" }
                 ]
             }
         },

@@ -66,13 +66,13 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-
-
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
+
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: false,
 
 
     // Continuous Integration mode
