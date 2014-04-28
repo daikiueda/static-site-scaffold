@@ -11,5 +11,6 @@ before_script:
  - "npm install grunt-meta-excel"
 
 script:
+ - "grunt meta_excel::generate"
  - "npm test"
 
