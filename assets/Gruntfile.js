@@ -180,6 +180,7 @@ module.exports = function( grunt ){
             },
             main: {
                 xlsx: "doc/sitemap.xlsm",
+                htmlDir: "../htdocs/",
                 localNavHTML: "../htdocs/Templates/contents_page.dwt",
                 localNavElm: "nav#localNav"
             }
@@ -307,7 +308,13 @@ module.exports = function( grunt ){
 
     // load all grunt tasks
     require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
-    grunt.loadNpmTasks( "grunt-attention" ); // なぜかmatchdepで捕捉されない。
+    
+    // ToDo: なぜかmatchdepで捕捉されない。
+    grunt.loadNpmTasks( "grunt-attention" );
+    if( hasModele( "grunt-meta-excel" ) ){
+        grunt.loadNpmTasks( "grunt-meta-excel" ); 
+    }
+
     grunt.loadTasks( "tasks" );
 
 
