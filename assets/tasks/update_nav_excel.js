@@ -33,7 +33,6 @@ function prepareTemplates( options ){
 
 function updateHTML( htmlDir, metadata, options ){
     var jsdom = require( "jsdom" ),
-
         deferred = Q.defer();
 
     try {
@@ -138,11 +137,9 @@ module.exports = function( grunt ){
     grunt.registerMultiTask( "update_nav_excel", "Update navigation in .html files.", function(){
 
         var xlsx2json = require( XLSX2JSON_PATH ),
-
             options = this.options( {
                 charset: "utf-8"
             } ),
-
             done = this.async();
 
         xlsx2json( this.data.xlsx, options )
