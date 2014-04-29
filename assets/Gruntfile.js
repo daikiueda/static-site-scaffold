@@ -76,6 +76,34 @@ module.exports = function( grunt ){
             }
         },
 
+        styleguide: {
+            options: {
+                framework: {
+                    name: 'styledocco',
+                    options: {
+                        preprocessor: 'sass -E UTF-8',
+                        verbose: false
+                    }
+                }
+            },
+            common: {
+                options: {
+                    template: {
+                        include: [
+                            '../htdocs/common/css/common.css',
+                            'doc/css/common/--samples.css',
+
+                            '../htdocs/common/js/libs.js',
+                            '../htdocs/common/js/common.js'
+                        ]
+                    }
+                },
+                files: {
+                    'doc/css/common': 'css/common/css/*'
+                }
+            }
+        },
+
 
         uglify: {
             options: {
@@ -192,7 +220,8 @@ module.exports = function( grunt ){
         
 
         clean: {
-            test: [ "test/tmp" ]
+            test: [ "test/tmp" ],
+            cssdoc: [ "doc/css/**/*.html", "doc/css/**/*.css" ]
         },
 
         replace: {
@@ -334,6 +363,8 @@ module.exports = function( grunt ){
     } );
 
     grunt.registerTask( "css", [ "compass" ] );
+
+    grunt.registerTask( "cssdoc", [ "clean", "styleguide" ] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 

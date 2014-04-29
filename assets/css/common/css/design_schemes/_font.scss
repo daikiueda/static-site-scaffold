@@ -1,0 +1,46 @@
+// 書体
+// ============
+// 
+// ## デフォルトの書体
+// 
+// ```$font-family-default```
+// 
+//  * bodyのfont-familyプロパティに適用される。
+//
+$font-family-default: "Lucida Grande", "segoe UI", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", メイリオ, Meiryo, sans-serif;
+
+
+// フォントサイズ
+// ============
+// 
+// ## デフォルトのフォントサイズ
+// 
+// ```$font-size-default```
+// 
+//  * htmlのfont-sizeプロパティと、mixinの中で使われる。
+//  * 直接、変数$font-size-defaultは使用しない。
+// 
+$font-size-default: 14px;
+
+// ## フォントサイズの指定方法
+// ```
+// selector { @include fs( 18px ); }
+// ```
+@mixin fs( $size ){
+	font-size: ( $size );
+	font-size: ( $size / $font-size-default ) + rem;
+}
+
+
+// 行間
+// ============
+// 
+// ## デフォルトの行間
+// 
+// ```$line-height-default```
+// 
+//  * bodyのline-heightプロパティに適用される。
+// 
+$line-height-default: 1.5;
+
+

@@ -1,2 +1,11 @@
-// normalize.css
-@import "../../../bower_components/modularized-normalize-scss/_normalize.scss";
+// @import
+// ============
+
+// * normalize.css
+@import
+	"../../../bower_components/modularized-normalize-scss/_normalize.scss";
+
+// * design_schemes
+// * utilities
+@import
+	"design_schemes/font";
