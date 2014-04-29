@@ -164,7 +164,7 @@ module.exports = function( grunt ){
             }
         },
 
-        update_local_nav: {
+        update_nav_excel: {
             options: {
                 dataStartingRow: 7,
                 mapping: {

@@ -9,19 +9,10 @@ var fs = require( "fs" ),
     _ = require( "lodash" ),
     Q = require( "q" ),
 
-    EOL = require( "os" ).EOL,
-    INDENT_STR = "\t",
-
-    LOCAL_NAV_CONTAINER_TEMPLATE = [
-        EOL,
-        indent( 5 ), '<ul>', EOL,
-        '<%= items %>',
-        indent( 5 ), '</ul>', EOL
-    ].join( "" ),
-
-    LOCAL_NAV_ITEM_TEMPLATE = [
-        indent( 6 ), '<li><a href="..<%= path %>"><%= title %></a></li>', EOL
-    ].join( "" ),
+    TEMPLATE_PATHS = {
+        "aside nav.local": "tasks/templates/aside_nav_local.html"
+    },
+    TEMPLATES = {},
 
     XLSX2JSON_PATH = "../node_modules/grunt-meta-excel/node_modules/xlsx2json/lib/xlsx2json.js",
 
@@ -31,8 +22,12 @@ var fs = require( "fs" ),
         "®": "&reg;"
     };
 
-function indent( level ){
-    return _.times( level, function(){ return INDENT_STR } ).join( "" );
+
+function prepareTemplates( options ){
+    _.forEach( TEMPLATE_PATHS, function( templateFilePath, targetSelector ){
+        TEMPLATES[ targetSelector ] =
+            _.template( fs.readFileSync( templateFilePath, options.charset ) );
+    } );
 }
 
 
@@ -51,21 +46,9 @@ function updateHTML( htmlDir, metadata, options ){
             window,
             function( window, $ ){
 
-
-//            $( options.localNavElm ).empty();
-//
-//            dirPaths.forEach( function( dirPath ){
-//                localNavItemsStr = [];
-//                _.where( pages, { _dirPath: dirPath } ).forEach( function( page ){
-//                    localNavItemsStr.push( localNavItemTemplate( page ) );
-//                } );
-//
-//                $( options.localNavElm ).append(
-//                    localNavContainerTemplate( { items: localNavItemsStr.join( "" ) } )
-//                );
-//            } );
-
-
+                _.forEach( TEMPLATES, function( template, selector ){
+                    $( selector ).empty().append( template( metadata ) );
+                } );
 
                 $( "script.jsdom" ).remove();
 
@@ -141,7 +124,7 @@ function extendMetadata( metadata ){
         // 対象のディレクトリパスに配置されてすべてのページに、
         // _localFilesと_topicPathTitlesの情報を追加する。
         _.where( extendedMetadata, { _dirPath: dirPath } ).forEach( function( page ){
-            localFiles[ dirPath ].push( { _filename: page.filename, _title: page.title } );
+            localFiles[ dirPath ].push( { filename: page.filename, title: page.title } );
             page._localFiles = localFiles[ dirPath ];
             page._topicPathTitles = topicPathTitles[ dirPath ];
         } );
@@ -152,7 +135,7 @@ function extendMetadata( metadata ){
 
 
 module.exports = function( grunt ){
-    grunt.registerMultiTask( "update_local_nav", "Update navigation in .html files.", function(){
+    grunt.registerMultiTask( "update_nav_excel", "Update navigation in .html files.", function(){
 
         var xlsx2json = require( XLSX2JSON_PATH ),
 
@@ -166,6 +149,8 @@ module.exports = function( grunt ){
             .then(
                 function( metadata ){
                     var extendedMetadata = extendMetadata( metadata );
+
+                    prepareTemplates( options );
 
                     Q.all( extendedMetadata.map( function( pageMetadata ){
                         return updateHTML( this.data.htmlDir, pageMetadata, options )
