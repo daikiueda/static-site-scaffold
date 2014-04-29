@@ -39,16 +39,17 @@ function indent( level ){
 function updateHTML( htmlDir, metadata, options ){
     var jsdom = require( "jsdom" ),
 
-        deferred = Q.defer(),
+        deferred = Q.defer();
 
-        filePath = path.join( htmlDir, metadata.path ),
-        content = fs.readFileSync( filePath, options.charset ),
-        document = jsdom.jsdom( content ),
-        window = document.createWindow();
+    try {
+        var filePath = path.join( htmlDir, metadata.path ),
+            content = fs.readFileSync( filePath, options.charset ),
+            document = jsdom.jsdom( content ),
+            window = document.createWindow();
 
-    jsdom.jQueryify(
-        window,
-        function( window, $ ){
+        jsdom.jQueryify(
+            window,
+            function( window, $ ){
 
 
 //            $( options.localNavElm ).empty();
@@ -66,25 +67,28 @@ function updateHTML( htmlDir, metadata, options ){
 
 
 
-            $( "script.jsdom" ).remove();
+                $( "script.jsdom" ).remove();
 
-            var htmlCode = $( "html" ).html();
-            _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
-                htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
-            } );
+                var htmlCode = $( "html" ).html();
+                _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
+                    htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
+                } );
 
-            fs.writeFileSync(
-                filePath,
-                content.replace(
-                    /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
-                    "$1" + htmlCode + "$2"
-                ),
-                options.charset
-            );
+                fs.writeFileSync(
+                    filePath,
+                    content.replace(
+                        /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
+                            "$1" + htmlCode + "$2"
+                    ),
+                    options.charset
+                );
 
-            deferred.resolve( filePath + " ... updated." );
-        }
-    );
+                deferred.resolve( filePath + " ... updated." );
+            }
+        );
+    } catch( e ){
+        deferred.reject( e );
+    }
 
     return deferred.promise;
 }
@@ -165,10 +169,14 @@ module.exports = function( grunt ){
 
                     Q.all( extendedMetadata.map( function( pageMetadata ){
                         return updateHTML( this.data.htmlDir, pageMetadata, options )
-                            .then( function( message ){ grunt.log.ok( message ) } );
+                            .then(
+                                function( message ){ grunt.log.ok( message ) },
+                                function( message ){ grunt.log.warn( message ) }
+                            );
                     }, this ) )
                         .then(
-                            function(){ done(); }
+                            function(){ done(); },
+                            function(){ done( false ); }
                         );
                 }.bind( this ),
 
