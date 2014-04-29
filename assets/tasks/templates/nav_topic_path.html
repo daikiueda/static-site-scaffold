@@ -1,0 +1,19 @@
+<%
+	var TOP_PAGE_LAVEL = "HOME",
+		level = _topicPathTitles.length - 1;
+
+	function lineagePath( level ){
+		return _.times( level, function(){ return "../" } ).join( "" ) + "index.html"
+	}
+%> 
+					<ul><%
+_topicPathTitles.forEach( function( lineageTitle, index ){
+	if( !( level === index && lineageTitle === title ) ){ %>
+						<li><a href="<%= lineagePath( level - index ) %>"><%=
+							( index === 0 )? TOP_PAGE_LAVEL: lineageTitle
+						%></a></li><%
+	}
+} ); %>
+						<li><%= title %></li>
+					</ul>
+				

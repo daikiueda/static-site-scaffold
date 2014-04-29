@@ -10,6 +10,7 @@ var fs = require( "fs" ),
     Q = require( "q" ),
 
     TEMPLATE_PATHS = {
+        "#topic_path": "tasks/templates/nav_topic_path.html",
         "aside nav.local": "tasks/templates/aside_nav_local.html"
     },
     TEMPLATES = {},
