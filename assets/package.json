@@ -1,5 +1,5 @@
 {
-  "name": "static-site-tools",
+  "name": "static-site-scaffold",
   "version": "0.1.0",
   "engines": {
     "node": ">= 0.10.0"
