@@ -13,6 +13,5 @@ before_script:
 script:
  - "grunt meta_excel::generate"
  - "grunt update_nav_excel"
- - "grunt build"
  - "npm test"
 
