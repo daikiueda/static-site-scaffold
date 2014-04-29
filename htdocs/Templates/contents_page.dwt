@@ -32,8 +32,8 @@
 
 			<div class="local_container">
 				<!-- InstanceBeginEditable name="local_container" -->
-				<!-- TemplateBeginEditable name="topicPath" -->
-				<nav id="topicPath"></nav>
+				<!-- TemplateBeginEditable name="topic_path" -->
+				<nav id="topic_path"></nav>
 				<!-- TemplateEndEditable -->
 
 				<main>
@@ -42,8 +42,11 @@
 					<!-- TemplateEndEditable -->
 				</main>
 
-				<nav id="localNav">
-				</nav>
+				<aside>
+					<!-- TemplateBeginEditable name="local_nav" -->
+					<nav id="local_nav"></nav>
+					<!-- TemplateEndEditable -->
+				</aside>
 				<!-- InstanceEndEditable -->
 			</div>
 
