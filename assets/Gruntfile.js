@@ -95,9 +95,9 @@ module.exports = function( grunt ){
         styleguide: {
             options: {
                 framework: {
-                    name: 'styledocco',
+                    name: "styledocco",
                     options: {
-                        preprocessor: 'sass -E UTF-8',
+                        preprocessor: "sass -E UTF-8",
                         verbose: false
                     }
                 }
@@ -106,15 +106,16 @@ module.exports = function( grunt ){
                 options: {
                     template: {
                         include: [
-                            // 'doc/css/common/--samples.css',
+                            "../htdocs/common/css/common.css",
+                            // "doc/css/common/--samples.css",
 
-                            '../htdocs/common/js/libs.js',
-                            '../htdocs/common/js/common.js'
+                            "../htdocs/common/js/libs.js",
+                            "../htdocs/common/js/common.js"
                         ]
                     }
                 },
                 files: {
-                    'doc/css/common': 'css/common/css/*'
+                    "doc/css/common": "css/common/css/*"
                 }
             }
         },
