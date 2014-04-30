@@ -1,8 +1,11 @@
 node_modules
+npm-debug.log
+assets/node_modules
 assets/bower_components
 
-assets/css/.sass-cache
 assets/tmp
 assets/test/tmp
-tmp.runner.html
-local.sublime-project
+
+assets/.sass-cache
+assets/css/.sass-cache
+

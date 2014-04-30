@@ -32,6 +32,7 @@
     "grunt-prompt": "^1.1.0",
     "grunt-styleguide": "^0.2.15",
     "grunt-text-replace": "^0.3.11",
+    "grunt-webfont": "^0.3.4",
     "js-fixtures": "^1.5.1",
     "jsdom": "^0.10.5",
     "karma": "^0.12.14",

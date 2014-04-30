@@ -67,6 +67,22 @@ module.exports = function( grunt ){
         },
 
 
+        webfont: {
+            common_icons: {
+                src: "font-svg/icon/*.svg",
+                dest: "../htdocs/common/fonts/icon",
+                destCss: "css/common/css/design_schemes",
+                options: {
+                    font: "icon",
+                    hashes: false,
+                    stylesheet: "scss",
+                    relativeFontPath: "../fonts/icon",
+                    template: "font-svg/icon/icon.css",
+                    htmlDemo: false
+                }
+            }
+        },
+
         compass: {
             main: {
                 options: {
@@ -362,7 +378,7 @@ module.exports = function( grunt ){
         ] );
     } );
 
-    grunt.registerTask( "css", [ "compass" ] );
+    grunt.registerTask( "css", [ "webfont", "compass" ] );
 
     grunt.registerTask( "cssdoc", [ "clean", "styleguide" ] );
 
