@@ -13,7 +13,6 @@
     "browserify": "^3.44.1",
     "chai": "^1.9.1",
     "chalk": "^0.4.0",
-    "css-parse": "^1.5.3",
     "grunt": "^0.4.4",
     "grunt-attention": "0.0.4",
     "grunt-browserify": "^2.0.8",
