@@ -233,7 +233,17 @@ module.exports = function( grunt ){
 
         clean: {
             test: [ "test/tmp" ],
-            cssdoc: [ "doc/css/**/*.html", "doc/css/**/*.css" ]
+            cssdoc: [ "doc/css/**/*.html", "doc/css/**/*.css" ],
+
+            generated: [
+                "../htdocs/**/*.*",
+                "!../htdocs/**/*.dwt",
+                "!../htdocs/__modules/**/*.*",
+
+                "doc/js/**/*.*",
+                "doc/css/**/*.*",
+                "css/common/css/design_schemes/_icon.scss"
+            ]
         },
 
         replace: {
@@ -386,7 +396,11 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "css", [ "webfont", "compass", "replace:css_font_path" ] );
 
-    grunt.registerTask( "cssdoc", [ "clean", "styleguide"/*, "replace:cssdoc" */] );
+    grunt.registerTask( "cssdoc", [
+        "clean:cssdoc", 
+        "styleguide"
+        // "replace:cssdoc"
+    ] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
