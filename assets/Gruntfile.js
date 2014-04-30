@@ -106,8 +106,7 @@ module.exports = function( grunt ){
                 options: {
                     template: {
                         include: [
-                            '../htdocs/common/css/common.css',
-                            'doc/css/common/--samples.css',
+                            // 'doc/css/common/--samples.css',
 
                             '../htdocs/common/js/libs.js',
                             '../htdocs/common/js/common.js'
@@ -250,6 +249,14 @@ module.exports = function( grunt ){
                 ]
             },
 
+            cssdoc: {
+                src: [ "doc/css/common/*.html" ],
+                overwrite: true,
+                replacements: [
+                    { from: /[^"]+\/fonts\/icon/g, to: "../../../../htdocs/common/fonts/icon" }
+                ]
+            },
+
             path_in_browserified_for_karma: {
                 src: [ "test/tmp/**/karma*browserified*.js" ],
                 overwrite: true,
@@ -380,7 +387,7 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "css", [ "webfont", "compass" ] );
 
-    grunt.registerTask( "cssdoc", [ "clean", "styleguide" ] );
+    grunt.registerTask( "cssdoc", [ "clean", "styleguide", "replace:cssdoc" ] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
