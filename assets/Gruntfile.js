@@ -76,7 +76,7 @@ module.exports = function( grunt ){
                     font: "icon",
                     hashes: false,
                     stylesheet: "scss",
-                    relativeFontPath: "../fonts/icon",
+                    //relativeFontPath: "../fonts/icon",
                     template: "font-svg/icon/icon.css",
                     htmlDemo: false
                 }
@@ -106,11 +106,7 @@ module.exports = function( grunt ){
                 options: {
                     template: {
                         include: [
-                            "../htdocs/common/css/common.css",
-                            // "doc/css/common/--samples.css",
-
-                            "../htdocs/common/js/libs.js",
-                            "../htdocs/common/js/common.js"
+                            "../htdocs/common/css/common.css"
                         ]
                     }
                 },
@@ -250,11 +246,13 @@ module.exports = function( grunt ){
                 ]
             },
 
-            cssdoc: {
-                src: [ "doc/css/common/*.html" ],
+            css_font_path: {
+                //src: [ "doc/css/common/*.html" ],
+                src: [ "../htdocs/common/css/**/*.css" ],
                 overwrite: true,
                 replacements: [
-                    { from: /[^"]+\/fonts\/icon/g, to: "../../../../htdocs/common/fonts/icon" }
+                    //{ from: /[^"]+\/fonts\/icon/g, to: "../../../../htdocs/common/fonts/icon" }
+                    { from: /[^"]+\/fonts\/icon/g, to: "../fonts/icon" }
                 ]
             },
 
@@ -386,9 +384,9 @@ module.exports = function( grunt ){
         ] );
     } );
 
-    grunt.registerTask( "css", [ "webfont", "compass" ] );
+    grunt.registerTask( "css", [ "webfont", "compass", "replace:css_font_path" ] );
 
-    grunt.registerTask( "cssdoc", [ "clean", "styleguide", "replace:cssdoc" ] );
+    grunt.registerTask( "cssdoc", [ "clean", "styleguide"/*, "replace:cssdoc" */] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
