@@ -2,15 +2,19 @@
 
 # Require any additional compass plugins here.
 
+environment = :development
+#environment = :production
+
 # Set this to the root of your project when deployed:
 sass_dir = "."
 css_dir = "../../htdocs"
+fonts_dir = "../../htdocs/common/fonts"
 images_dir = "../images"
 generated_images_dir = "../../htdocs/common/responsive/images"
 
 # You can select your preferred output style here (can be overridden via the command line):
-output_style = :compressed
-#output_style = :expand
+#output_style = :compressed
+output_style = :expand
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true

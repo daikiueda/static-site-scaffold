@@ -76,9 +76,10 @@ module.exports = function( grunt ){
                     font: "icon",
                     hashes: false,
                     stylesheet: "scss",
-                    //relativeFontPath: "../fonts/icon",
+                    relativeFontPath: "../fonts/icon",
                     template: "font-svg/icon/icon.css",
-                    htmlDemo: false
+                    htmlDemo: false,
+                    embed: false
                 }
             }
         },
@@ -97,7 +98,7 @@ module.exports = function( grunt ){
                 framework: {
                     name: "styledocco",
                     options: {
-                        preprocessor: "sass -E UTF-8",
+                        preprocessor: "compass compile css",
                         verbose: false
                     }
                 }
@@ -394,7 +395,11 @@ module.exports = function( grunt ){
         ] );
     } );
 
-    grunt.registerTask( "css", [ "webfont", "compass", "replace:css_font_path" ] );
+    grunt.registerTask( "css", [
+        "webfont",
+        "compass"//,
+        //"replace:css_font_path"
+    ] );
 
     grunt.registerTask( "cssdoc", [
         "clean:cssdoc", 
