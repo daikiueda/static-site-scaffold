@@ -261,6 +261,32 @@ module.exports = function( grunt ){
             ]
         },
 
+        copy: {
+            ionicons: {
+                files: [
+                    {
+                        expand: true,
+                        dest: "font-svg/icon/",
+                        cwd: "bower_components/ionicons/src/",
+                        src: [
+                            "ios7-arrow-back.svg",
+                            "ios7-arrow-forward.svg",
+                            "ios7-arrow-up.svg",
+                            "ios7-arrow-down.svg",
+                            "ios7-arrow-left.svg",
+                            "ios7-arrow-right.svg",
+                            "ios7-arrow-thin-up.svg",
+                            "ios7-arrow-thin-down.svg",
+                            "ios7-arrow-thin-left.svg",
+                            "ios7-arrow-thin-right.svg",
+                            "ios7-browsers.svg",
+                            "ios7-browsers-outline.svg"
+                        ]
+                    }
+                ]
+            }
+        },
+
         replace: {
             license_comment_format: {
                 src: [ "../htdocs/common/js/libs.js" ],
@@ -417,7 +443,10 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
 
-    grunt.registerTask( "setup", [ "exec:bower_install" ] );
+    grunt.registerTask( "setup", [
+        "exec:bower_install",
+        "copy:ionicons"
+    ] );
 
     grunt.registerTask( "test", function(){
         grunt.task.run( [

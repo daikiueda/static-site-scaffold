@@ -9,3 +9,5 @@ assets/test/tmp
 assets/.sass-cache
 assets/css/.sass-cache
 
+assets/font-svg/icon/*.svg
+
