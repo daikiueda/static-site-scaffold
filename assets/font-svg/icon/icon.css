@@ -6,19 +6,21 @@
 <% if (fontfaceStyles) { %>@include font-face(
 	'<%= fontBaseName %>',
 	if(
-		compass-env() == 'development',
-		inline-font-files(
-			'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff,
-			'<%= fontBaseName %>/<%= fontBaseName %>.ttf', ttf,
-			'<%= fontBaseName %>/<%= fontBaseName %>.svg', svg
-		),
+		compass-env() != 'development',
 		font-files(
 			'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff,
 			'<%= fontBaseName %>/<%= fontBaseName %>.ttf', ttf,
 			'<%= fontBaseName %>/<%= fontBaseName %>.svg', svg
+		),
+		inline-font-files(
+			'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff
 		)
 	),
-	'<%= fontBaseName %>/<%= fontBaseName %>.eot',
+	if(
+		compass-env() != 'development',
+		'<%= fontBaseName %>/<%= fontBaseName %>.eot',
+		false
+	),
 	'normal',
 	'normal'
 );
