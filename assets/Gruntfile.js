@@ -72,8 +72,8 @@ module.exports = function( grunt ){
                 src: "font-svg/icon/*.svg",
                 dest: "../htdocs/common/fonts/icon",
                 destCss: "css/common/css/design_schemes",
-                engine: "node",
                 options: {
+                    engine: "node",
                     font: "icon",
                     hashes: false,
                     stylesheet: "scss",
