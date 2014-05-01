@@ -5,10 +5,18 @@
  
 <% if (fontfaceStyles) { %>@include font-face(
 	'<%= fontBaseName %>',
-	font-files(
-		'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff,
-		'<%= fontBaseName %>/<%= fontBaseName %>.ttf', ttf,
-		'<%= fontBaseName %>/<%= fontBaseName %>.svg', svg
+	if(
+		compass-env() == 'development',
+		inline-font-files(
+			'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff,
+			'<%= fontBaseName %>/<%= fontBaseName %>.ttf', ttf,
+			'<%= fontBaseName %>/<%= fontBaseName %>.svg', svg
+		),
+		font-files(
+			'<%= fontBaseName %>/<%= fontBaseName %>.woff', woff,
+			'<%= fontBaseName %>/<%= fontBaseName %>.ttf', ttf,
+			'<%= fontBaseName %>/<%= fontBaseName %>.svg', svg
+		)
 	),
 	'<%= fontBaseName %>/<%= fontBaseName %>.eot',
 	'normal',

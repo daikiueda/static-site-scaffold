@@ -88,7 +88,22 @@ module.exports = function( grunt ){
             main: {
                 options: {
                     basePath: "css",
-                    config: "css/config.rb"
+                    config: "css/config.rb",
+                    environment: "production"
+                }
+            },
+            main_for_cssdoc: {
+                options: {
+                    basePath: "<%= compass.main.options.basePath %>",
+                    config: "<%= compass.main.options.config %>",
+                    environment: "development"
+                }
+            },
+            main_clean: {
+                options: {
+                    basePath: "<%= compass.main.options.basePath %>",
+                    config: "<%= compass.main.options.config %>",
+                    clean: true
                 }
             }
         },
@@ -96,11 +111,7 @@ module.exports = function( grunt ){
         styleguide: {
             options: {
                 framework: {
-                    name: "styledocco",
-                    options: {
-                        preprocessor: "compass compile css",
-                        verbose: false
-                    }
+                    name: "styledocco"
                 }
             },
             common: {
@@ -234,14 +245,17 @@ module.exports = function( grunt ){
 
         clean: {
             test: [ "test/tmp" ],
-            cssdoc: [ "doc/css/**/*.html", "doc/css/**/*.css" ],
+            cssdoc: [
+                "doc/css/**/*.html",
+                "doc/css/**/*.css"
+            ],
 
             generated: [
                 "../htdocs/**/*.*",
                 "!../htdocs/**/*.dwt",
                 "!../htdocs/__modules/**/*.*",
 
-                "doc/js/**/*.*",
+                "doc/js",
                 "doc/css/**/*.*",
                 "css/common/css/design_schemes/_icon.scss"
             ]
@@ -254,16 +268,6 @@ module.exports = function( grunt ){
                 replacements: [
                     { from: /\/\*\!/g, to: "\n/*!" },
                     { from: /^\n+\/\*\!/g, to: "/*!" }
-                ]
-            },
-
-            css_font_path: {
-                //src: [ "doc/css/common/*.html" ],
-                src: [ "../htdocs/common/css/**/*.css" ],
-                overwrite: true,
-                replacements: [
-                    //{ from: /[^"]+\/fonts\/icon/g, to: "../../../../htdocs/common/fonts/icon" }
-                    { from: /[^"]+\/fonts\/icon/g, to: "../fonts/icon" }
                 ]
             },
 
@@ -397,14 +401,18 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "css", [
         "webfont",
-        "compass"//,
-        //"replace:css_font_path"
+        "compass:main_clean",
+        "compass:main"
     ] );
 
     grunt.registerTask( "cssdoc", [
-        "clean:cssdoc", 
-        "styleguide"
-        // "replace:cssdoc"
+        "clean:cssdoc",
+        "webfont",
+        "compass:main_clean",
+        "compass:main_for_cssdoc",
+        "styleguide:common",
+        "compass:main_clean",
+        "compass:main"
     ] );
 
     grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );

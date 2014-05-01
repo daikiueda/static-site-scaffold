@@ -2,8 +2,8 @@
 
 # Require any additional compass plugins here.
 
-environment = :development
-#environment = :production
+environment = :production
+#environment = :development
 
 # Set this to the root of your project when deployed:
 sass_dir = "."
