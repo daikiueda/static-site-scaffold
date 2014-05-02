@@ -8,6 +8,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 │   ├── conf
 │   ├── css
 │   ├── doc
+│   ├── font-svg
 │   ├── js
 │   ├── tasks
 │   └── test
@@ -16,100 +17,34 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
     └── __modules
 ```
 
+## feature
 
-## HTML
+### HTML
 
-### DreamWeaverテンプレート
+* DreamWeaverテンプレート
+* 構文チェック
+* &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
+* ナビゲーションの一括更新（オプション）
 
-* `analytics.dwt`  
-  Google Analyticsの計測タグなど、ページデザインに関わらない要素を一元管理します。
+[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/HTML)
 
-  * `base.dwt`  
-    ヘッダーやフッター、グローバルナビゲーションなど、サイトデザインの共通要素を一元管理します。
+### CSS
 
-    * `contents_page.dwt`  
-      ナーカルナビゲーションなど、コンテンツページに共通する要素を一元管理します。
+* Sass/Compass（*.scss）のコンパイル
+* アイコン用Webfontの生成
+* スタイルガイドの生成
 
-### 構文チェック
+[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/CSS)
 
-HTML5対応の構文チェックサービス「[validator.nu](http://validator.nu/)」と同等のチェックを、
-htdocs以下のすべてのhtmlファイルを対象に実行します。
+### JavaScript
 
-```Bash
-$ grunt htmllint
-```
-> https://www.npmjs.org/package/grunt-html ( https://validator.github.io/ )
+* 名前空間の定義
+* ソースコードの結合・圧縮
+* テスト
+  * カバレッジのレポート
+* JSDocの生成
 
-### &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
-
-サイトマップ（Excelファイル）の内容にあわせて、htmlファイル中の情報を更新します。
-
-```Bash
-$ grunt meta_excel
-
-# special function!
-# サイトマップに示されたパスにhtmlファイルが存在しない場合、ファイルを生成します。
-$ grunt meta_excel::generate
-```
-> https://www.npmjs.org/package/grunt-meta-excel
-
-
-## CSS
-
-### Sass/Compass（*.scss）のコンパイル
-
-```Bash
-$ grunt css
-```
-> https://www.npmjs.org/package/grunt-contrib-compass
-
-
-## JavsScript
-
-### ソースコードの結合・圧縮
-
-```Bash
-$ grunt js
-```
-> https://www.npmjs.org/package/grunt-contrib-uglify
-
-### 名前空間の定義
-
-`assets/js/common/siteScript/$.namespace.js`は名前空間の定義を標準化します。
-
-名前空間を要する機能を実装する場合に、以下のように記述できます。  
-※前述の$.namespace.jsの内容が先に実行されるようにファイルを構成する必要があります。
-
-```JavaScript
-$.namespace( "siteScript.utils" );
-
-( function( siteScript ){
-    "use strict";
-
-    siteScript.utils.testFunction = function(){
-        console.log( "this is test." );
-    };
-
-    $( function(){
-        siteScript.utils.testFunction();
-    } );
-} )( $.namespace.getRoot() );
-```
-
-名前空間の内容をグローバルスコープに展開する必要がある場合は、
-$.namespace.js（の処理をふくむjsファイル）を読み込む&lt;script&gt;要素に、
-`data-namespace`属性として任意の変数名を記述してください。
-
-```HTML
-<script src="common/js/common.js" data-namespace="sampleSite"></script>
-```
-
-### JSDocの生成
-
-```Bash
-$ grunt jsdoc
-```
-> https://www.npmjs.org/package/grunt-jsdoc ( http://usejsdoc.org )
+[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/JavaScript)
 
 
 ## Totally easy coding!
