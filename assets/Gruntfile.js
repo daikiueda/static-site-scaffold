@@ -164,7 +164,7 @@ module.exports = function( grunt ){
             },
             common_browsers: {
                 configFile: "test/karma.conf.js",
-                singleRun: true,
+                singleRun: false,
                 browsers: [ "PhantomJS", "Chrome", "Firefox", "Safari", "IE" ]
             }
         },
