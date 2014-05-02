@@ -25,7 +25,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 * &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
 * ナビゲーションの一括更新（オプション）
 
-[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/HTML)
+[:arrow_right: 詳しくははこちら](https://github.com/daikiueda/static-site-scaffold/wiki/HTML)
 
 ### CSS
 
@@ -33,7 +33,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 * アイコン用Webfontの生成
 * スタイルガイドの生成
 
-[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/CSS)
+[:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/CSS)
 
 ### JavaScript
 
@@ -43,7 +43,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
   * カバレッジのレポート
 * JSDocの生成
 
-[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/JavaScript)
+[:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/JavaScript)
 
 ### Integration
 
@@ -51,7 +51,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 * ファイル監視とライブ・リロード
 * タスク・メニュー
 
-[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Integration)
+[:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Integration)
 
 
 --------
@@ -61,28 +61,12 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 ### 前提条件
 
-* gitプロトコルでの通信に対応していること。  
-  ポートがふさがれている場合は、以下のようなgitの設定ファイル「```.gitconfig```」を  
-  ユーザーホームディレクトリに設置することで、対応可能です。
-  ```
-  [url "https://"]
-    insteadOf = git://
-  ```
+* Git
+* Ruby 2.x, Compass
+* node.js 10.x~, grunt-cli, bower
+  * node-gypの実行環境
 
-* __[node.js](http://nodejs.org/)__  
-  ※Macユーザーの方には[nodebrew](https://github.com/hokaccha/nodebrew)オススメです。
-  * __grunt-cli__ ```$ (sudo) npm install grunt-cli -g```
-  * __bower__ ```$ (sudo) npm install bower -g```
-
-* __Compass__ ```$ (sudo) gem install compass```
-
-#### Windowsの場合、さらに以下が必要です。
-
-* [Git](http://git-scm.com/downloads)  
-  ※インストール時のオプションで、[コマンドラインからの実行を有効にする](http://bower.io/#a-note-for-windows-users)必要があります。
-* [Ruby v1.9.3](http://rubyinstaller.org/downloads/)
-* [Python v2.7.x](http://www.python.jp/download/)
-* [Microsoft Visual Studio Express 2013](http://www.microsoft.com/ja-jp/download/details.aspx?id=40787) （または同等のコンパイル環境）
+[:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Setup)
 
 ### 環境構築
 
@@ -91,16 +75,9 @@ $ git clone https://github.com/daikiueda/static-site-scaffold.git
 $ cd static-site-scaffold/assets/
 $ npm install
 ```
-からの
+
+### Start : )
+
 ```Bash
 $ grunt
 ```
-
-#### オプション
-
-* サイトマップ（Excelファイル）連携の機能を利用する場合は、  
-  grunt-meta-excelモジュールをインストールする。
-  
-  ```Bash
-  $ npm install grunt-meta-excel
-  ```
