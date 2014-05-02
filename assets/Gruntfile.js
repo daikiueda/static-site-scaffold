@@ -357,39 +357,84 @@ module.exports = function( grunt ){
                     questions: [
                         {
                             config: "selectedTask",
-                            type: "list",
                             message: "What would you like to do?", 
+                            type: "list",
                             default: "server",
                             choices: [
-                                { name: "ファイル更新の監視とオートリロードの開始", value: "server" },
+                                { name: "ファイル監視とライブ・リロードの開始", value: "server" },
                                 "---",
-                                { name: "Sass/Compassのコンパイル", value: "css" },
-                                { name: "JavaScriptのビルド", value: "js" },
-                                { name: "HTMLの構文チェック", value: "htmllint" },
+                                { name: "HTML", value: "MENU_HTML" },
+                                { name: "CSS", value: "MENU_CSS" },
+                                { name: "JavaScript", value: "MENU_JS" },
                                 "---",
-                                { name: "その他", value: null },
+                                { name: "その他", value: "MENU_OTHER" },
                                 { name: "メニューの終了", value: "" },
                             ]
                         },
                         {
                             config: "selectedTask",
+                            message: "HTML", 
                             type: "list",
-                            message: "Other menu.", 
                             choices: _.flatten( [
+                                { name: "構文チェック", value: "htmllint" },
                                 hasModele( "grunt-meta-excel" )?
                                     [
-                                        { name: "HTMLの<title>，メタ情報の更新", value: "meta_excel" },
-                                        { name: "HTMLの生成", value: "meta_excel::generate" },
-                                        "---"
+                                        { name: "<title>，メタ情報の更新", value: "meta_excel" },
+                                        { name: "ナビゲーションの一括更新", value: "update_nav_excel" },
+                                        { name: "HTMLの生成", value: "meta_excel::generate" }
                                     ]: [],
-                                { name: "JavaScriptのテスト", value: "test" },
-                                { name: "JSDocの生成", value: "jsdoc" },
                                 "---",
                                 { name: "戻る", value: "task_menu" },
                                 { name: "メニューの終了", value: "" }
                             ] ),
                             when: function( answer ){
-                                return ( answer.selectedTask === null );
+                                return ( answer.selectedTask === "MENU_HTML" );
+                            }
+                        },
+                        {
+                            config: "selectedTask",
+                            message: "CSS", 
+                            type: "list",
+                            choices: [
+                                { name: "Sass/Compassのコンパイル", value: "css" },
+                                { name: "アイコン用Webfontの生成", value: "webfont" },
+                                { name: "スタイルガイドの生成", value: "cssdoc" },
+                                "---",
+                                { name: "戻る", value: "task_menu" },
+                                { name: "メニューの終了", value: "" }
+                            ],
+                            when: function( answer ){
+                                return ( answer.selectedTask === "MENU_CSS" );
+                            }
+                        },
+                        {
+                            config: "selectedTask",
+                            message: "JavaScript", 
+                            type: "list",
+                            choices: [
+                                { name: "ソースコードの結合・圧縮", value: "js" },
+                                { name: "テスト", value: "test" },
+                                { name: "JSDocの生成", value: "jsdoc" },
+                                "---",
+                                { name: "戻る", value: "task_menu" },
+                                { name: "メニューの終了", value: "" }
+                            ],
+                            when: function( answer ){
+                                return ( answer.selectedTask === "MENU_JS" );
+                            }
+                        },
+                        {
+                            config: "selectedTask",
+                            message: "その他", 
+                            type: "list",
+                            choices: [
+                                { name: "全体ビルド", value: "build" },
+                                "---",
+                                { name: "戻る", value: "task_menu" },
+                                { name: "メニューの終了", value: "" }
+                            ],
+                            when: function( answer ){
+                                return ( answer.selectedTask === "MENU_OTHER" );
                             }
                         }
                     ]
