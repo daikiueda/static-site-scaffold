@@ -5,7 +5,6 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 ```
 ├── assets
-│   ├── conf
 │   ├── css
 │   ├── doc
 │   ├── font-svg
@@ -46,36 +45,14 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 [詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/JavaScript)
 
+### Integration
 
-## Totally easy coding!
+* 全体ビルド
+* ファイル監視とライブ・リロード
+* タスク・メニュー
 
-### Sass/CompassのコンパイルやJavaScriptの圧縮を、ひととおり実行する。
+[詳細はこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Integration)
 
-```Bash
-$ grunt build
-```
-
-### scssやjsが更新されるつど、自動的にコンパイルして、ブラウザをリロード！
-
-```Bash
-$ grunt server
-```
-
-終了は、```Ctrl + c```。
-
-> https://www.npmjs.org/package/grunt-contrib-watch  
-https://www.npmjs.org/package/grunt-contrib-connect
-
-### なんだかんだで、このコマンド↓だけ覚えておけば大丈夫 : )
-
-タスクをメニューから選べます。
-
-```Bash
-$ grunt
-```
-> https://www.npmjs.org/package/grunt-prompt
-
-__Enjoy!!__
 
 --------
 
