@@ -53,6 +53,8 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 [:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Integration)
 
+![「grunt」とタイプするだけ](https://raw.github.com/wiki/daikiueda/static-site-scaffold/images/task_menu_w728.gif)
+
 
 --------
 
