@@ -13,8 +13,8 @@ images_dir = "../images"
 generated_images_dir = "../../htdocs/common/responsive/images"
 
 # You can select your preferred output style here (can be overridden via the command line):
-#output_style = :compressed
-output_style = :expand
+output_style = :compressed
+#output_style = :expand
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true
