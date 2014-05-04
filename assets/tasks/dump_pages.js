@@ -5,11 +5,12 @@
 "use strict";
 
 var path = require( "path" ),
+    Q = require( "q" ),
     webshot = require( "webshot" ),
-    Q = require( "q" );
+    moment = require( "moment" );
 
 
-function dumpScreen( filePath, options ){
+function dumpScreen( filePath, destDir, options ){
     var deferred = Q.defer(),
 
         url = [
@@ -17,8 +18,8 @@ function dumpScreen( filePath, options ){
             filePath.replace( /^\//, "" )
         ].join( "/" ),
 
-        dest = path.resolve(
-            options.dest,
+        dest = path.join(
+            destDir,
             filePath + ".png"
         ),
 
@@ -41,10 +42,16 @@ module.exports = function( grunt ){
 
         var options = this.options( {
             } ),
+
+            destDir = path.join(
+                options.dest,
+                moment().format( "YYYYMMDD-hhmm-ssSS" )
+            ),
+
             done = this.async();
 
         Q.all( this.files.map( function( file ){
-            return dumpScreen( file.dest, options )
+            return dumpScreen( file.dest, destDir, options )
                 .then(
                     function( message ){ grunt.log.ok( message ) },
                     function( message ){ grunt.log.warn( message ) }

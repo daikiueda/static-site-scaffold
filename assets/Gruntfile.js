@@ -271,6 +271,8 @@ module.exports = function( grunt ){
             ],
 
             generated: [
+                "tmp",
+                
                 "../htdocs/**/*.*",
                 "!../htdocs/**/*.dwt",
                 "!../htdocs/__modules/**/*.*",
