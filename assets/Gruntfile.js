@@ -239,6 +239,25 @@ module.exports = function( grunt ){
             }
         },
 
+
+        dump_pages: {
+            main: {
+                options: {
+                    urlRoot: [
+                        "http://<%= connect.livereload.options.hostname %>",
+                        ":<%= connect.livereload.options.port %>"
+                    ].join( "" ),
+                    dest: "tmp/screen"
+                },
+                files: [ {
+                    expand: true,
+                    cwd: "../htdocs",
+                    src: "**/*.html"
+                } ]
+            }
+        },
+
+
         cat: {
             coverage: { src: "test/tmp/__coverage/*/coverage.txt" }
         },
@@ -510,7 +529,13 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "before_testem", [
         "clean:test",
-        "browserify:common",
+        "browserify:common"
+    ] );
+
+    grunt.registerTask( "dump", [
+        "build",
+        "connect:livereload",
+        "dump_pages:main"
     ] );
 
     grunt.registerTask( "task_menu", [ "prompt:task_menu", "respond_to_task_select" ] );
