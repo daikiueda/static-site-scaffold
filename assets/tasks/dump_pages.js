@@ -1,5 +1,5 @@
 /**
- * Dump screen
+ * Dump pages.
  */
 
 "use strict";
@@ -7,40 +7,56 @@
 var path = require( "path" ),
     Q = require( "q" ),
     webshot = require( "webshot" ),
-    moment = require( "moment" );
+    moment = require( "moment" ),
+    chalk = require( "chalk" );
 
 
-function dumpScreen( filePath, destDir, options ){
-    var deferred = Q.defer(),
-
-        url = [
+function dumpScreen( filePath, widths, destDir, options ){
+    var url = [
             options.urlRoot.replace( /\/$/, "" ),
             filePath.replace( /^\//, "" )
         ].join( "/" ),
 
-        dest = path.join(
-            destDir,
-            filePath + ".png"
-        ),
-
         webshotOptions = options.webshot || {};
 
-    webshot( url, dest, webshotOptions, function( error ){
-        if( error ){
-            deferred.reject( error );
-            return;
+        if( !webshotOptions.windowSize ){
+            webshotOptions.windowSize = { height: 768 };
         }
 
-        deferred.resolve( filePath );
-    } );
+    return Q.all( widths.map( function( width, index ){
+        var deferredOneWidth = Q.defer(),
 
-    return deferred.promise;
+            dest = path.join(
+                destDir,
+                "w" + width,
+                filePath + ".png"
+            );
+
+        webshotOptions.windowSize.width = width;
+
+        // 原因不明の出力漏れ（ひとつのサイズしか出力されない）が発生するので、
+        // setTimeoutで実行タイミングをずらして手当てしている。
+        setTimeout( function(){
+            webshot( url, dest, webshotOptions, function( error ){
+                if( error ){
+                    deferredOneWidth.reject( error );
+                    return;
+                }
+
+                deferredOneWidth.resolve( dest );
+            } );
+        }, 128 * index );
+
+        return deferredOneWidth.promise;
+    } ) );
 }
 
 module.exports = function( grunt ){
-    grunt.registerMultiTask( "dump_pages", "Dump screen.", function(){
+    grunt.registerMultiTask( "dump_pages", "Save screen dump to file(s).", function(){
 
         var options = this.options( {
+                dest: "__screen_shot",
+                widths: [ 1024 ]
             } ),
 
             destDir = path.join(
@@ -48,17 +64,26 @@ module.exports = function( grunt ){
                 moment().format( "YYYYMMDD-hhmm-ssSS" )
             ),
 
+            widths = options.widths,
+
             done = this.async();
 
         Q.all( this.files.map( function( file ){
-            return dumpScreen( file.dest, destDir, options )
+            return dumpScreen( file.dest, widths, destDir, options )
                 .then(
-                    function( message ){ grunt.log.ok( message ) },
-                    function( message ){ grunt.log.warn( message ) }
+                    function(){ grunt.log.ok( [
+                        file.dest + ".png ... ",
+                        chalk.green( "saved." )
+                    ].join( "" ) ); },
+                    function( message ){ grunt.log.warn( message ); }
                 );
         } ) )
             .then(
-                function(){ done(); },
+                function(){
+                    grunt.log.writeln( "" );
+                    grunt.log.ok( "Save .png files to " + chalk.underline.cyan( destDir ) );
+                    done();
+                },
                 function(){ done( false ); }
             );
     } );

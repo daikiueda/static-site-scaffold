@@ -247,7 +247,8 @@ module.exports = function( grunt ){
                         "http://<%= connect.livereload.options.hostname %>",
                         ":<%= connect.livereload.options.port %>"
                     ].join( "" ),
-                    dest: "tmp/screen"
+                    widths: [ 640, 1024 ],
+                    dest: "__screen_shot"
                 },
                 files: [ {
                     expand: true,
@@ -277,9 +278,10 @@ module.exports = function( grunt ){
                 "!../htdocs/**/*.dwt",
                 "!../htdocs/__modules/**/*.*",
 
-                "doc/js",
+                "css/common/css/design_schemes/_icon.scss",
                 "doc/css/**/*.*",
-                "css/common/css/design_schemes/_icon.scss"
+                "<%= jsdoc.main.options.destination %>",
+                "<%= dump_pages.main.options.dest %>"
             ]
         },
 
@@ -450,6 +452,7 @@ module.exports = function( grunt ){
                             type: "list",
                             choices: [
                                 { name: "全体ビルド", value: "build" },
+                                { name: "スクリーンショットの一括出力", value: "screen_shot" },
                                 "---",
                                 { name: "戻る", value: "task_menu" },
                                 { name: "メニューの終了", value: "" }
@@ -534,7 +537,7 @@ module.exports = function( grunt ){
         "browserify:common"
     ] );
 
-    grunt.registerTask( "dump", [
+    grunt.registerTask( "screen_shot", [
         "build",
         "connect:livereload",
         "dump_pages:main"
