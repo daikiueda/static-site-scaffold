@@ -49,6 +49,7 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 * 全体ビルド
 * ファイル監視とライブ・リロード
+* スクリーンショットの一括出力
 * タスク・メニュー
 
 [:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Integration)
