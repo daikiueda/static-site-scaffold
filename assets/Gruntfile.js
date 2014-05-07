@@ -515,7 +515,8 @@ module.exports = function( grunt ){
 
     grunt.registerTask( "setup", [
         "exec:bower_install",
-        "copy:ionicons"
+        "copy:ionicons",
+        "make_menu_shortcut"
     ] );
 
     grunt.registerTask( "test", function(){
