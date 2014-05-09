@@ -1,5 +1,6 @@
 /**
- * Update localNav in .dwt
+ * grunt.registerTask
+ *  - update_nav_excel
  */
 
 "use strict";

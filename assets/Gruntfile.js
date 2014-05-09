@@ -42,6 +42,7 @@ module.exports = function( grunt ){
                 debug: false
             }
         },
+        require( "./grunt/config/setup-tasks.js" ),
         require( "./grunt/config/integration-tasks.js" ),
         require( "./grunt/config/html-tasks.js" ),
         require( "./grunt/config/css-tasks.js" ),
@@ -61,72 +62,6 @@ module.exports = function( grunt ){
 
     grunt.loadTasks( "grunt" );
 
-
-    // register tasks
-    grunt.registerTask( "build", [ "css", "js" ] );
-
-    grunt.registerTask( "server", function(){
-        if( !this.flags.skip_build ){
-            grunt.task.run( [ "build" ] );
-        }
-        grunt.task.run( [
-            "connect:livereload",
-            "open",
-            "attention:server",
-            "watch"
-        ] );
-    } );
-
-    grunt.registerTask( "css", [
-        "webfont",
-        "compass:main_clean",
-        "compass:main"
-    ] );
-
-    grunt.registerTask( "cssdoc", [
-        "clean:cssdoc",
-        "webfont",
-        "compass:main_clean",
-        "compass:main_for_cssdoc",
-        "styleguide:common",
-        "compass:main_clean",
-        "compass:main"
-    ] );
-
-    grunt.registerTask( "js", [ "uglify", "replace:license_comment_format" ] );
-
-    grunt.registerTask( "setup", [
-        "exec:bower_install",
-        "copy:ionicons",
-        "make_menu_shortcut"
-    ] );
-
-    grunt.registerTask( "test", function(){
-        grunt.task.run( [
-            "clean:test",
-            "browserify:common",
-            "replace:path_in_browserified_for_karma"
-        ] );
-
-        grunt.task.run(
-            this.flags.browsers ?
-                [ "karma:common_browsers" ]:
-                [ "karma:common", "cat:coverage" ]
-        );
-    } );
-
-    grunt.registerTask( "before_testem", [
-        "clean:test",
-        "browserify:common"
-    ] );
-
-    grunt.registerTask( "screen_shot", [
-        "build",
-        "connect:livereload",
-        "dump_pages:main"
-    ] );
-
-    grunt.registerTask( "task_menu", [ "prompt:task_menu", "respond_to_task_select" ] );
 
     grunt.registerTask( "default", [ "task_menu" ] );
 };

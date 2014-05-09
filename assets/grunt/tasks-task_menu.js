@@ -1,5 +1,6 @@
 /**
- * Respond to task select
+ * grunt.registerTask
+ *  - task_menu
  */
 
 
@@ -17,6 +18,8 @@ var chalk = require( "chalk" ),
     
 
 module.exports = function( grunt ){
+
+    // respond_to_task_select
     grunt.registerTask( "respond_to_task_select", function(){
         var selectedTask = grunt.config( SELECTED_TASK_VAR_NAME_STR );
         if( selectedTask ){
@@ -29,4 +32,10 @@ module.exports = function( grunt ){
             grunt.log.writeln( "\n" + QUIT_MSG_STR );
         }
     } );
+
+    // task_menu
+    grunt.registerTask( "task_menu", [
+        "prompt:task_menu",
+        "respond_to_task_select"
+    ] );
 };
