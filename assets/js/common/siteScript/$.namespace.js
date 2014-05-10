@@ -14,14 +14,12 @@
         // jQueryの使用を想定している。
         // jQueryが存在しない場合は、グローバルスコープに変数$を定義する。
         /** @namespace $ */
-        $ = global.$ = ( global.$ ) ? global.$: {},
+        $ = global.$ = ( global.$ ) ? global.$: /* istanbul ignore next */ {},
 
         // 名前空間の実体となるハッシュ。
-        namespace = {},
+        namespace = {};
 
-        loaderScriptElm,
-        globalNamespaceStr;
-
+    /* istanbul ignore if */
     if( $.namespace ){
         throw new Error( "$.namespaceの定義に失敗しました。scriptファイルの構成が想定外です。" );
     }
@@ -39,7 +37,7 @@
             testHierarchy,
             testName;
 
-            if( namesHierarchy.indexOf( NAMESPACE_ROOT_STRING ) !== 0 ){
+        if( namesHierarchy.indexOf( NAMESPACE_ROOT_STRING ) !== 0 ){
             throw new Error( [
                 "名前空間の定義に失敗しました。",
                 "ルート階層が「" + NAMESPACE_ROOT_STRING + "」ではありません。",
@@ -70,14 +68,20 @@
 
     // 当scriptを呼び出す<script>要素にdata-namespace属性が設定されている場合は、
     // 属性値の文字列を名前とする変数をグローバルスコープに設け、そこに名前空間を公開する。
-    if( global.document ){
-        loaderScriptElm =
-            [].slice.apply( global.document.getElementsByTagName( "script" ) ).pop();
+    ( function( global ){
+        /* istanbul ignore if */
+        if( !global.document ){
+            return;
+        }
 
-        globalNamespaceStr = loaderScriptElm.getAttribute( ATTR_NAME_FOR_GLOBAL_VARIABLE );
+        var loaderScriptElm =
+                [].slice.apply( document.getElementsByTagName( "script" ) ).pop(),
+            globalNamespaceStr =
+                loaderScriptElm.getAttribute( ATTR_NAME_FOR_GLOBAL_VARIABLE );
 
+        /* istanbul ignore if */
         if( globalNamespaceStr ){
             global[ globalNamespaceStr ] = namespace[ NAMESPACE_ROOT_STRING ];
         }
-    }
+    } )( global );
 })( window );
