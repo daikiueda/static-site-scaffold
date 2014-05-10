@@ -29,9 +29,7 @@ module.exports = {
         },
         main: {
             xlsx: "<%= env.sitemapExcel.path %>",
-            htmlDir: "../htdocs/",
-            localNavHTML: "../htdocs/Templates/contents_page.dwt",
-            localNavElm: "nav#localNav"
+            htmlDir: "../htdocs/"
         }
     }
 };
