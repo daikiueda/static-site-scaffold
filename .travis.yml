@@ -5,6 +5,7 @@ node_js:
 
 before_install:
   - "cd assets"
+  - "gem install compass"
   - "npm install grunt-cli bower -g"
 
 before_script:
@@ -14,9 +15,10 @@ script:
  - "grunt meta_excel::generate"
  - "grunt update_nav_excel"
  - "grunt htmllint"
+ - "grunt css"
+ - "grunt cssdoc"
  - "grunt js"
  - "grunt jsdoc"
- - "grunt webfont"
  - "grunt test"
  - "npm test"
 
