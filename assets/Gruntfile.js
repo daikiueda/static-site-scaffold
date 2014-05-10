@@ -42,11 +42,11 @@ module.exports = function( grunt ){
                 debug: false
             }
         },
-        require( "./grunt/config/setup-tasks.js" ),
-        require( "./grunt/config/integration-tasks.js" ),
-        require( "./grunt/config/html-tasks.js" ),
-        require( "./grunt/config/css-tasks.js" ),
-        require( "./grunt/config/javascript-tasks.js" ),
+        require( "./grunt/config/setup.js" ),
+        require( "./grunt/config/integration.js" ),
+        require( "./grunt/config/html.js" ),
+        require( "./grunt/config/css.js" ),
+        require( "./grunt/config/javascript.js" ),
         require( "./grunt/config/task_menu.js" )
     );
 
