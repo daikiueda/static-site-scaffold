@@ -63,7 +63,7 @@ describe( "HTML", function(){
             exec( "grunt htmllint", function( error, stdout ){
                 if( error ) return done( error );
 
-                expect( stdout ).to.contain( 'Done, without errors.' );
+                expect( stdout ).to.contain( '6 files lint free.' );
 
                 done();
             } );
