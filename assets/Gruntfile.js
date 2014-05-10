@@ -46,7 +46,7 @@ module.exports = function( grunt ){
         require( "./grunt/config/integration.js" ),
         require( "./grunt/config/html.js" ),
         require( "./grunt/config/css.js" ),
-        require( "./grunt/config/javascript.js" ),
+        require( "./grunt/config/js.js" ),
         require( "./grunt/config/task_menu.js" )
     );
 
