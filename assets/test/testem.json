@@ -13,6 +13,8 @@
         "test/**/*.js"
     ],
     "src_files_ignore": [
+        "test/__scaffold/**/*.conf.js",
+        "test/**/*.conf.js",
         "test/**/*.browserify.js",
         "test/**/karma.*.js"
     ],

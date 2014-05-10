@@ -27,6 +27,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+      'test/__scaffold/**/*.conf.js',
       'test/**/*.conf.js',
       'test/**/*browserify*.js',
       'test/**/testem.*.js'

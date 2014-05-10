@@ -6,10 +6,11 @@
   },
   "scripts": {
     "postinstall": "grunt setup",
-    "test": "grunt test",
+    "test": "node ./node_modules/.bin/mocha -R spec test/__scaffold",
+    "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec test/__scaffold",
     "testem": "testem -f test/testem.json"
   },
-  "devDependencies": {
+  "dependencies": {
     "browserify": "^3.46.0",
     "chai": "^1.9.1",
     "chalk": "^0.4.0",
@@ -51,5 +52,8 @@
     "moment": "^2.6.0",
     "q": "^1.0.1",
     "webshot": "^0.13.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.2.8"
   }
 }
