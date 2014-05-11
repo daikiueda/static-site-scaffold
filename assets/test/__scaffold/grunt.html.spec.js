@@ -2,7 +2,6 @@
 
 var exec = require( "child_process" ).exec,
     fs = require( "fs" ),
-    path = require( "path" ),
     expect = require( "chai" ).expect;
 
 function clean( done ){
@@ -13,7 +12,6 @@ describe( "HTML", function(){
 
     before( clean );
     after( clean );
-    //afterEach( clean );
 
     describe( "grunt meta_excel::generate", function(){
         it( "HTMLファイルを生成する。メタ情報にExcelの内容が適用されている。", function( done ){

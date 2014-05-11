@@ -6,8 +6,7 @@
   },
   "scripts": {
     "postinstall": "grunt setup",
-    "test": "node ./node_modules/.bin/mocha -R spec test/__scaffold",
-    "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --recursive -R spec test/__scaffold",
+    "test": "node ./node_modules/.bin/mocha -t 10000 -R spec test/__scaffold",
     "testem": "testem -f test/testem.json"
   },
   "dependencies": {

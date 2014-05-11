@@ -82,9 +82,9 @@ module.exports = {
         generated: [
             "tmp",
             
-            "../htdocs/**/*.*",
-            "!../htdocs/**/*.dwt",
-            "!../htdocs/__modules/**/*.*",
+            "../htdocs/*",
+            "!../htdocs/Templates",
+            "!../htdocs/__modules",
 
             "css/common/css/design_schemes/_icon.scss",
             "doc/css/**/*.*",
