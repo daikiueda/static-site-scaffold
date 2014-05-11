@@ -13,6 +13,7 @@ describe( "HTML", function(){
     before( clean );
     after( clean );
 
+
     describe( "grunt meta_excel::generate", function(){
         it( "HTMLファイルを生成する。メタ情報にExcelの内容が適用されている。", function( done ){
 

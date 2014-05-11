@@ -11,10 +11,11 @@ function clean( done ){
 describe( "CSS", function(){
 
     before( clean );
-    after( clean );
+    afterEach( clean );
+
 
     describe( "grunt webfont", function(){
-        it( "webフォント（アイコン）を出力する。", function( done ){
+        it( "webフォント（アイコン）を生成する。", function( done ){
 
             // 実行前
             expect( fs.existsSync( "../htdocs/common/fonts/icon" ) ).to.be.false;
@@ -32,13 +33,14 @@ describe( "CSS", function(){
         } );
     } );
 
+
     describe( "grunt compass:main", function(){
         it( ".scssファイルをコンパイルして、cssファイルを出力する。", function( done ){
 
             // 実行前
             expect( fs.existsSync( "../htdocs/common/css/common.css" ) ).to.be.false;
 
-            exec( "grunt compass:main", function( error ){
+            exec( "grunt webfont compass:main", function( error ){
                 if( error ) return done( error );
 
                 expect( fs.existsSync( "../htdocs/common/css/common.css" ) ).to.be.true;
@@ -46,5 +48,45 @@ describe( "CSS", function(){
                 done();
             } );
         } );
+    } );
+
+
+    describe( "grunt css", function(){
+
+        it( "Webフォントの生成と、scssファイルのコンパイルを実行する。", function( done ){
+
+            // 実行前
+            expect( fs.existsSync( "../htdocs/common/fonts/icon" ) ).to.be.false;
+            expect( fs.existsSync( "../htdocs/common/css/common.css" ) ).to.be.false;
+
+            exec( "grunt css", function( error ){
+                if( error ) return done( error );
+
+                expect( fs.existsSync( "../htdocs/common/fonts/icon" ) ).to.be.true;
+                expect( fs.existsSync( "../htdocs/common/css/common.css" ) ).to.be.true;
+
+                done();
+            } );
+        } );
+    } );
+
+
+    describe( "grunt cssdoc", function(){
+
+        it( "スタイルガイドを出力する。", function( done ){
+
+            // 実行前
+            expect( fs.existsSync( "doc/css" ) ).to.be.false;
+
+            exec( "grunt cssdoc", function( error ){
+                if( error ) return done( error );
+
+                expect( fs.existsSync( "doc/css" ) ).to.be.true;
+
+                done();
+            } );
+        } );
+
+        it( "実行後、htdocsのファイルは配信用の状態に復元される。" );
     } );
 } );

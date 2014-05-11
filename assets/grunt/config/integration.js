@@ -87,7 +87,7 @@ module.exports = {
             "!../htdocs/__modules",
 
             "css/common/css/design_schemes/_icon.scss",
-            "doc/css/**/*.*",
+            "doc/css",
             "<%= jsdoc.main.options.destination %>",
             "<%= dump_pages.main.options.dest %>"
         ]
