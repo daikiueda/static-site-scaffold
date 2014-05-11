@@ -12,13 +12,6 @@ before_script:
  - "npm install grunt-meta-excel"
 
 script:
- - "grunt meta_excel::generate"
- - "grunt update_nav_excel"
- - "grunt htmllint"
- - "grunt css"
- - "grunt cssdoc"
- - "grunt js"
- - "grunt jsdoc"
- - "grunt test"
  - "npm test"
+ - "grunt test"
 
