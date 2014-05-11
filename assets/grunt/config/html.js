@@ -3,7 +3,7 @@ module.exports = {
         main: {
             src: [
                 "../htdocs/**/*.html",
-                "!../htdocs/__modules/**/*.html",
+                "!../htdocs/__modules/**/*.html"
             ]
         }
     },

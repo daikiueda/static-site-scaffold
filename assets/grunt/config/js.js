@@ -86,5 +86,5 @@ module.exports = {
                 { from: / src="\//g, to: " src=\"/base/" }
             ]
         }
-    },
+    }
 };

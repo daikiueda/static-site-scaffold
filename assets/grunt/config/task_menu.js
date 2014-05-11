@@ -21,7 +21,7 @@ module.exports = {
                 { name: "JavaScript", value: "MENU_JS" },
                 "---",
                 { name: "その他", value: "MENU_OTHER" },
-                { name: "メニューの終了", value: "" },
+                { name: "メニューの終了", value: "" }
             ]
         },
         {
