@@ -35,8 +35,6 @@ describe( "HTML", function(){
 
 
     describe( "grunt update_nav_excel", function(){
-        this.timeout( 10 * 1000 );
-
         it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
 
             exec( "grunt update_nav_excel", function( error ){
@@ -55,8 +53,6 @@ describe( "HTML", function(){
 
 
     describe( "grunt htmllint", function(){
-        this.timeout( 10 * 1000 );
-
         it( "HTMLファイルの構文チェックを実行する。", function( done ){
 
             exec( "grunt htmllint", function( error, stdout ){
