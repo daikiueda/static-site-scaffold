@@ -10,7 +10,6 @@
     "testem": "testem -f test/testem.json"
   },
   "dependencies": {
-    "browserify": "^3.46.0",
     "chai": "^1.9.1",
     "chalk": "^0.4.0",
     "grunt": "^0.4.4",
@@ -32,7 +31,7 @@
     "grunt-prompt": "^1.1.0",
     "grunt-styleguide": "^0.2.15",
     "grunt-text-replace": "^0.3.11",
-    "grunt-webfont": "^0.3.4",
+    "grunt-webfont": "^0.4.0",
     "js-fixtures": "^1.5.1",
     "jsdom": "^0.10.5",
     "karma": "^0.12.15",
@@ -52,7 +51,5 @@
     "q": "^1.0.1",
     "webshot": "^0.13.0"
   },
-  "devDependencies": {
-    "istanbul": "^0.2.8"
-  }
+  "devDependencies": {}
 }
