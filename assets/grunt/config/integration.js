@@ -86,6 +86,8 @@ module.exports = {
             "!../htdocs/Templates",
             "!../htdocs/__modules",
 
+            "test/tmp",
+
             "css/common/css/design_schemes/_icon.scss",
             "doc/css",
             "<%= jsdoc.main.options.destination %>",
