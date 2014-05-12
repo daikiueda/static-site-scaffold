@@ -50,23 +50,26 @@ module.exports = function( grunt ){
 
             destDir = path.join(
                 options.dest,
-                moment().format( "YYYYMMDD-hhmm-ssSS" )
+                moment().format( "YYYYMMDD-HHmm-ssSS" )
             ),
 
             widths = options.widths,
 
             done = this.async();
 
-        Q.all( this.files.map( function( file ){
-            return dumpScreen( file.dest, widths, destDir, options )
-                .then(
-                    function(){ grunt.log.ok( [
-                        file.dest + ".png ... ",
-                        chalk.green( "saved." )
-                    ].join( "" ) ); },
-                    function( message ){ grunt.log.warn( message ); }
-                );
-        } ) )
+        this.files.reduce( function( previousProcess, file ){
+
+            return previousProcess.then( function(){
+                return dumpScreen( file.dest, widths, destDir, options )
+                    .then(
+                        function(){ grunt.log.ok( [
+                                file.dest + ".png ... ",
+                            chalk.green( "saved." )
+                        ].join( "" ) ); },
+                        function( message ){ grunt.log.warn( message ); }
+                    );
+            } );
+        }, Q() )
             .then(
                 function(){
                     grunt.log.writeln( "" );

@@ -21,20 +21,19 @@ function dumpScreen( filePath, widths, destDir, options ){
         webshotOptions.windowSize = { height: 768 };
     }
 
-    return Q.all( widths.map( function( width, index ){
-        var deferredOneWidth = Q.defer(),
+    return widths.reduce( function( previousProcess, currentWidth ){
 
-            dest = path.join(
-                destDir,
-                    "w" + width,
+        return previousProcess.then( function(){
+            var deferredOneWidth = Q.defer(),
+
+                dest = path.join(
+                    destDir,
+                    "w" + currentWidth,
                     filePath + ".png"
-            );
+                );
 
-        webshotOptions.windowSize.width = width;
+            webshotOptions.windowSize.width = currentWidth;
 
-        // 原因不明の出力漏れ（ひとつのサイズしか出力されない）が発生するので、
-        // setTimeoutで実行タイミングをずらして手当てしている。
-        setTimeout( function(){
             webshot( url, dest, webshotOptions, function( error ){
                 if( error ){
                     deferredOneWidth.reject( error );
@@ -43,10 +42,10 @@ function dumpScreen( filePath, widths, destDir, options ){
 
                 deferredOneWidth.resolve( dest );
             } );
-        }, 128 * index );
 
-        return deferredOneWidth.promise;
-    } ) );
+            return deferredOneWidth.promise;
+        } );
+    }, Q() );
 }
 
 module.exports = dumpScreen;
