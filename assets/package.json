@@ -6,7 +6,7 @@
   },
   "scripts": {
     "postinstall": "grunt setup",
-    "test": "node ./node_modules/.bin/mocha -t 10000 -R spec test/__scaffold",
+    "test": "node ./node_modules/.bin/mocha -t 30000 -R spec test/__scaffold",
     "testem": "testem -f test/testem.json"
   },
   "dependencies": {
