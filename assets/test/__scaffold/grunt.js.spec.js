@@ -112,7 +112,7 @@ describe( "JavaScript", function(){
             it( "テスト・カバレッジのレポートが出力される。", function( done ){
 
                 expect( exists( "test/tmp/__coverage" ) ).to.be.true;
-                
+
                 done();
             } );
         } );
