@@ -62,10 +62,12 @@ module.exports = function( grunt ){
             return previousProcess.then( function(){
                 return dumpScreen( file.dest, widths, destDir, options )
                     .then(
-                        function(){ grunt.log.ok( [
+                        function(){
+                            grunt.log.ok( [
                                 file.dest + ".png ... ",
-                            chalk.green( "saved." )
-                        ].join( "" ) ); },
+                                chalk.green( "saved." )
+                            ].join( "" ) );
+                        },
                         function( message ){ grunt.log.warn( message ); }
                     );
             } );
