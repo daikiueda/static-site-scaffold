@@ -12,12 +12,6 @@ var fs = require( "fs" ),
 
     JQUERY_PATH = "bower_components/jquery/dist/jquery.min.js",
 
-    TEMPLATE_PATHS = {
-        "#topic_path": "grunt/templates/nav_topic_path.html",
-        "aside nav.local": "grunt/templates/aside_nav_local.html"
-    },
-    TEMPLATES = {},
-
     UNLIKE_STRINGS = {
         "©": "&copy;",
         "™": "&trade;",
@@ -25,15 +19,7 @@ var fs = require( "fs" ),
     };
 
 
-function prepareTemplates( options ){
-    _.forEach( TEMPLATE_PATHS, function( templateFilePath, targetSelector ){
-        TEMPLATES[ targetSelector ] =
-            _.template( fs.readFileSync( templateFilePath, options.charset ) );
-    } );
-}
-
-
-function updateHTML( htmlDir, metadata, options ){
+function updateHTML( htmlDir, metadata, templates, options ){
     var jsdom = require( "jsdom" ),
         deferred = Q.defer();
 
@@ -48,7 +34,7 @@ function updateHTML( htmlDir, metadata, options ){
             "file://" + path.join( process.cwd(), JQUERY_PATH ),
             function( window, $ ){
 
-                _.forEach( TEMPLATES, function( template, selector ){
+                _.forEach( templates, function( template, selector ){
                     $( selector ).empty().append( template( metadata ) );
                 } );
 
@@ -79,7 +65,6 @@ function updateHTML( htmlDir, metadata, options ){
 }
 
 
-module.exports = function( htmlDir, metadata, options ){
-    prepareTemplates( options );
-    return updateHTML( htmlDir, metadata, options );
+module.exports = function( htmlDir, metadata, templates, options ){
+    return updateHTML( htmlDir, metadata, templates, options );
 };

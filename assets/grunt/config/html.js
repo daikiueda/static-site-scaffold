@@ -29,7 +29,11 @@ module.exports = {
         },
         main: {
             xlsx: "<%= env.sitemapExcel.path %>",
-            htmlDir: "../htdocs/"
+            htmlDir: "../htdocs/",
+            templates: {
+                "#topic_path": "grunt/templates/nav_topic_path.html",
+                "aside nav.local": "grunt/templates/aside_nav_local.html"
+            }
         }
     }
 };
