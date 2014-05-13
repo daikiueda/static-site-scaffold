@@ -13,6 +13,8 @@ module.exports = function( grunt ){
             extendMetadata = require( "./lib/extendMetadata.js" ),
             updateNavExcel = require( "./lib/updateNavExcel" ),
 
+            htmlDir = this.data.htmlDir,
+
             options = this.options( {
                 charset: "utf-8"
             } ),
@@ -25,18 +27,20 @@ module.exports = function( grunt ){
                 function( metadata ){
                     var extendedMetadata = extendMetadata( metadata );
 
-                    Q.all( extendedMetadata.map( function( pageMetadata ){
-                        return updateNavExcel( this.data.htmlDir, pageMetadata, options )
-                            .then(
-                                function( message ){ grunt.log.ok( message ) },
-                                function( message ){ grunt.log.warn( message ) }
-                            );
-                    }, this ) )
+                    extendedMetadata.reduce( function( previousProcess, pageMetadata ){
+                        return previousProcess.then( function(){
+                            return updateNavExcel( htmlDir, pageMetadata, options )
+                                .then(
+                                    function( message ){ grunt.log.ok( message ) },
+                                    function( message ){ grunt.log.warn( message ) }
+                                );
+                        } );
+                    }, Q() )
                         .then(
                             function(){ done(); },
                             function(){ done( false ); }
                         );
-                }.bind( this ),
+                },
 
                 function(){ done( false ); }
             );
