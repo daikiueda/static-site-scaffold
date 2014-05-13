@@ -10,6 +10,8 @@ var fs = require( "fs" ),
     _ = require( "lodash" ),
     Q = require( "q" ),
 
+    JQUERY_PATH = "bower_components/jquery/dist/jquery.min.js",
+
     TEMPLATE_PATHS = {
         "#topic_path": "grunt/templates/nav_topic_path.html",
         "aside nav.local": "grunt/templates/aside_nav_local.html"
@@ -43,6 +45,7 @@ function updateHTML( htmlDir, metadata, options ){
 
         jsdom.jQueryify(
             window,
+            "file://" + path.join( process.cwd(), JQUERY_PATH ),
             function( window, $ ){
 
                 _.forEach( TEMPLATES, function( template, selector ){
