@@ -14,7 +14,7 @@
     "chalk": "^0.4.0",
     "grunt": "^0.4.5",
     "grunt-attention": "^0.0.5",
-    "grunt-browserify": "^2.0.8",
+    "grunt-browserify": "^2.1.0",
     "grunt-cat": "^0.1.2",
     "grunt-combine-media-queries": "^1.0.15",
     "grunt-contrib-clean": "^0.5.0",
