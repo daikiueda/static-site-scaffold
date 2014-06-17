@@ -24,14 +24,19 @@ function updateHTML( htmlDir, metadata, templates, options ){
         deferred = Q.defer();
 
     try {
-        var filePath = path.join( htmlDir, metadata.path ),
+        var jquerySrcPath = [
+                "file://",
+                process.cwd().replace( /^\//, "" ).replace( /\\/g, "/" ),
+                JQUERY_PATH
+            ].join( "/" ),
+            filePath = path.join( htmlDir, metadata.path ),
             content = fs.readFileSync( filePath, options.charset ),
             document = jsdom.jsdom( content ),
             window = document.createWindow();
 
         jsdom.jQueryify(
             window,
-            "file://" + path.join( process.cwd(), JQUERY_PATH ),
+            jquerySrcPath,
             function( window, $ ){
 
                 _.forEach( templates, function( template, selector ){
@@ -49,7 +54,7 @@ function updateHTML( htmlDir, metadata, templates, options ){
                     filePath,
                     content.replace(
                         /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
-                            "$1" + htmlCode + "$2"
+                        "$1" + htmlCode + "$2"
                     ),
                     options.charset
                 );
