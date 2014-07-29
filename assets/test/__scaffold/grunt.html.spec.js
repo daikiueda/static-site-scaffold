@@ -13,8 +13,16 @@ describe( "HTML", function(){
     before( clean );
     after( clean );
 
-
+    
+    try {
+        require.resolve( "grunt-meta-excel" );
+    } catch( e ){
+        it( "grunt-meta-excelが未導入です。" );
+    }
+    
+    
     describe( "grunt meta_excel::generate", function(){
+        
         it( "HTMLファイルを生成する。メタ情報にExcelの内容が適用されている。", function( done ){
 
             // 実行前
