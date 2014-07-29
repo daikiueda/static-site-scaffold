@@ -10,10 +10,12 @@
     "test_win": "mocha -t 300000 -R spec test/__scaffold",
     "testem": "testem -f test/testem.json"
   },
+  "peerDependencies": {
+    "grunt": "^0.4.5"
+  },
   "dependencies": {
     "chai": "^1.9.1",
-    "chalk": "^0.4.0",
-    "grunt": "^0.4.5",
+    "chalk": "^0.5.1",
     "grunt-attention": "^0.0.5",
     "grunt-browserify": "^2.1.0",
     "grunt-cat": "^0.1.2",
