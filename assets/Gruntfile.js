@@ -60,7 +60,7 @@ module.exports = function( grunt ){
         grunt.loadNpmTasks( "grunt-meta-excel" ); 
     }
 
-    grunt.loadTasks( "grunt" );
+    grunt.loadTasks( "grunt/tasks" );
 
 
     grunt.registerTask( "default", [ "task_menu" ] );

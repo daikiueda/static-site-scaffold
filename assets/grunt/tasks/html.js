@@ -5,7 +5,7 @@
 
 "use strict";
 
-var XLSX2JSON_PATH = "../node_modules/grunt-meta-excel/node_modules/xlsx2json/lib/xlsx2json.js",
+var XLSX2JSON_PATH = "../../node_modules/grunt-meta-excel/node_modules/xlsx2json/lib/xlsx2json.js",
 
     fs = require( "fs" ),
     _ = require( "lodash" );
