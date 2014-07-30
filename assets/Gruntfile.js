@@ -42,12 +42,12 @@ module.exports = function( grunt ){
                 debug: false
             }
         },
-        require( "./grunt/config/setup.js" ),
-        require( "./grunt/config/integration.js" ),
-        require( "./grunt/config/html.js" ),
-        require( "./grunt/config/css.js" ),
-        require( "./grunt/config/js.js" ),
-        require( "./grunt/config/task_menu.js" )
+        require( "./grunt/setup.js" ),
+        require( "./grunt/integration.js" ),
+        require( "./grunt/html.js" ),
+        require( "./grunt/css.js" ),
+        require( "./grunt/js.js" ),
+        require( "./grunt/task_menu.js" )
     );
 
     grunt.initConfig( gruntConfigs );
