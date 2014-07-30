@@ -41,6 +41,10 @@ module.exports = function(config) {
 
     coverageReporter: {
       reporters: [
+        // 2014.07.30 karma-coverageの不具合でdirの指定が効いていない。
+        // https://github.com/karma-runner/karma-coverage/issues/71
+        // ひとまず、デフォルトのディレクトリに出力させたあと、
+        // gruntのタスクで望ましいディレクトリ移動させる。
         { type : 'lcov', dir : 'test/tmp/__coverage/' },
         { type : 'text', dir : 'test/tmp/__coverage/', file: "coverage.txt" }
       ]

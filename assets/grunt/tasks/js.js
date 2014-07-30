@@ -3,6 +3,7 @@
  *  - js
  *  - test
  *  - before_testem
+ *  - moveCoverageFiles
  */
 
 
@@ -23,11 +24,11 @@ module.exports = function( grunt ){
             "browserify:common",
             "replace:path_in_browserified_for_karma"
         ] );
-
+        
         grunt.task.run(
             this.flags.browsers ?
-                [ "karma:common_browsers" ]:
-                [ "karma:common", "cat:coverage" ]
+                [ "karma:common_browsers", "moveCoverageFiles" ]:
+                [ "karma:common", "moveCoverageFiles", "cat:coverage" ]
         );
     } );
 
@@ -36,4 +37,9 @@ module.exports = function( grunt ){
         "clean:test",
         "browserify:common"
     ] );
+
+    // helper
+    grunt.registerTask( "moveCoverageFiles", function( grunt ){
+        require( "shelljs" ).mv( "./coverage", "./test/tmp/__coverage" );
+    } );
 };
