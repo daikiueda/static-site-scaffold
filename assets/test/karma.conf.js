@@ -41,10 +41,10 @@ module.exports = function(config) {
 
     coverageReporter: {
       reporters: [
-        // 2014.07.30 karma-coverage‚Ì•s‹ï‡‚Ådir‚Ìw’è‚ªŒø‚¢‚Ä‚¢‚È‚¢B
+        // 2014.07.30 karma-coverageã®ä¸å…·åˆã§dirã®æŒ‡å®šãŒåŠ¹ã„ã¦ã„ãªã„ã€‚
         // https://github.com/karma-runner/karma-coverage/issues/71
-        // ‚Ğ‚Æ‚Ü‚¸AƒfƒtƒHƒ‹ƒg‚ÌƒfƒBƒŒƒNƒgƒŠ‚Éo—Í‚³‚¹‚½‚ ‚ÆA
-        // grunt‚Ìƒ^ƒXƒN‚Å–]‚Ü‚µ‚¢ƒfƒBƒŒƒNƒgƒŠˆÚ“®‚³‚¹‚éB
+        // ã²ã¨ã¾ãšã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«å‡ºåŠ›ã•ã›ãŸã‚ã¨ã€
+        // gruntã®ã‚¿ã‚¹ã‚¯ã§æœ›ã¾ã—ã„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç§»å‹•ã•ã›ã‚‹ã€‚
         { type : 'lcov', dir : 'test/tmp/__coverage/' },
         { type : 'text', dir : 'test/tmp/__coverage/', file: "coverage.txt" }
       ]
