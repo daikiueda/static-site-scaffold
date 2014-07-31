@@ -57,6 +57,12 @@ describe( "HTML", function(){
                 done();
             } );
         } );
+        
+        it( "文字コード" /*, function( done ){
+            exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
+                done();
+            } );
+        }*/ );
     } );
 
 
