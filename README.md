@@ -9,7 +9,8 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 │   ├── doc
 │   ├── font-svg
 │   ├── grunt
-│   │   └── config
+│   │   ├── tasks
+│   │   └── templates
 │   ├── js
 │   └── test
 └── htdocs
