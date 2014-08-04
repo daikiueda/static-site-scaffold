@@ -2,6 +2,7 @@
 
 var exec = require( "child_process" ).exec,
     fs = require( "fs" ),
+    path = require( "path" ),
     
     expect = require( "chai" ).expect,
     shell = require( "shelljs" );
@@ -61,30 +62,36 @@ describe( "HTML", function(){
         } );
 
         describe( "utf8以外の文字コードが指定された場合", function(){
+
+            var TEST_TEMP_PATH = "./test/__scaffold/.tmp/",
+                FIXTURE_DIR_NAME = "htdocs_sjis",
+                FIXTURE_SRC_PATH = path.join( "./test/__scaffold/fixture", FIXTURE_DIR_NAME ),
+                FIXTURE_COPY_PATH = path.join( TEST_TEMP_PATH, FIXTURE_DIR_NAME );
             
             before( function(){
-                shell.cp( "-r", "./test/__scaffold/fixture/htdocs_sjis", "./test/__scaffold/.tmp/" );
+                shell.rm( "-rf", FIXTURE_COPY_PATH );
+                shell.cp( "-r", FIXTURE_SRC_PATH, TEST_TEMP_PATH );
             } );
 
             after( function(){
-//                shell.rm( "-rf", "./test/__scaffold/.tmp/htdocs_sjis" );
+                //shell.rm( "-rf", FIXTURE_COPY_PATH );
             } );
 
             it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
 
-//                exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
-//                    if( error ) return done( error );
-//
-//                    var resultHTMLSample =
-//                        fs.readFileSync( "../htdocs/sample_dir_1/sample_subdir/sample_2.html", "utf-8" );
-//
-//                    expect( resultHTMLSample ).to.contain( '<li class="current"><a href="sample_2.html">サンプルページ2</a></li>' );
-//                    expect( resultHTMLSample ).to.contain( '<li><a href="../../index.html">HOME</a></li>' );
-//
-//                    done();
-//                } );
-                
-                done();
+                exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
+                    if( error ) return done( error );
+
+                    var resultHTMLSample = require( "iconv-lite" ).decode(
+                        fs.readFileSync( "./test/__scaffold/fixture/htdocs_sjis/sample_dir_1/sample_subdir/sample_2.html" ),
+                        "shift_jis"
+                    );
+
+                    expect( resultHTMLSample ).to.contain( '<li class="current"><a href="sample_2.html">サンプルページ2</a></li>' );
+                    expect( resultHTMLSample ).to.contain( '<li><a href="../../index.html">HOME</a></li>' );
+
+                    done();
+                } );
             } );
         } );
     } );

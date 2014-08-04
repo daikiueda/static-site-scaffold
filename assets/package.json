@@ -35,6 +35,7 @@
     "grunt-styleguide": "^0.2.15",
     "grunt-text-replace": "^0.3.11",
     "grunt-webfont": "^0.4.7",
+    "iconv-lite": "^0.4.4",
     "js-fixtures": "^1.5.1",
     "jsdom": "^0.11.0",
     "karma": "^0.12.15",
