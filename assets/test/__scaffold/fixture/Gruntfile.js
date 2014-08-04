@@ -54,6 +54,9 @@ module.exports = function( grunt ){
                     templates: {
                         "#topic_path": "../../../grunt/templates/nav_topic_path.html",
                         "aside nav.local": "../../../grunt/templates/aside_nav_local.html"
+                    },
+                    options: {
+                        charset: "shift_jis"
                     }
                 }
             }

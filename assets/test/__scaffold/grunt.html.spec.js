@@ -87,8 +87,6 @@ describe( "HTML", function(){
                         "shift_jis"
                     );
 
-                    console.log(resultHTMLSample)
-
                     expect( resultHTMLSample ).to.contain( '<li class="current"><a href="sample_2.html">サンプルページ2</a></li>' );
                     expect( resultHTMLSample ).to.contain( '<li><a href="../../index.html">HOME</a></li>' );
 

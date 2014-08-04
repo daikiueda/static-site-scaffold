@@ -8,7 +8,8 @@
 var XLSX2JSON_PATH = "../../node_modules/grunt-meta-excel/node_modules/xlsx2json/lib/xlsx2json.js",
 
     fs = require( "fs" ),
-    _ = require( "lodash" );
+    _ = require( "lodash" ),
+    iconv = require( "iconv-lite" );
 
 module.exports = function( grunt ){
     grunt.registerMultiTask( "update_nav_excel", "Update navigation in .html files.", function(){
@@ -19,10 +20,11 @@ module.exports = function( grunt ){
             htmlDir = this.data.htmlDir,
 
             options = this.options( {
-                charset: "utf-8"
+                charset: "utf8",
+                templateCharset: "utf8"
             } ),
 
-            templates = prepareNavTemplates( this.data.templates, options ),
+            templates = prepareNavTemplates( this.data.templates, options.templateCharset ),
 
             done = this.async();
 
@@ -53,13 +55,13 @@ module.exports = function( grunt ){
     } );
 };
 
-function prepareNavTemplates( templatesFilePathsMap, options ){
+function prepareNavTemplates( templatesFilePathsMap, templateCharset ){
 
     var templates = {};
 
     _.forEach( templatesFilePathsMap, function( templateFilePath, targetSelector ){
         templates[ targetSelector ] =
-            _.template( fs.readFileSync( templateFilePath, options.charset ) );
+            _.template( iconv.decode( fs.readFileSync( templateFilePath ), templateCharset ) );
     } );
 
     return templates;

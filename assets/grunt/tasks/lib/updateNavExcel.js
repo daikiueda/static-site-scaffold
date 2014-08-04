@@ -9,6 +9,7 @@ var fs = require( "fs" ),
     path = require( "path" ),
     _ = require( "lodash" ),
     Q = require( "q" ),
+    iconv = require( "iconv-lite" ),
 
     JQUERY_PATH = "../../../bower_components/jquery/dist/jquery.min.js",
 
@@ -30,7 +31,8 @@ function updateHTML( htmlDir, metadata, templates, options ){
                     .replace( /^\//, "" ).replace( /\\/g, "/" )
             ].join( "/" ),
             filePath = path.join( htmlDir, metadata.path ),
-            content = fs.readFileSync( filePath, options.charset ),
+            charset = options.charset || "utf8",
+            content = iconv.decode( fs.readFileSync( filePath ), charset ),
             document = jsdom.jsdom( content ),
             window = document.createWindow();
 
@@ -50,13 +52,14 @@ function updateHTML( htmlDir, metadata, templates, options ){
                     htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
                 } );
 
+                content = content.replace(
+                    /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
+                        "$1" + htmlCode + "$2"
+                );
+
                 fs.writeFileSync(
                     filePath,
-                    content.replace(
-                        /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
-                        "$1" + htmlCode + "$2"
-                    ),
-                    options.charset
+                    iconv.encode( new Buffer( content ), charset )
                 );
 
                 deferred.resolve( filePath + " ... updated." );
