@@ -10,7 +10,7 @@ var fs = require( "fs" ),
     _ = require( "lodash" ),
     Q = require( "q" ),
 
-    JQUERY_PATH = "bower_components/jquery/dist/jquery.min.js",
+    JQUERY_PATH = "../../../bower_components/jquery/dist/jquery.min.js",
 
     UNLIKE_STRINGS = {
         "©": "&copy;",
@@ -26,17 +26,14 @@ function updateHTML( htmlDir, metadata, templates, options ){
     try {
         var jquerySrcPath = [
                 "file://",
-                process.cwd().replace( /^\//, "" ).replace( /\\/g, "/" ),
-                JQUERY_PATH
+                path.join( path.dirname( module.filename ), JQUERY_PATH )
+                    .replace( /^\//, "" ).replace( /\\/g, "/" )
             ].join( "/" ),
             filePath = path.join( htmlDir, metadata.path ),
             content = fs.readFileSync( filePath, options.charset ),
             document = jsdom.jsdom( content ),
             window = document.createWindow();
 
-        // TODO
-        // console.log( process.cwd() );
-        
         jsdom.jQueryify(
             window,
             jquerySrcPath,
