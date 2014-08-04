@@ -2,7 +2,9 @@
 
 var exec = require( "child_process" ).exec,
     fs = require( "fs" ),
-    expect = require( "chai" ).expect;
+    
+    expect = require( "chai" ).expect,
+    shell = require( "shelljs" );
 
 function clean( done ){
     exec( "grunt clean:generated -f", done );
@@ -57,12 +59,34 @@ describe( "HTML", function(){
                 done();
             } );
         } );
-        
-        it( "文字コード" /*, function( done ){
-            exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
+
+        describe( "utf8以外の文字コードが指定された場合", function(){
+            
+            before( function(){
+                shell.cp( "-r", "./test/__scaffold/fixture/htdocs_sjis", "./test/__scaffold/.tmp/" );
+            } );
+
+            after( function(){
+//                shell.rm( "-rf", "./test/__scaffold/.tmp/htdocs_sjis" );
+            } );
+
+            it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
+
+//                exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
+//                    if( error ) return done( error );
+//
+//                    var resultHTMLSample =
+//                        fs.readFileSync( "../htdocs/sample_dir_1/sample_subdir/sample_2.html", "utf-8" );
+//
+//                    expect( resultHTMLSample ).to.contain( '<li class="current"><a href="sample_2.html">サンプルページ2</a></li>' );
+//                    expect( resultHTMLSample ).to.contain( '<li><a href="../../index.html">HOME</a></li>' );
+//
+//                    done();
+//                } );
+                
                 done();
             } );
-        }*/ );
+        } );
     } );
 
 

@@ -42,28 +42,25 @@ module.exports = function( grunt ){
                 debug: false
             }
         },
-        require( "../../../grunt/setup.js" ),
-        require( "../../../grunt/integration.js" ),
-        require( "../../../grunt/html.js" ),
-        require( "../../../grunt/css.js" ),
-        require( "../../../grunt/js.js" ),
-        require( "../../../grunt/task_menu.js" )
+        {
+            update_nav_excel: {
+                options: {
+                    dataStartingRow: "<%= env.sitemapExcel.dataStartingRow %>",
+                    mapping: "<%= env.sitemapExcel.mapping %>"
+                },
+                main: {
+                    xlsx: "<%= env.sitemapExcel.path %>",
+                    htmlDir: "../.tmp/htdocs_sjis/",
+                    templates: {
+                        "#topic_path": "../../../grunt/templates/nav_topic_path.html",
+                        "aside nav.local": "../../../grunt/templates/aside_nav_local.html"
+                    }
+                }
+            }
+        }
     );
 
     grunt.initConfig( gruntConfigs );
 
-
-    // load all grunt tasks
-    require( "matchdep" ).filterAll( "grunt-*" ).forEach( grunt.loadNpmTasks );
-    
-    if( hasModule( "grunt-meta-excel" ) ){
-        grunt.loadNpmTasks( "grunt-meta-excel" ); 
-    }
-
     grunt.loadTasks( "../../../grunt/tasks" );
-
-
-    grunt.registerTask( "default", function(){
-        console.log( "hoge" );
-    } );
 };

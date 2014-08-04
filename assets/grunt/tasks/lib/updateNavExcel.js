@@ -34,6 +34,9 @@ function updateHTML( htmlDir, metadata, templates, options ){
             document = jsdom.jsdom( content ),
             window = document.createWindow();
 
+        // TODO
+        // console.log( process.cwd() );
+        
         jsdom.jQueryify(
             window,
             jquerySrcPath,
