@@ -83,9 +83,11 @@ describe( "HTML", function(){
                     if( error ) return done( error );
 
                     var resultHTMLSample = require( "iconv-lite" ).decode(
-                        fs.readFileSync( "./test/__scaffold/fixture/htdocs_sjis/sample_dir_1/sample_subdir/sample_2.html" ),
+                        fs.readFileSync( path.join( FIXTURE_COPY_PATH, "sample_dir_1/sample_subdir/sample_2.html" ) ),
                         "shift_jis"
                     );
+
+                    console.log(resultHTMLSample)
 
                     expect( resultHTMLSample ).to.contain( '<li class="current"><a href="sample_2.html">サンプルページ2</a></li>' );
                     expect( resultHTMLSample ).to.contain( '<li><a href="../../index.html">HOME</a></li>' );
