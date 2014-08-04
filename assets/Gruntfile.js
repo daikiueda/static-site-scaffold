@@ -7,10 +7,7 @@
 
 "use strict";
 
-var MODE_DEBUG = false;
-
-var _ = require( "lodash" ),
-    chalk = require( "chalk" );
+var _ = require( "lodash" );
 
 function hasModule( moduleName ){
     var module;
@@ -35,7 +32,7 @@ module.exports = function( grunt ){
                         description: "I",
                         keywords: "K",
                         url: "M",
-                        thumbnail: "N"                    
+                        thumbnail: "N"
                     }
                 },
 
