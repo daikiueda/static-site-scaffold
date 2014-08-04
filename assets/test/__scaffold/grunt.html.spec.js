@@ -74,7 +74,7 @@ describe( "HTML", function(){
             } );
 
             after( function(){
-                //shell.rm( "-rf", FIXTURE_COPY_PATH );
+                shell.rm( "-rf", FIXTURE_COPY_PATH );
             } );
 
             it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
