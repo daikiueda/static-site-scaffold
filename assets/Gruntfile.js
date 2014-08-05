@@ -32,7 +32,8 @@ module.exports = function( grunt ){
                         description: "I",
                         keywords: "K",
                         url: "M",
-                        thumbnail: "N"
+                        thumbnail: "N",
+                        template: "O"
                     }
                 },
 
