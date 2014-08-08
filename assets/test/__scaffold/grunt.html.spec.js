@@ -35,9 +35,11 @@ describe( "HTML", function(){
                 if( error ) return done( error );
 
                 expect( fs.existsSync( "../htdocs/index.html" ) ).to.be.true;
+                
+                var fileContent = fs.readFileSync( "../htdocs/index.html", "utf-8" );
 
-                expect( fs.readFileSync( "../htdocs/index.html", "utf-8" ) )
-                    .to.contain( '<title>サンプルサイト （+PR＆SEO向けメッセージ）</title>' );
+                expect( fileContent ).to.contain( '<title>サンプルサイト （+PR＆SEO向けメッセージ）</title>' );
+                expect( fileContent ).to.contain( '<!-- InstanceBegin template="/Templates/base.dwt" codeOutsideHTMLIsLocked="false" -->' );
 
                 done();
             } );
