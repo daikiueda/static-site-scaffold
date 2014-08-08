@@ -20,5 +20,9 @@
 
     "thumbnail": [
         [ "<meta [^>]*property=\"og:image\"[^>]*>", "<meta property=\"og:image\" content=\"<%= thumbnail %>\">" ]
+    ],
+    
+    "template": [
+        [ "<!-- InstanceBegin template=\"/Templates/contents_page.dwt\" codeOutsideHTMLIsLocked=\"false\" -->", "<!-- InstanceBegin template=\"/Templates/<%= template %>.dwt\" codeOutsideHTMLIsLocked=\"false\" -->" ]
     ]
 }

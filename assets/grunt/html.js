@@ -1,16 +1,3 @@
-var fs = require( "fs" ),
-    path = require( "path" );
-
-
-/*
-console.log(
-    JSON.parse( fs.readFileSync(
-        path.join( path.dirname( module.filename ), "./settings/meta_tags_patterns.json" ),
-        "utf8"
-    ) )
-);
-*/
-
 module.exports = {
     htmllint: {
         main: {
@@ -30,10 +17,7 @@ module.exports = {
             xlsx: "<%= env.sitemapExcel.path %>",
             htmlDir: "../htdocs/",
             options: {
-                //patterns: JSON.parse( fs.readFileSync(
-                //    path.join( path.dirname( module.filename ), "./settings/meta_tags_patterns.json" ),
-                //    "utf8"
-                //) ),
+                patternsJsonPath: "./grunt/settings/meta_tags_patterns.json",
                 boilerplate: "../htdocs/__modules/__boilerplate.html"
             }
         }
