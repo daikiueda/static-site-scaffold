@@ -23,6 +23,6 @@
     ],
     
     "template": [
-        [ "<!-- InstanceBegin template=\"/Templates/contents_page.dwt\" codeOutsideHTMLIsLocked=\"false\" -->", "<!-- InstanceBegin template=\"/Templates/<%= template %>.dwt\" codeOutsideHTMLIsLocked=\"false\" -->" ]
+        [ "<!-- InstanceBegin template=\"/Templates/.+.dwt\" codeOutsideHTMLIsLocked=\"false\" -->", "<!-- InstanceBegin template=\"/Templates/<%= template %>.dwt\" codeOutsideHTMLIsLocked=\"false\" -->" ]
     ]
 }
