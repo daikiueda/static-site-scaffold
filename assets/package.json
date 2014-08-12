@@ -1,6 +1,7 @@
 {
   "name": "static-site-scaffold",
   "version": "0.4.0",
+  "description": "Scaffold and some build tasks, for static website.",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -16,6 +17,7 @@
   "dependencies": {
     "chai": "^1.9.1",
     "chalk": "^0.5.1",
+    "cheerio": "^0.17.0",
     "grunt-attention": "^0.0.5",
     "grunt-browserify": "^2.1.0",
     "grunt-cat": "^0.1.2",
@@ -37,7 +39,6 @@
     "grunt-webfont": "^0.4.7",
     "iconv-lite": "^0.4.4",
     "js-fixtures": "^1.5.1",
-    "jsdom": "^0.11.0",
     "karma": "^0.12.21",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.4",

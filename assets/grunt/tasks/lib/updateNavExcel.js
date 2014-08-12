@@ -21,53 +21,31 @@ var fs = require( "fs" ),
 
 
 function updateHTML( htmlDir, metadata, templates, options ){
-    var jsdom = require( "jsdom" ),
-        deferred = Q.defer();
+    var deferred = Q.defer(),
+        cheerio = require( "cheerio" ),
+        
+        filePath = path.join( htmlDir, metadata.path ),
+        charset = options.charset || "utf8",
+        content = iconv.decode( fs.readFileSync( filePath ), charset ),
+        $ = cheerio.load( content, { decodeEntities: false } );
+    
+    _.forEach( templates, function( template, selector ){
+        $( selector ).empty().append( template( metadata ) );
+    } );
 
-    try {
-        var jquerySrcPath = [
-                "file://",
-                path.join( path.dirname( module.filename ), JQUERY_PATH )
-                    .replace( /^\//, "" ).replace( /\\/g, "/" )
-            ].join( "/" ),
-            filePath = path.join( htmlDir, metadata.path ),
-            charset = options.charset || "utf8",
-            content = iconv.decode( fs.readFileSync( filePath ), charset ),
-            document = jsdom.jsdom( content ),
-            window = document.createWindow();
+    var htmlCode = $.html();
+    _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
+        htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
+    } );
 
-        jsdom.jQueryify(
-            window,
-            jquerySrcPath,
-            function( window, $ ){
+    fs.writeFile( filePath, iconv.encode( new Buffer( htmlCode ), charset ), function( err ){
+        if( err ){
+            deferred.reject( err );
+            return;
+        }
 
-                _.forEach( templates, function( template, selector ){
-                    $( selector ).empty().append( template( metadata ) );
-                } );
-
-                $( "script.jsdom" ).remove();
-
-                var htmlCode = $( "html" ).html();
-                _.forEach( UNLIKE_STRINGS, function( correct, unlike ){
-                    htmlCode = htmlCode.replace( new RegExp( unlike, "g" ), correct );
-                } );
-
-                content = content.replace(
-                    /([\S\s]*<html[^>]*>)[\S\s]*(<\/html>[\S\s]*)/,
-                        "$1" + htmlCode + "$2"
-                );
-
-                fs.writeFileSync(
-                    filePath,
-                    iconv.encode( new Buffer( content ), charset )
-                );
-
-                deferred.resolve( filePath + " ... updated." );
-            }
-        );
-    } catch( e ){
-        deferred.reject( e );
-    }
+        deferred.resolve( filePath + " ... updated." );
+    } );
 
     return deferred.promise;
 }
