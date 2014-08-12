@@ -1,7 +1,7 @@
 os:
   - linux
   - osx
-  
+
 language: node_js
 
 node_js:
@@ -11,9 +11,6 @@ before_install:
   - "cd assets"
   - "gem install compass"
   - "npm install grunt-cli bower -g"
-
-before_script:
- - "npm install grunt-meta-excel"
 
 script:
  - "npm test"
