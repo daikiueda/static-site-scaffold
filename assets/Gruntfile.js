@@ -1,5 +1,5 @@
 /*
- * static-site-tools
+ * static-site-scaffold
  * Copyright (c) 2014 daikiueda, @ue_di
  * Licensed under the MIT license.
  * https://github.com/daikiueda/static-site-scaffold
@@ -52,7 +52,7 @@ module.exports = function( grunt ){
 
 
     // load all grunt tasks
-    require( "matchdep" ).filterAll( "grunt-*" ).forEach( grunt.loadNpmTasks );
+    require( "load-grunt-tasks" )( grunt );
     
     if( hasModule( "grunt-meta-excel" ) ){
         grunt.loadNpmTasks( "grunt-meta-excel" ); 
