@@ -24,8 +24,7 @@ module.exports = function( grunt ){
             grunt.task.run( [ "build" ] );
         }
         grunt.task.run( [
-            "connect:livereload",
-            "open",
+            "browserSync:htdocs",
             "attention:server",
             "watch"
         ] );
@@ -34,7 +33,7 @@ module.exports = function( grunt ){
     // screen_shot
     grunt.registerTask( "screen_shot", [
         "build",
-        "connect:livereload",
+        "connect:htdocs",
         "dump_pages:main"
     ] );
 

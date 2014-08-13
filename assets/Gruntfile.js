@@ -20,7 +20,10 @@ module.exports = function( grunt ){
     var gruntConfigs = _.merge(
         {
             pkg: grunt.file.readJSON( "package.json" ),
+            
             env: {
+                htdocs: "../htdocs",
+
                 sitemapExcel: {
                     path: "doc/sitemap.xlsm",
                     dataStartingRow: 7,
