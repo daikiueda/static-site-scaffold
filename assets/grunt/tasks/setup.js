@@ -13,7 +13,7 @@ module.exports = function( grunt ){
 
 
     // make_menu_shortcut
-    grunt.registerTask( "make_menu_shortcut", "Make menu shortcut.", function(){
+    grunt.registerTask( "make_menu_shortcut", "[NOT FOR CLI] Make shortcut file to task menu.", function(){
 
         var isWin = os.type().match( /^Win/ ),
             extension = isWin ? "bat": "command",
@@ -44,7 +44,7 @@ module.exports = function( grunt ){
 
 
     // setup
-    grunt.registerTask( "setup", function(){
+    grunt.registerTask( "setup", '[NOT FOR CLI] Setup workspace after "npm install". Including "bower install", make shortcut and etc..', function(){
 
         grunt.config( "exec.bower_install", {
             cmd: "bower install",

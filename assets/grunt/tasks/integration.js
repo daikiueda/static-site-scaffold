@@ -16,10 +16,10 @@ var path = require( "path" ),
 module.exports = function( grunt ){
 
     // build
-    grunt.registerTask( "build", [ "css", "js" ] );
+    grunt.registerTask( "build", "Build all resources for website.", [ "css", "js" ] );
 
     // server
-    grunt.registerTask( "server", function(){
+    grunt.registerTask( "server", "Start local server and file update watching.", function(){
         if( !this.flags.skip_build ){
             grunt.task.run( [ "build" ] );
         }
@@ -31,14 +31,14 @@ module.exports = function( grunt ){
     } );
 
     // screen_shot
-    grunt.registerTask( "screen_shot", [
+    grunt.registerTask( "screen_shot", "Save screen dump to file(s).", [
         "build",
         "connect:htdocs",
         "dump_pages:main"
     ] );
 
     // dump_pages
-    grunt.registerMultiTask( "dump_pages", "Save screen dump to file(s).", function(){
+    grunt.registerMultiTask( "dump_pages", "[NOT FOR CLI] Save screen dump to file(s) with local server. ", function(){
 
         var dumpScreen = require( "./lib/dumpScreen.js" ),
 

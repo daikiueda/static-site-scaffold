@@ -20,7 +20,7 @@ var chalk = require( "chalk" ),
 module.exports = function( grunt ){
 
     // respond_to_task_select
-    grunt.registerTask( "respond_to_task_select", function(){
+    grunt.registerTask( "respond_to_task_select", "[NOT FOR CLI] Run a task that selected from task menu.", function(){
         var selectedTask = grunt.config( SELECTED_TASK_VAR_NAME_STR );
         if( selectedTask ){
             if( selectedTask !== TASK_MENU_TASK_NAME_STR ){
@@ -34,7 +34,7 @@ module.exports = function( grunt ){
     } );
 
     // task_menu
-    grunt.registerTask( "task_menu", [
+    grunt.registerTask( "task_menu", "Display interactive task menu.", [
         "prompt:task_menu",
         "respond_to_task_select"
     ] );

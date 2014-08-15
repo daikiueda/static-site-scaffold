@@ -12,13 +12,13 @@
 module.exports = function( grunt ){
 
     // js
-    grunt.registerTask( "js", [
+    grunt.registerTask( "js", "Combine and compress .js files.", [
         "uglify",
         "replace:license_comment_format"
     ] );
 
     // test
-    grunt.registerTask( "test", function(){
+    grunt.registerTask( "test", "Test JavaScript.", function(){
         grunt.task.run( [
             "clean:test",
             "browserify:common",
@@ -33,7 +33,7 @@ module.exports = function( grunt ){
     } );
 
     // before_testem
-    grunt.registerTask( "before_testem", [
+    grunt.registerTask( "before_testem", "[NOT FOR CLI] Prepare resource files for Testem.", [
         "clean:test",
         "browserify:common"
     ] );

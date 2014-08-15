@@ -19,7 +19,7 @@ module.exports = {
                 src: "<%= env.htdocs %>/**/*.*"
             },
             options: {
-                browser: [ "google chrome" ], //"firefox", "safari" ],
+                browser: [ "google chrome" ], //, "firefox", "safari" ],
                 server: {
                     baseDir: "<%= env.htdocs %>"
                 },
