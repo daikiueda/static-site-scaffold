@@ -65,4 +65,12 @@ module.exports = function( grunt ){
 
 
     grunt.registerTask( "default", [ "task_menu" ] );
+
+
+    // Windows 7 + Ruby 2.0.x の環境において、Sassのコンパイル時に文字コードのエラーが発生するので、
+    // 環境変数を追加することで手当てする。
+    // http://docs.ruby-lang.org/ja/2.0.0/doc/spec=2frubycmd.html#cmd_option
+    if( require( "os" ).platform() === "win32" && !process.env.RUBYOPT ){
+        process.env.RUBYOPT = "-EUTF-8";
+    }
 };
