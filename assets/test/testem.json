@@ -6,9 +6,7 @@
     "serve_files" : [
         "bower_components/jquery/dist/jquery.js",
 
-        "js/common/siteScript/$.namespace.js",
         "js/common/siteScript/**/*.js",
-        "js/**/*.js",
 
         "test/**/*.js"
     ],
