@@ -27,8 +27,8 @@ module.exports = function( grunt ){
         
         grunt.task.run(
             this.flags.browsers ?
-                [ "karma:common_browsers", "moveCoverageFiles" ]:
-                [ "karma:common", "moveCoverageFiles", "cat:coverage" ]
+                [ "karma:common_browsers" ]:
+                [ "karma:common", "cat:coverage" ]
         );
     } );
 
@@ -37,9 +37,4 @@ module.exports = function( grunt ){
         "clean:test",
         "browserify:common"
     ] );
-
-    // helper
-    grunt.registerTask( "moveCoverageFiles", function( grunt ){
-        require( "shelljs" ).mv( "./coverage", "./test/tmp/__coverage" );
-    } );
 };
