@@ -6,6 +6,7 @@
 "use strict";
 
 var path = require( "path" ),
+    _ = require( "lodash" ),
     Q = require( "q" ),
     webshot = require( "webshot" );
 
@@ -15,11 +16,15 @@ function dumpScreen( filePath, widths, destDir, options ){
             filePath.replace( /^\//, "" )
         ].join( "/" ),
 
-        webshotOptions = options.webshot || {};
-
-    if( !webshotOptions.windowSize ){
-        webshotOptions.windowSize = { height: 768 };
-    }
+        webshotOptions = _.assign( options.webshot || {}, {
+            windowSize: {
+                height: 768
+            }
+            shotSize: {
+                width: "window",
+                height: "all"
+            }
+        } );
 
     return widths.reduce( function( previousProcess, currentWidth ){
 

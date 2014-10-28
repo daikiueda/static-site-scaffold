@@ -61,7 +61,12 @@ module.exports = {
                     ":<%= connect.htdocs.options.port %>"
                 ].join( "" ),
                 widths: [ 640, 1024 ],
-                dest: "__screen_shot"
+                dest: "__screen_shot",
+
+                // https://github.com/brenden/node-webshot#options
+                webshot: {
+                    defaultWhiteBackground: true
+                }
             },
             files: [ {
                 expand: true,
