@@ -19,7 +19,7 @@ function dumpScreen( filePath, widths, destDir, options ){
         webshotOptions = _.assign( options.webshot || {}, {
             windowSize: {
                 height: 768
-            }
+            },
             shotSize: {
                 width: "window",
                 height: "all"
