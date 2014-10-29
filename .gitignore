@@ -16,3 +16,4 @@ menu.bat
 
 .idea
 .tmp
+/assets/__settings__.js
