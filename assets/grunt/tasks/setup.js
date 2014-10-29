@@ -12,6 +12,23 @@ module.exports = function( grunt ){
         path = require( "path" );
 
 
+    // make_settings_js
+    grunt.registerTask( "make_settings_js", "[NOT FOR CLI] Make __settings__.js for users own settings.", function(){
+
+        var filePath = "./__settings__.js",
+            
+            defaultCode = [
+                'module.exports = {',
+                '    ',
+                '}'
+            ].join( "\n" );
+
+        if( !grunt.file.exists( filePath ) ){
+            grunt.file.write( filePath, defaultCode );
+        }
+    } );
+
+
     // make_menu_shortcut
     grunt.registerTask( "make_menu_shortcut", "[NOT FOR CLI] Make shortcut file to task menu.", function(){
 
@@ -73,6 +90,7 @@ module.exports = function( grunt ){
         grunt.task.run( [
             "exec:bower_install",
             "copy:ionicons",
+            "make_settings_js",
             "make_menu_shortcut"
         ] );
     } );
