@@ -51,8 +51,11 @@ module.exports = function( grunt ){
         require( "./grunt/task_menu.js" )
     );
 
-    grunt.initConfig( gruntConfigs );
+    if( grunt.file.exists( "./__settings__.js" ) ){
+        gruntConfigs = _.merge( gruntConfigs, require( "./__settings__.js" ) );
+    }
 
+    grunt.initConfig( gruntConfigs );
 
     // load all grunt tasks
     require( "load-grunt-tasks" )( grunt );
