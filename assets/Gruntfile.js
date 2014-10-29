@@ -40,6 +40,8 @@ module.exports = function( grunt ){
                     }
                 },
 
+                useNodeLocalServer: true,
+
                 debug: false
             }
         },

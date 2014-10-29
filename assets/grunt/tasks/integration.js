@@ -31,11 +31,17 @@ module.exports = function( grunt ){
     } );
 
     // screen_shot
-    grunt.registerTask( "screen_shot", "Save screen dump to file(s).", [
-        "build",
-        "connect:htdocs",
-        "dump_pages:main"
-    ] );
+    grunt.registerTask( "screen_shot", "Save screen dump to file(s).", function(){
+
+        if( grunt.config( "env.useNodeLocalServer" ) ){
+            grunt.task.run( [
+                "connect:htdocs",
+                "build"
+            ] );
+        }
+
+        grunt.task.run( "dump_pages:main" );
+    } );
 
     // dump_pages
     grunt.registerMultiTask( "dump_pages", "[NOT FOR CLI] Save screen dump to file(s) with local server. ", function(){
@@ -54,6 +60,8 @@ module.exports = function( grunt ){
 
             widths = options.widths,
 
+            errors = [],
+
             done = this.async();
 
         this.files.reduce( function( previousProcess, file ){
@@ -67,15 +75,25 @@ module.exports = function( grunt ){
                                 chalk.green( "saved." )
                             ].join( "" ) );
                         },
-                        function( message ){ grunt.log.warn( message ); }
+                        function( message ){
+                            errors.push( message );
+                            grunt.log.warn( file.dest + " ... " + message );
+                        }
                     );
             } );
         }, Q() )
             .then(
                 function(){
                     grunt.log.writeln( "" );
-                    grunt.log.ok( "Save .png files to " + chalk.underline.cyan( destDir ) );
-                    done();
+                    
+                    if( errors.length === 0 ){
+                        grunt.log.ok( "Save .png files to " + chalk.underline.cyan( destDir ) );
+                        done();
+                    }
+                    else {
+                        grunt.log.warn( "Oops! Something went wrong. Please check your local server setting." );
+                        done( false );
+                    }
                 },
                 function(){ done( false ); }
             );
