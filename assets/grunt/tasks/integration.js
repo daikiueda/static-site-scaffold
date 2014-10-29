@@ -35,8 +35,8 @@ module.exports = function( grunt ){
 
         if( grunt.config( "env.useNodeLocalServer" ) ){
             grunt.task.run( [
-                "connect:htdocs",
-                "build"
+                "build",
+                "connect:htdocs"
             ] );
         }
 
