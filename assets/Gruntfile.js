@@ -40,7 +40,7 @@ module.exports = function( grunt ){
                     }
                 },
 
-                useNodeLocalServer: true,
+                alternativeLocalServerName: null,
 
                 debug: false
             }
@@ -54,7 +54,18 @@ module.exports = function( grunt ){
     );
 
     if( grunt.file.exists( "./__settings__.js" ) ){
-        gruntConfigs = _.merge( gruntConfigs, require( "./__settings__.js" ) );
+        
+        var userSetting = require( "./__settings__.js" );
+        
+        switch( typeof userSetting ){
+            case "object":
+                gruntConfigs = _.merge( gruntConfigs, userSetting );
+                break;
+            
+            case "function":
+                gruntConfigs = userSetting( gruntConfigs );
+                break;
+        }
     }
 
     grunt.initConfig( gruntConfigs );

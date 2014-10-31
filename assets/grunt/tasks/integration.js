@@ -33,11 +33,10 @@ module.exports = function( grunt ){
     // screen_shot
     grunt.registerTask( "screen_shot", "Save screen dump to file(s).", function(){
 
-        if( grunt.config( "env.useNodeLocalServer" ) ){
-            grunt.task.run( [
-                "build",
-                "connect:htdocs"
-            ] );
+        grunt.task.run( "build" );
+        
+        if( !grunt.config( "env.alternativeLocalServerName" ) ){
+            grunt.task.run( "connect:htdocs" );
         }
 
         grunt.task.run( "dump_pages:main" );

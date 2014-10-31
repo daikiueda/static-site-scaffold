@@ -12,7 +12,8 @@ var path = require( "path" ),
 
 function dumpScreen( filePath, widths, destDir, options ){
     var url = [
-            options.urlRoot.replace( /\/$/, "" ),
+            "http:/",
+            options.hostname.replace( /\/$/, "" ),
             filePath.replace( /^\//, "" )
         ].join( "/" ),
 

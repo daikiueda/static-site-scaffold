@@ -56,9 +56,12 @@ module.exports = {
     dump_pages: {
         main: {
             options: {
-                urlRoot: [
-                    "http://localhost",
-                    ":<%= connect.htdocs.options.port %>"
+                hostname: [
+                    '<%= ',
+                    '    ( env.alternativeLocalServerName )?',
+                    '        env.alternativeLocalServerName:',
+                    '        "localhost:" + connect.htdocs.options.port',
+                    '%>',
                 ].join( "" ),
                 widths: [ 640, 1024 ],
                 dest: "__screen_shot",
