@@ -49,7 +49,8 @@ module.exports = function( grunt ){
 
             options = this.options( {
                 dest: "__screen_shot",
-                widths: [ 1024 ]
+                widths: [ 1024 ],
+                imageType: "png"
             } ),
 
             destDir = path.join(
@@ -70,7 +71,7 @@ module.exports = function( grunt ){
                     .then(
                         function(){
                             grunt.log.ok( [
-                                file.dest + ".png ... ",
+                                file.dest + "." + options.imageType + " ... ",
                                 chalk.green( "saved." )
                             ].join( "" ) );
                         },

@@ -65,6 +65,7 @@ module.exports = {
                 ].join( "" ),
                 widths: [ 640, 1024 ],
                 dest: "__screen_shot",
+                imageType: "png", // or "jpg"
 
                 // https://github.com/brenden/node-webshot#options
                 webshot: {

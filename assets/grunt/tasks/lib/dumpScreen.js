@@ -17,6 +17,8 @@ function dumpScreen( filePath, widths, destDir, options ){
             filePath.replace( /^\//, "" )
         ].join( "/" ),
 
+        imageType = options.imageType || "png",
+
         webshotOptions = _.assign( options.webshot || {}, {
             windowSize: {
                 height: 768
@@ -35,7 +37,7 @@ function dumpScreen( filePath, widths, destDir, options ){
                 dest = path.join(
                     destDir,
                     "w" + currentWidth,
-                    filePath + ".png"
+                    filePath + "." + imageType
                 );
 
             webshotOptions.windowSize.width = currentWidth;
