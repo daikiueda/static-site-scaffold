@@ -44,7 +44,7 @@
     "grunt-text-replace": "^0.4.0",
     "grunt-webfont": "^0.4.8",
     "iconv-lite": "^0.4.5",
-    "js-fixtures": "^1.5.1",
+    "js-fixtures": "^1.5.3",
     "karma": "^0.12.28",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
