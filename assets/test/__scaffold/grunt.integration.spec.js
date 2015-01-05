@@ -48,7 +48,7 @@ describe( "Integration", function(){
             // 実行前
             expect( exists( "__screen_shot" ) ).to.be.false;
 
-            exec( "grunt screen_shot", function( error ){
+            exec( "grunt build screen_shot", function( error ){
                 if( error ) return done( error );
 
                 expect( exists( "__screen_shot" ) ).to.be.true;
