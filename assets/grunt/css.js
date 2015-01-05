@@ -8,6 +8,7 @@ module.exports = {
                 engine: "node",
                 font: "icon",
                 hashes: false,
+                types: "eot,woff,ttf,svg",
                 stylesheet: "scss",
                 relativeFontPath: "../fonts/icon",
                 template: "font-svg/icon/icon.css",
