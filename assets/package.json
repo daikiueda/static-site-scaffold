@@ -26,7 +26,7 @@
     "grunt": "^0.4.5",
     "grunt-attention": "^1.0.0",
     "grunt-browser-sync": "^2.0.0",
-    "grunt-browserify": "^3.3.0",
+    "grunt-browserify": "^3.4.0",
     "grunt-cat": "^0.1.2",
     "grunt-combine-media-queries": "^1.0.19",
     "grunt-contrib-clean": "^0.6.0",
@@ -59,7 +59,7 @@
     "lodash": "^3.3.0",
     "mocha": "^2.1.0",
     "moment": "^2.9.0",
-    "q": "^1.1.2",
+    "q": "^1.2.0",
     "shelljs": "^0.3.0",
     "webshot": "^0.15.4"
   },
