@@ -52,7 +52,7 @@
     "karma-firefox-launcher": "^0.1.4",
     "karma-ie-launcher": "^0.1.5",
     "karma-mocha": "^0.1.10",
-    "karma-mocha-reporter": "^0.3.2",
+    "karma-mocha-reporter": "^1.0.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
     "load-grunt-tasks": "^3.0.0",
@@ -61,7 +61,7 @@
     "moment": "^2.9.0",
     "q": "^1.1.2",
     "shelljs": "^0.3.0",
-    "webshot": "^0.15.3"
+    "webshot": "^0.15.4"
   },
   "optionalDependencies": {
     "grunt-meta-excel": "0.0.7"
