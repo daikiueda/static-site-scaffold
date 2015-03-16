@@ -64,6 +64,6 @@
     "webshot": "^0.15.4"
   },
   "optionalDependencies": {
-    "grunt-meta-excel": "0.0.7"
+    "grunt-meta-excel": "0.0.8"
   }
 }
