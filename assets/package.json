@@ -20,7 +20,7 @@
     "grunt": "^0.4.5"
   },
   "dependencies": {
-    "chai": "^2.1.1",
+    "chai": "^2.1.2",
     "chalk": "^1.0.0",
     "cheerio": "^0.18.0",
     "grunt": "^0.4.5",
@@ -52,7 +52,7 @@
     "karma-firefox-launcher": "^0.1.4",
     "karma-ie-launcher": "^0.1.5",
     "karma-mocha": "^0.1.10",
-    "karma-mocha-reporter": "^1.0.0",
+    "karma-mocha-reporter": "^1.0.2",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
     "load-grunt-tasks": "^3.0.0",
