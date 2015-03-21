@@ -22,6 +22,13 @@ module.exports = {
         }
     },
 
+    htmlcommenttemplate: {
+        main: {
+          templatesDir: "../htdocs/Templates",
+          html: "../htdocs/**/*.html"
+        }
+    },
+
     meta_excel: {
         options: {
             dataStartingRow: "<%= env.sitemapExcel.dataStartingRow %>",

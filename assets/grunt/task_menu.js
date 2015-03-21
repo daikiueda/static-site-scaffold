@@ -10,7 +10,7 @@ module.exports = {
     task_menu: [
         {
             config: "selectedTask",
-            message: "What would you like to do?", 
+            message: "What would you like to do?",
             type: "list",
             default: "server",
             choices: [
@@ -26,15 +26,15 @@ module.exports = {
         },
         {
             config: "selectedTask",
-            message: "HTML", 
+            message: "HTML",
             type: "list",
             choices: _.flatten( [
                 { name: "構文チェック", value: "htmllint" },
+                { name: "テンプレート更新の反映", value: "htmlcommenttemplate" },
                 hasModule( "grunt-meta-excel" )?
                     [
                         { name: "<title>，メタ情報の更新", value: "meta_excel" },
-                        { name: "ナビゲーションの一括更新", value: "update_nav_excel" },
-                        { name: "HTMLの生成", value: "meta_excel::generate" }
+                        { name: "ナビゲーションの一括更新", value: "update_nav_excel" }
                     ]: [],
                 "---",
                 { name: "戻る", value: "task_menu" },
@@ -46,7 +46,7 @@ module.exports = {
         },
         {
             config: "selectedTask",
-            message: "CSS", 
+            message: "CSS",
             type: "list",
             choices: [
                 { name: "Sass/Compassのコンパイル", value: "css" },
@@ -62,7 +62,7 @@ module.exports = {
         },
         {
             config: "selectedTask",
-            message: "JavaScript", 
+            message: "JavaScript",
             type: "list",
             choices: [
                 { name: "ソースコードの結合・圧縮", value: "js" },
@@ -78,15 +78,19 @@ module.exports = {
         },
         {
             config: "selectedTask",
-            message: "その他", 
+            message: "その他",
             type: "list",
-            choices: [
+            choices: _.flatten( [
                 { name: "全体ビルド", value: "build" },
+                hasModule( "grunt-meta-excel" )?
+                    [
+                        { name: "└─ HTMLの生成", value: "generate_all" }
+                    ]: [],
                 { name: "スクリーンショットの一括出力", value: "screen_shot" },
                 "---",
                 { name: "戻る", value: "task_menu" },
                 { name: "メニューの終了", value: "" }
-            ],
+            ] ),
             when: function( answer ){
                 return ( answer.selectedTask === "MENU_OTHER" );
             }

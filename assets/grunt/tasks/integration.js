@@ -18,6 +18,14 @@ module.exports = function( grunt ){
     // build
     grunt.registerTask( "build", "Build all resources for website.", [ "css", "js" ] );
 
+    // generate_all
+    grunt.registerTask( "generate_all", "Build all resources. Then generate HTML files.", [
+        "build",
+        "meta_excel::generate",
+        "htmlcommenttemplate",
+        "update_nav_excel"
+    ] );
+
     // server
     grunt.registerTask( "server", "Start local server and file update watching.", function(){
         if( !this.flags.skip_build ){
@@ -83,7 +91,7 @@ module.exports = function( grunt ){
             .then(
                 function(){
                     grunt.log.writeln( "" );
-                    
+
                     if( errors.length === 0 ){
                         grunt.log.ok( "Save .png files to " + chalk.underline.cyan( destDir ) );
                         done();
@@ -97,5 +105,3 @@ module.exports = function( grunt ){
             );
     } );
 };
-
-

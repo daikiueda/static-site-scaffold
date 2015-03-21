@@ -20,7 +20,7 @@ module.exports = function( grunt ){
     var gruntConfigs = _.merge(
         {
             pkg: grunt.file.readJSON( "package.json" ),
-            
+
             env: {
                 htdocs: "../htdocs",
 
@@ -54,14 +54,14 @@ module.exports = function( grunt ){
     );
 
     if( grunt.file.exists( "./__settings__.js" ) ){
-        
+
         var userSetting = require( "./__settings__.js" );
-        
+
         switch( typeof userSetting ){
             case "object":
                 gruntConfigs = _.merge( gruntConfigs, userSetting );
                 break;
-            
+
             case "function":
                 gruntConfigs = userSetting( gruntConfigs );
                 break;
@@ -72,13 +72,10 @@ module.exports = function( grunt ){
 
     // load all grunt tasks
     require( "load-grunt-tasks" )( grunt );
-    
     if( hasModule( "grunt-meta-excel" ) ){
-        grunt.loadNpmTasks( "grunt-meta-excel" ); 
+        grunt.loadNpmTasks( "grunt-meta-excel" );
     }
-
     grunt.loadTasks( "grunt/tasks" );
-
 
     grunt.registerTask( "default", [ "task_menu" ] );
 

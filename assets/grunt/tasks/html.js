@@ -12,6 +12,8 @@ var XLSX2JSON_PATH = "../../node_modules/grunt-meta-excel/node_modules/xlsx2json
     iconv = require( "iconv-lite" );
 
 module.exports = function( grunt ){
+
+    // update_nav_excel
     grunt.registerMultiTask( "update_nav_excel", "Update navigation in .html files.", function(){
 
         var Q = require( "q" ),
