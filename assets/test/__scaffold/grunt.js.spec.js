@@ -137,4 +137,25 @@ describe( "JavaScript", function(){
             } );
         } );
     } );
+
+
+    describe( "ドキュメント生成", function(){
+
+        describe( "grunt jsdoc", function(){
+
+            it( "ドキュメントを出力する。", function( done ){
+
+                // 実行前
+                expect( exists( "doc/js" ) ).to.be.false;
+
+                exec( "grunt jsdoc", function( error ){
+                    if( error ) return done( error );
+
+                    expect( exists( "doc/js" ) ).to.be.true;
+
+                    done();
+                } );
+            } );
+        } );
+    } );
 } );
