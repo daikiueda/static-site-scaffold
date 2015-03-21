@@ -16,7 +16,7 @@ module.exports = function( grunt ){
     grunt.registerTask( "make_settings_js", "[NOT FOR CLI] Make __settings__.js for users own settings.", function(){
 
         var filePath = "./__settings__.js",
-            
+
             defaultCode = [
                 'module.exports = {',
                 '    ',
@@ -90,6 +90,7 @@ module.exports = function( grunt ){
         grunt.task.run( [
             "exec:bower_install",
             "copy:ionicons",
+            "copy:normalize",
             "make_settings_js",
             "make_menu_shortcut"
         ] );

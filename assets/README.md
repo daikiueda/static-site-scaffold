@@ -31,7 +31,7 @@ $ grunt <cmd>
 $ grunt -h
 ```
 
-## test ( of scaffold )
+## test ( for scaffold )
 
 ```Bash
 $ npm test
@@ -42,4 +42,3 @@ $ npm test
 ```Bash
 $ npm run test_win
 ```
-
