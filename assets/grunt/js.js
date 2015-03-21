@@ -14,14 +14,14 @@ module.exports = {
             src: [
                 "bower_components/jquery/dist/jquery.js"
             ],
-            dest: "../htdocs/common/js/libs.js"
+            dest: "<%= env.htdocs %>/common/js/libs.js"
         },
         common: {
             src: [
                 "js/common/$.namespace.js",
                 "js/common/**/*.js"
             ],
-            dest: "../htdocs/common/js/common.js"
+            dest: "<%= env.htdocs %>/common/js/common.js"
         }
     },
 
@@ -53,7 +53,7 @@ module.exports = {
 
     jsdoc : {
         main : {
-            src: [ "js/**/*.js", "js/**/*.jsdoc" ], 
+            src: [ "js/**/*.js", "js/**/*.jsdoc" ],
             options: {
                 configure: "js/jsdoc.conf.json",
                 destination: "doc/js"
@@ -68,10 +68,10 @@ module.exports = {
     clean: {
         test: [ "test/tmp" ]
     },
-    
+
     replace: {
         license_comment_format: {
-            src: [ "../htdocs/common/js/libs.js" ],
+            src: [ "<%= env.htdocs %>/common/js/libs.js" ],
             overwrite: true,
             replacements: [
                 { from: /\/\*\!/g, to: "\n/*!" },

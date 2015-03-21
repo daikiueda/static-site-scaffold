@@ -6,8 +6,8 @@ module.exports = {
         },
         main: {
             src: [
-                "../htdocs/**/*.html",
-                "!../htdocs/__modules/**/*.html"
+                "<%= env.htdocs %>/**/*.html",
+                "!<%= env.htdocs %>/__modules/**/*.html"
             ]
         }
     },
@@ -19,7 +19,7 @@ module.exports = {
         },
         main: {
             xlsx: "<%= env.sitemapExcel.path %>",
-            htmlDir: "../htdocs/",
+            htmlDir: "<%= env.htdocs %>",
             options: {
                 patternsJsonPath: "./grunt/settings/meta_tags_patterns.json",
                 boilerplate: "../htdocs/__modules/__boilerplate.html"
@@ -29,8 +29,8 @@ module.exports = {
 
     htmlcommenttemplate: {
         main: {
-          templatesDir: "../htdocs/Templates",
-          html: "../htdocs/**/*.html"
+          templatesDir: "<%= env.htdocs %>/Templates",
+          html: "<%= env.htdocs %>/**/*.html"
         }
     },
 
@@ -41,7 +41,7 @@ module.exports = {
         },
         main: {
             xlsx: "<%= env.sitemapExcel.path %>",
-            htmlDir: "../htdocs/",
+            htmlDir: "<%= env.htdocs %>",
             templates: {
                 "#topic_path": "grunt/templates/nav_topic_path.html",
                 "aside nav.local": "grunt/templates/aside_nav_local.html"

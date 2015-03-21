@@ -52,7 +52,7 @@ module.exports = {
             }
         }
     },
-    
+
     dump_pages: {
         main: {
             options: {
@@ -74,7 +74,7 @@ module.exports = {
             },
             files: [ {
                 expand: true,
-                cwd: "../htdocs",
+                cwd: "<%= env.htdocs %>",
                 src: "**/*.html"
             } ]
         }
@@ -91,10 +91,10 @@ module.exports = {
     clean: {
         generated: [
             "tmp",
-            
-            "../htdocs/*",
-            "!../htdocs/Templates",
-            "!../htdocs/__modules",
+
+            "<%= env.htdocs %>/*",
+            "!<%= env.htdocs %>/Templates",
+            "!<%= env.htdocs %>/__modules",
 
             "test/tmp",
 

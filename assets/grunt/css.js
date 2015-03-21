@@ -2,7 +2,7 @@ module.exports = {
     webfont: {
         common_icons: {
             src: "font-svg/icon/*.svg",
-            dest: "../htdocs/common/fonts/icon",
+            dest: "<%= env.htdocs %>/common/fonts/icon",
             destCss: "css/common/css/design_schemes",
             options: {
                 engine: "node",
@@ -52,7 +52,7 @@ module.exports = {
             options: {
                 template: {
                     include: [
-                        "../htdocs/common/css/common.css"
+                        "<%= env.htdocs %>/css/common.css"
                     ]
                 }
             },
