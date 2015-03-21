@@ -52,8 +52,8 @@ module.exports = function( grunt ){
                     xlsx: "<%= env.sitemapExcel.path %>",
                     htmlDir: "../.tmp/htdocs_sjis/",
                     templates: {
-                        "#topic_path": "../../../grunt/templates/nav_topic_path.html",
-                        "aside nav.local": "../../../grunt/templates/aside_nav_local.html"
+                        "#topic_path": "../../../html/fragments/nav_topic_path.html",
+                        "aside nav.local": "../../../html/fragments/aside_nav_local.html"
                     },
                     options: {
                         charset: "shift_jis"
