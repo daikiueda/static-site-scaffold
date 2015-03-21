@@ -20,7 +20,7 @@ module.exports = function(config) {
       "js/common/siteScript/$.namespace.js",
       "js/common/siteScript/**/*.js",
       'js/**/*.js',
-      
+
       'test/**/*.js'
     ],
 

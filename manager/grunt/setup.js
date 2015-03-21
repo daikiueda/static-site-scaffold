@@ -4,8 +4,8 @@ module.exports = {
             files: [
                 {
                     expand: true,
-                    dest: "font-svg/icon/",
-                    cwd: "bower_components/ionicons/src/",
+                    dest: "<%= env.assets %>/font-svg/icon/",
+                    cwd: "<%= env.assets %>/bower_components/ionicons/src/",
                     src: [
                         "ios7-arrow-back.svg",
                         "ios7-arrow-forward.svg",
@@ -24,8 +24,8 @@ module.exports = {
             ]
         },
         normalize: {
-          src: "bower_components/normalize.css/normalize.css",
-          dest: "bower_components/normalize.css/_normalize.scss"
+          src: "<%= env.assets %>/bower_components/normalize.css/normalize.css",
+          dest: "<%= env.assets %>/bower_components/normalize.css/_normalize.scss"
         }
     }
 };

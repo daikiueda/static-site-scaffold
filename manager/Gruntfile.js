@@ -24,8 +24,10 @@ module.exports = function( grunt ){
             env: {
                 htdocs: "../htdocs",
 
+                assets: "../assets",
+
                 sitemapExcel: {
-                    path: "doc/sitemap.xlsm",
+                    path: "../assets/doc/sitemap.xlsm",
                     dataStartingRow: 7,
                     mapping: {
                         filename: "D",

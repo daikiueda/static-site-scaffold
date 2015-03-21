@@ -12,14 +12,14 @@ module.exports = {
         },
         libs: {
             src: [
-                "bower_components/jquery/dist/jquery.js"
+                "<%= env.assets %>/bower_components/jquery/dist/jquery.js"
             ],
             dest: "<%= env.htdocs %>/common/js/libs.js"
         },
         common: {
             src: [
-                "js/common/$.namespace.js",
-                "js/common/**/*.js"
+                "<%= env.assets %>/js/common/$.namespace.js",
+                "<%= env.assets %>/js/common/**/*.js"
             ],
             dest: "<%= env.htdocs %>/common/js/common.js"
         }
@@ -27,12 +27,12 @@ module.exports = {
 
     karma: {
         common: {
-            configFile: "test/karma.conf.js",
+            configFile: "<%= env.assets %>/test/karma.conf.js",
             singleRun: true,
             browsers: [ "PhantomJS" ]
         },
         common_browsers: {
-            configFile: "test/karma.conf.js",
+            configFile: "<%= env.assets %>/test/karma.conf.js",
             singleRun: false,
             browsers: [ "PhantomJS", "Chrome", "Firefox", "Safari", "IE" ]
         }
@@ -41,11 +41,11 @@ module.exports = {
     browserify: {
         common: {
             files: {
-                "test/tmp/common/siteScript/testem.common.browserified.js": [
-                    "test/common/siteScript/**/*browserify*.js"
+                "<%= env.assets %>/test/tmp/common/siteScript/testem.common.browserified.js": [
+                    "<%= env.assets %>/test/common/siteScript/**/*browserify*.js"
                 ],
-                "test/tmp/common/siteScript/karma.common.browserified.js": [
-                    "test/common/siteScript/**/*browserify*.js"
+                "<%= env.assets %>/test/tmp/common/siteScript/karma.common.browserified.js": [
+                    "<%= env.assets %>/test/common/siteScript/**/*browserify*.js"
                 ]
             }
         }
@@ -53,20 +53,25 @@ module.exports = {
 
     jsdoc : {
         main : {
-            src: [ "js/**/*.js", "js/**/*.jsdoc" ],
+            src: [ "<%= env.assets %>/js/**/*.js", "<%= env.assets %>/js/**/*.jsdoc" ],
             options: {
-                configure: "js/jsdoc.conf.json",
-                destination: "doc/js"
+                configure: "<%= env.assets %>/js/jsdoc.conf.json",
+                destination: "<%= env.assets %>/doc/js"
             }
         }
     },
 
     cat: {
-        coverage: { src: "test/tmp/__coverage/*/coverage.txt" }
+        coverage: { src: "<%= env.assets %>/test/tmp/__coverage/*/coverage.txt" }
     },
 
     clean: {
-        test: [ "test/tmp" ]
+        test: {
+            src: [ "<%= env.assets %>/test/tmp" ],
+            options: {
+                force: true
+            }
+        }
     },
 
     replace: {
@@ -80,7 +85,7 @@ module.exports = {
         },
 
         path_in_browserified_for_karma: {
-            src: [ "test/tmp/**/karma*browserified*.js" ],
+            src: [ "<%= env.assets %>/test/tmp/**/karma*browserified*.js" ],
             overwrite: true,
             replacements: [
                 { from: / src="\//g, to: " src=\"/base/" }

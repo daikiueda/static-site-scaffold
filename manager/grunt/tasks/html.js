@@ -48,11 +48,17 @@ module.exports = function( grunt ){
                     }, Q() )
                         .then(
                             function(){ done(); },
-                            function(){ done( false ); }
+                            function( message ){
+                                grunt.fail.fatal( message );
+                                done( false );
+                            }
                         );
                 },
 
-                function(){ done( false ); }
+                function( message ){
+                    grunt.fail.fatal( message );
+                    done( false );
+                }
             );
     } );
 };

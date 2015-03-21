@@ -43,8 +43,8 @@ module.exports = {
             xlsx: "<%= env.sitemapExcel.path %>",
             htmlDir: "<%= env.htdocs %>",
             templates: {
-                "#topic_path": "html/fragments/nav_topic_path.html",
-                "aside nav.local": "html/fragments/aside_nav_local.html"
+                "#topic_path": "<%= env.assets %>/html/fragments/nav_topic_path.html",
+                "aside nav.local": "<%= env.assets %>/html/fragments/aside_nav_local.html"
             }
         }
     }

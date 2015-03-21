@@ -1,7 +1,7 @@
 "use strict";
 
 var expect = chai.expect,
-    fixtures = require( "js-fixtures" ),
+    fixtures = require( "../../../../manager/node_modules/js-fixtures" ),
 
     ERRORS_STOCK_SCRIPT_TAG = [
         '<script>',

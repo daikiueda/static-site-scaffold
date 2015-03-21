@@ -64,6 +64,7 @@ module.exports = function( grunt ){
     grunt.registerTask( "setup", '[NOT FOR CLI] Setup workspace after "npm install". Including "bower install", make shortcut and etc..', function(){
 
         grunt.config( "exec.bower_install", {
+            cwd: "../assets",
             cmd: "bower install",
             stdout: false,
             stderr: false,

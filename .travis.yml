@@ -1,18 +1,13 @@
-os:
-  - linux
-  - osx
-
 language: node_js
 
 node_js:
   - "0.10"
 
 before_install:
-  - "cd assets"
+  - "cd manager"
   - "gem install compass"
   - "npm install grunt-cli bower -g"
 
 script:
  - "npm test"
  - "grunt test"
-

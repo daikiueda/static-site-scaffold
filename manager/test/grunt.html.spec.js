@@ -80,9 +80,9 @@ describe( "HTML", function(){
 
         describe( "utf8以外の文字コードが指定された場合", function(){
 
-            var TEST_TEMP_PATH = "./test/__scaffold/.tmp/",
+            var TEST_TEMP_PATH = "./test/.tmp/",
                 FIXTURE_DIR_NAME = "htdocs_sjis",
-                FIXTURE_SRC_PATH = path.join( "./test/__scaffold/fixture", FIXTURE_DIR_NAME ),
+                FIXTURE_SRC_PATH = path.join( "./test/fixture", FIXTURE_DIR_NAME ),
                 FIXTURE_COPY_PATH = path.join( TEST_TEMP_PATH, FIXTURE_DIR_NAME );
 
             before( function(){
@@ -96,7 +96,7 @@ describe( "HTML", function(){
 
             it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
 
-                exec( "grunt --gruntfile ./test/__scaffold/fixture/Gruntfile.js update_nav_excel", function( error ){
+                exec( "grunt --gruntfile ./test/fixture/Gruntfile.js update_nav_excel", function( error ){
                     if( error ) return done( error );
 
                     var resultHTMLSample = require( "iconv-lite" ).decode(

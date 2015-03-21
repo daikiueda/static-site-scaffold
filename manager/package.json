@@ -8,8 +8,7 @@
   "scripts": {
     "postinstall": "grunt setup",
     "start": "grunt",
-    "test": "node ./node_modules/.bin/mocha -t 30000 -R spec test/__scaffold",
-    "test_win": "mocha -t 300000 -R spec test/__scaffold",
+    "test": "node ./node_modules/.bin/mocha -t 30000 -R spec test",
     "testem": "testem -f test/testem.json"
   },
   "repository": {

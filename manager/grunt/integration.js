@@ -4,11 +4,11 @@ module.exports = {
 
     watch: {
         css: {
-            files: [ "css/**/*.scss" ],
+            files: [ "<%= env.assets %>/css/**/*.scss" ],
             tasks: [ "css" ]
         },
         js: {
-            files: [ "js/**/*.js" ],
+            files: [ "<%= env.assets %>/js/**/*.js" ],
             tasks: [ "js" ]
         }
     },
@@ -96,10 +96,11 @@ module.exports = {
             "!<%= env.htdocs %>/Templates",
             "!<%= env.htdocs %>/__modules",
 
-            "test/tmp",
+            "test/{.,}tmp",
+            "<%= env.assets %>/test/{.,}tmp",
 
-            "css/common/css/design_schemes/_icon.scss",
-            "doc/css",
+            "<%= env.assets %>/css/common/css/design_schemes/_icon.scss",
+            "<%= env.assets %>/doc/css",
             "<%= jsdoc.main.options.destination %>",
             "<%= dump_pages.main.options.dest %>"
         ]

@@ -83,12 +83,12 @@ describe( "CSS", function(){
             it( "スタイルガイドを出力する。", function( done ){
 
                 // 実行前
-                expect( exists( "doc/css" ) ).to.be.false;
+                expect( exists( "../assets/doc/css" ) ).to.be.false;
 
                 exec( "grunt cssdoc", function( error ){
                     if( error ) return done( error );
 
-                    expect( exists( "doc/css" ) ).to.be.true;
+                    expect( exists( "../assets/doc/css" ) ).to.be.true;
 
                     done();
                 } );

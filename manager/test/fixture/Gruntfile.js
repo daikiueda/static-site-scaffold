@@ -22,10 +22,10 @@ module.exports = function( grunt ){
 
     var gruntConfigs = _.merge(
         {
-            pkg: grunt.file.readJSON( "../../../package.json" ),
+            pkg: grunt.file.readJSON( "../../package.json" ),
             env: {
                 sitemapExcel: {
-                    path: "../../../doc/sitemap.xlsm",
+                    path: "doc/sitemap.xlsm",
                     dataStartingRow: 7,
                     mapping: {
                         filename: "D",
@@ -52,8 +52,8 @@ module.exports = function( grunt ){
                     xlsx: "<%= env.sitemapExcel.path %>",
                     htmlDir: "../.tmp/htdocs_sjis/",
                     templates: {
-                        "#topic_path": "../../../html/fragments/nav_topic_path.html",
-                        "aside nav.local": "../../../html/fragments/aside_nav_local.html"
+                        "#topic_path": "../../../assets/html/fragments/nav_topic_path.html",
+                        "aside nav.local": "../../../assets/html/fragments/aside_nav_local.html"
                     },
                     options: {
                         charset: "shift_jis"
@@ -65,5 +65,5 @@ module.exports = function( grunt ){
 
     grunt.initConfig( gruntConfigs );
 
-    grunt.loadTasks( "../../../grunt/tasks" );
+    grunt.loadTasks( "../../grunt/tasks" );
 };

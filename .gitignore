@@ -1,10 +1,11 @@
+.tmp
+.idea
 .DS_Store
 
 node_modules
 npm-debug.log
-assets/node_modules
-assets/bower_components
 
+assets/bower_components
 assets/tmp
 assets/test/tmp
 
@@ -13,9 +14,9 @@ assets/css/.sass-cache
 
 assets/font-svg/icon/*.svg
 
+manager/node_modules
+manager/.sass-cache
+manager/__settings__.js
+
 menu.command
 menu.bat
-
-.idea
-.tmp
-/assets/__settings__.js

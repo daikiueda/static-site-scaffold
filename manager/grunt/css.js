@@ -1,9 +1,9 @@
 module.exports = {
     webfont: {
         common_icons: {
-            src: "font-svg/icon/*.svg",
+            src: "<%= env.assets %>/font-svg/icon/*.svg",
             dest: "<%= env.htdocs %>/common/fonts/icon",
-            destCss: "css/common/css/design_schemes",
+            destCss: "<%= env.assets %>/css/common/css/design_schemes",
             options: {
                 engine: "node",
                 font: "icon",
@@ -11,7 +11,7 @@ module.exports = {
                 types: "eot,woff,ttf,svg",
                 stylesheet: "scss",
                 relativeFontPath: "../fonts/icon",
-                template: "font-svg/icon/icon.css",
+                template: "<%= env.assets %>/font-svg/icon/icon.css",
                 htmlDemo: false,
                 embed: false
             }
@@ -21,8 +21,8 @@ module.exports = {
     compass: {
         main: {
             options: {
-                basePath: "css",
-                config: "css/config.rb",
+                basePath: "<%= env.assets %>/css",
+                config: "<%= env.assets %>/css/config.rb",
                 environment: "production"
             }
         },
@@ -57,15 +57,15 @@ module.exports = {
                 }
             },
             files: {
-                "doc/css/common": "css/common/css/*"
+                "<%= env.assets %>/doc/css/common": "<%= env.assets %>/css/common/css/*"
             }
         }
     },
 
     clean: {
         cssdoc: [
-            "doc/css/**/*.html",
-            "doc/css/**/*.css"
+            "<%= env.assets %>/doc/css/**/*.html",
+            "<%= env.assets %>/doc/css/**/*.css"
         ]
     }
 };

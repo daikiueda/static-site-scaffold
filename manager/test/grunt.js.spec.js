@@ -76,12 +76,12 @@ describe( "JavaScript", function(){
             it( "テスト用にbrowserifyされたjsファイルが出力される。", function( done ){
 
                 // 実行前
-                expect( exists( "test/tmp/common/siteScript/karma.common.browserified.js" ) ).to.be.false;
+                expect( exists( "../assets/test/tmp/common/siteScript/karma.common.browserified.js" ) ).to.be.false;
 
                 exec( "grunt browserify", function( error ){
                     if( error ) return done( error );
 
-                    expect( exists( "test/tmp/common/siteScript/karma.common.browserified.js" ) ).to.be.true;
+                    expect( exists( "../assets/test/tmp/common/siteScript/karma.common.browserified.js" ) ).to.be.true;
 
                     done();
                 } );
@@ -96,7 +96,7 @@ describe( "JavaScript", function(){
             it( "テストが実行される。", function( done ){
 
                 // 実行前
-                expect( exists( "test/tmp/__coverage" ) ).to.be.false;
+                expect( exists( "../assets/test/tmp/__coverage" ) ).to.be.false;
 
                 exec( "grunt test", function( error, stdout, stderr ){
                     if( error ) return done( error );
@@ -111,7 +111,7 @@ describe( "JavaScript", function(){
 
             it( "テスト・カバレッジのレポートが出力される。", function( done ){
 
-                expect( exists( "test/tmp/__coverage" ) ).to.be.true;
+                expect( exists( "../assets/test/tmp/__coverage" ) ).to.be.true;
 
                 done();
             } );
@@ -125,12 +125,12 @@ describe( "JavaScript", function(){
             it( "testem用のjsファイルが出力される。", function( done ){
 
                 // 実行前
-                expect( exists( "test/tmp/common/siteScript/testem.common.browserified.js" ) ).to.be.false;
+                expect( exists( "../assets/test/tmp/common/siteScript/testem.common.browserified.js" ) ).to.be.false;
 
                 exec( "grunt browserify", function( error ){
                     if( error ) return done( error );
 
-                    expect( exists( "test/tmp/common/siteScript/testem.common.browserified.js" ) ).to.be.true;
+                    expect( exists( "../assets/test/tmp/common/siteScript/testem.common.browserified.js" ) ).to.be.true;
 
                     done();
                 } );
@@ -146,12 +146,12 @@ describe( "JavaScript", function(){
             it( "ドキュメントを出力する。", function( done ){
 
                 // 実行前
-                expect( exists( "doc/js" ) ).to.be.false;
+                expect( exists( "../assets/doc/js" ) ).to.be.false;
 
                 exec( "grunt jsdoc", function( error ){
                     if( error ) return done( error );
 
-                    expect( exists( "doc/js" ) ).to.be.true;
+                    expect( exists( "../assets/doc/js" ) ).to.be.true;
 
                     done();
                 } );
