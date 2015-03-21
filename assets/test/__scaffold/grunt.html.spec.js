@@ -3,7 +3,7 @@
 var exec = require( "child_process" ).exec,
     fs = require( "fs" ),
     path = require( "path" ),
-    
+
     expect = require( "chai" ).expect,
     shell = require( "shelljs" );
 
@@ -16,16 +16,16 @@ describe( "HTML", function(){
     before( clean );
     after( clean );
 
-    
+
     try {
         require.resolve( "grunt-meta-excel" );
     } catch( e ){
         it( "grunt-meta-excelが未導入です。" );
     }
-    
-    
+
+
     describe( "grunt meta_excel::generate", function(){
-        
+
         it( "HTMLファイルを生成する。メタ情報にExcelの内容が適用されている。", function( done ){
 
             // 実行前
@@ -35,17 +35,32 @@ describe( "HTML", function(){
                 if( error ) return done( error );
 
                 expect( fs.existsSync( "../htdocs/index.html" ) ).to.be.true;
-                
+
                 var fileContent = fs.readFileSync( "../htdocs/index.html", "utf-8" );
 
                 expect( fileContent ).to.contain( '<title>サンプルサイト （+PR＆SEO向けメッセージ）</title>' );
-                expect( fileContent ).to.contain( '<!-- InstanceBegin template="/Templates/base.dwt" codeOutsideHTMLIsLocked="false" -->' );
+                expect( fileContent ).to.contain( '<!-- InstanceBegin template="/Templates/base.dwt" ' );
 
                 done();
             } );
         } );
     } );
 
+    describe( "grunt htmlcommenttemplate", function(){
+        it( "HTMLファイル中の共通部分が、テンプレートにあわせて更新される。", function( done ){
+
+            exec( "grunt htmlcommenttemplate", function( error ){
+                if( error ) return done( error );
+
+                var resultHTMLSample =
+                    fs.readFileSync( "../htdocs/sample_dir_1/sample_subdir/sample_2.html", "utf-8" );
+
+                expect( resultHTMLSample ).to.contain( '<link rel="stylesheet" href="../../common/css/common.css">' );
+
+                done();
+            } );
+        } );
+    } );
 
     describe( "grunt update_nav_excel", function(){
         it( "HTMLファイル中のナビゲーション部分のコードが、Excelの内容にあわせて更新される。", function( done ){
@@ -69,7 +84,7 @@ describe( "HTML", function(){
                 FIXTURE_DIR_NAME = "htdocs_sjis",
                 FIXTURE_SRC_PATH = path.join( "./test/__scaffold/fixture", FIXTURE_DIR_NAME ),
                 FIXTURE_COPY_PATH = path.join( TEST_TEMP_PATH, FIXTURE_DIR_NAME );
-            
+
             before( function(){
                 shell.rm( "-rf", FIXTURE_COPY_PATH );
                 shell.cp( "-r", FIXTURE_SRC_PATH, TEST_TEMP_PATH );

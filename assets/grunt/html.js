@@ -2,16 +2,6 @@ module.exports = {
     htmllint: {
         options: {
             ignore: [
-                /* for HTML4.01 */
-                //'Almost standards mode doctype. Expected Åg<!DOCTYPE html>Åh.',
-                //'Bad value ÅgContent-Style-TypeÅh for attribute Åghttp-equivÅh on XHTML element ÅgmetaÅh.',
-                //'Bad value ÅgContent-Script-TypeÅh for attribute Åghttp-equivÅh on XHTML element ÅgmetaÅh.',
-
-                /* for Yahoo! tag */
-                //'The ÅgframeborderÅh attribute on the ÅgiframeÅh element is obsolete. Use CSS instead.',
-                //'The ÅgscrollingÅh attribute on the ÅgiframeÅh element is obsolete. Use CSS instead.',
-                //'The ÅgmarginheightÅh attribute on the ÅgiframeÅh element is obsolete. Use CSS instead.',
-                //'The ÅgmarginwidthÅh attribute on the ÅgiframeÅh element is obsolete. Use CSS instead.'
             ]
         },
         main: {
@@ -19,13 +9,6 @@ module.exports = {
                 "../htdocs/**/*.html",
                 "!../htdocs/__modules/**/*.html"
             ]
-        }
-    },
-
-    htmlcommenttemplate: {
-        main: {
-          templatesDir: "../htdocs/Templates",
-          html: "../htdocs/**/*.html"
         }
     },
 
@@ -41,6 +24,13 @@ module.exports = {
                 patternsJsonPath: "./grunt/settings/meta_tags_patterns.json",
                 boilerplate: "../htdocs/__modules/__boilerplate.html"
             }
+        }
+    },
+
+    htmlcommenttemplate: {
+        main: {
+          templatesDir: "../htdocs/Templates",
+          html: "../htdocs/**/*.html"
         }
     },
 
