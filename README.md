@@ -26,10 +26,10 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 ### HTML
 
+* 構文チェック
 * 共通テンプレートの一括更新
 * &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
 * ナビゲーションの一括更新（オプション）
-* 構文チェック
 
 [:arrow_right: 詳しくははこちら](https://github.com/daikiueda/static-site-scaffold/wiki/HTML)
 
