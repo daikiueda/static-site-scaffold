@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "grunt setup",
     "start": "grunt",
-    "test": "node ./node_modules/.bin/mocha -t 30000 -R spec test",
+    "test": "node ./node_modules/.bin/mocha -t 60000 -R spec test",
     "testem": "testem -f test/testem.json"
   },
   "repository": {

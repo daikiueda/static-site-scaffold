@@ -41,14 +41,20 @@ describe( "Integration", function(){
 
     describe( "grunt screen_shot", function(){
 
-        before( clean );
+        before( function( done ){
+            clean();
+            exec( "grunt generate_all", function( error ){
+                if( error ) return done( error );
+                done();
+            } );
+        } );
 
         it( "スクリーンショットを一括で出力する。", function( done ){
 
             // 実行前
             expect( exists( "__screen_shot" ) ).to.be.false;
 
-            exec( "grunt build screen_shot", function( error ){
+            exec( "grunt screen_shot", function( error ){
                 if( error ) return done( error );
 
                 expect( exists( "__screen_shot" ) ).to.be.true;
