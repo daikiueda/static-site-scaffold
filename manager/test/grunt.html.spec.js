@@ -39,7 +39,7 @@ describe( "HTML", function(){
                 var fileContent = fs.readFileSync( "../htdocs/index.html", "utf-8" );
 
                 expect( fileContent ).to.contain( '<title>サンプルサイト （+PR＆SEO向けメッセージ）</title>' );
-                expect( fileContent ).to.contain( '<!-- InstanceBegin template="/Templates/base.dwt" ' );
+                expect( fileContent ).to.contain( '<!-- InstanceBegin template="/Templates/base.html" ' );
 
                 done();
             } );
