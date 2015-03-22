@@ -37,8 +37,8 @@ module.exports = function( grunt ){
             filePath = "../menu." + extension,
 
             commandsStr = [
-                "cd assets",
-                "grunt"
+                "cd manager",
+                "npm start"
             ].join( os.EOL );
 
         if( !isWin ){
