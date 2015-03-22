@@ -8,24 +8,28 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 │   ├── css
 │   ├── doc
 │   ├── font-svg
-│   ├── grunt
-│   │   ├── tasks
-│   │   └── templates
+│   ├── html
+│   │   ├── Templates
+│   │   ├── boilerplate
+│   │   └── fragments
 │   ├── js
 │   └── test
-└── htdocs
-    ├── Templates
-    └── __modules
+├── htdocs
+└── manager
+    ├── grunt
+    │   ├── settings
+    │   └── tasks
+    └── test
 ```
 
 ## feature
 
 ### HTML
 
-* DreamWeaverテンプレート
-* 構文チェック
+* 共通テンプレートの一括更新
 * &lt;title&gt;, description, keyword, OGPの一括更新（オプション）
 * ナビゲーションの一括更新（オプション）
+* 構文チェック
 
 [:arrow_right: 詳しくははこちら](https://github.com/daikiueda/static-site-scaffold/wiki/HTML)
 
@@ -68,21 +72,26 @@ static-site-scaffold [![Build Status](https://travis-ci.org/daikiueda/static-sit
 
 * Git
 * Ruby 2.x, Compass
-* node.js 10.x~, grunt-cli, bower
+* Java 1.8-
+* node.js 0.10.x~, grunt-cli, bower
   * node-gypの実行環境
 
 [:arrow_right: 詳しくはこちら](https://github.com/daikiueda/static-site-scaffold/wiki/Setup)
 
 ### 環境構築
 
-```Bash
+```Shell
 $ git clone https://github.com/daikiueda/static-site-scaffold.git
-$ cd static-site-scaffold/assets/
+$ cd static-site-scaffold/manage/
 $ npm install
 ```
 
 ### Start : )
 
-```Bash
+```Shell
+$ npm start
+```
+or
+```Shell
 $ grunt
 ```

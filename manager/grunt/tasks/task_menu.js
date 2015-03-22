@@ -12,10 +12,10 @@ var chalk = require( "chalk" ),
     SELECTED_TASK_VAR_NAME_STR = "selectedTask",
     QUIT_MSG_STR = [
         chalk.gray( "No tasks run. Exit task menu.\n" ),
-        "If you need task menu again, call \"" + chalk.yellow( "grunt" ) + "\"! ",
+        "If you need task menu again, call \"" + chalk.yellow( "npm start" ) + "\"! ",
         "See you next" + chalk.green( " :)" )
     ].join( "" );
-    
+
 
 module.exports = function( grunt ){
 
