@@ -6,8 +6,7 @@ module.exports = {
         },
         main: {
             src: [
-                "<%= env.htdocs %>/**/*.html",
-                "!<%= env.htdocs %>/__modules/**/*.html"
+                "<%= env.htdocs %>/**/*.html"
             ]
         }
     },
@@ -22,16 +21,24 @@ module.exports = {
             htmlDir: "<%= env.htdocs %>",
             options: {
                 patternsJsonPath: "./grunt/settings/meta_tags_patterns.json",
-                boilerplate: "../htdocs/__modules/__boilerplate.html"
+                boilerplate: "<%= env.assets %>/html/boilerplate/contents_page.html"
             }
         }
     },
 
     htmlcommenttemplate: {
         main: {
-          templatesDir: "<%= env.htdocs %>/Templates",
-          html: "<%= env.htdocs %>/**/*.html"
-        }
+            templatesDir: "<%= env.assets %>/html/Templates",
+            html: [
+                "<%= env.htdocs %>/**/*.html"
+            ]
+        },
+        boilerplate: {
+            templatesDir: "<%= env.assets %>/html/Templates",
+            html: [
+                "<%= env.assets %>/html/boilerplate/**/*.html"
+            ]
+        },
     },
 
     update_nav_excel: {

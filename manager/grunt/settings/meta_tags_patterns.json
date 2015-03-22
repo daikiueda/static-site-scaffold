@@ -23,6 +23,6 @@
     ],
 
     "template": [
-        [ "<!-- InstanceBegin template=\"/Templates/.+.dwt\"([^>]*) -->", "<!-- InstanceBegin template=\"/Templates/<%= template %>.dwt\"$1 -->" ]
+        [ "<!-- InstanceBegin template=\"/Templates/.+.(%w+)\"([^>]*) -->", "<!-- InstanceBegin template=\"/Templates/<%= template %>.$1\"$2 -->" ]
     ]
 }

@@ -3,6 +3,10 @@ var chalk = require( "chalk" );
 module.exports = {
 
     watch: {
+        htmlcommenttemplate: {
+            files: [ "<%= env.assets %>/html/Templates/**/*.*" ],
+            tasks: [ "htmlcommenttemplate" ]
+        },
         css: {
             files: [ "<%= env.assets %>/css/**/*.scss" ],
             tasks: [ "css" ]
