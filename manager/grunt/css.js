@@ -52,7 +52,7 @@ module.exports = {
             options: {
                 template: {
                     include: [
-                        "<%= env.htdocs %>/css/common.css"
+                        "<%= env.htdocs %>/common/css/common.css"
                     ]
                 }
             },
