@@ -1,11 +1,11 @@
 // @import
 // ============
 
-// * normalize.css
+// * helper, grid, normalize
 @import
-	"../../../bower_components/normalize.css/_normalize.scss";
+	"./__base__.scss",
 
-// * design_schemes
-@import
 	"design_schemes/font",
-	"design_schemes/icon";
+	"design_schemes/icon",
+
+	"global/_global.scss";

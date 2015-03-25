@@ -23,7 +23,7 @@ module.exports = {
             options: {
                 basePath: "<%= env.assets %>/css",
                 config: "<%= env.assets %>/css/config.rb",
-                environment: "production"
+                environment: "<%= env.debug ? 'development': 'production' %>"
             }
         },
         main_for_cssdoc: {

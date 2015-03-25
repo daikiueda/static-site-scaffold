@@ -1,0 +1,17 @@
+/*
+# html, body
+*/
+html {
+	font-size: ( $font-size-default / 16px ) + em;
+}
+body {
+	@include fs( $font-size-default );
+	line-height: $line-height-default;
+}
+
+body > .container > .local {
+
+    @include outer-container;
+    main { @include span-columns( 9 ); }
+    aside { @include span-columns( 3 ); }
+}

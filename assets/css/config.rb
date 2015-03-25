@@ -2,7 +2,7 @@
 
 # Require any additional compass plugins here.
 
-environment = :production
+#environment = :production
 #environment = :development
 
 # Set this to the root of your project when deployed:
@@ -13,14 +13,14 @@ images_dir = "../images"
 generated_images_dir = "../../htdocs/common/responsive/images"
 
 # You can select your preferred output style here (can be overridden via the command line):
-output_style = :compressed
+output_style = (environment == :production) ? :compressed : :expanded
 #output_style = :expand
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
-line_comments = true
+line_comments = (environment == :production) ? :false : :true
 
 sass_options = {:unix_newlines => true}
 
@@ -51,4 +51,3 @@ on_stylesheet_saved do |filename|
     end
   end
 end
-

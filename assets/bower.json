@@ -4,6 +4,8 @@
   "dependencies": {
     "jquery": "~1.11.0",
     "ionicons": "~1.4.1",
-    "normalize.css": "~3.0.2"
+    "normalize.css": "~3.0.2",
+    "bourbon": "~4.2.1",
+    "neat": "~1.7.2"
   }
 }
