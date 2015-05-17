@@ -42,8 +42,7 @@ describe( "Integration", function(){
     describe( "grunt screen_shot", function(){
 
         before( function( done ){
-            clean();
-            exec( "grunt generate_all", function( error ){
+            exec( "grunt clean:generated generate_all -f", function( error ){
                 if( error ) return done( error );
                 done();
             } );
