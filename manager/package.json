@@ -61,7 +61,7 @@
     "moment": "^2.10.3",
     "q": "^1.4.0",
     "shelljs": "^0.4.0",
-    "webshot": "^0.15.4"
+    "webshot": "^0.16.0"
   },
   "optionalDependencies": {
     "grunt-meta-excel": "^0.0.9"
